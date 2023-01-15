@@ -1,0 +1,22 @@
+{
+  "name": "@example/blog",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^2.0.0",
+    "@astrojs/sitemap": "^1.0.0",
+    "astro": "^1.9.0"
+  },
+  "devDependencies": {
+    "@unocss/preset-uno": "^0.48.4",
+    "unocss": "^0.48.4"
+  }
+}

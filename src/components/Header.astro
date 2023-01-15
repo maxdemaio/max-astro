@@ -1,25 +1,11 @@
----
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../config';
----
+<header class="px-8 mt-8 mb-10">
+  <nav>
+    <a href="/" aria-label="Home link" class="text-blue-800">Home</a>
 
-<header>
-	<h2 class="text-5xl">
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+    <a href="/blog" aria-label="Blog link" class="text-blue-800">Blog</a>
+
+    <a href="/software" aria-label="Software link" class="text-blue-800">
+      Software
+    </a>
+  </nav>
 </header>
-<style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
-</style>

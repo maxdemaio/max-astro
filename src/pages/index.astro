@@ -1,76 +1,42 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Default from '../layouts/Default.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header title={SITE_TITLE} />
-    <main class="flex flex-col justify-center items-start mx-auto">
-      <div class="flex items-center justify-center flex-wrap mb-6">
-        <div class="flex-1 pr-2 mb-6">
-          <h1 class="font-bold text-5xl tracking-tight text-black">
-            Maxwell DeMaio
-          </h1>
-          <h2 class="font-bold text-4xl tracking-tight text-gray-600">
-            Software Developer in Providence, RI
-          </h2>
-        </div>
+<Default  description="home page">
+  <div class="flex items-center justify-center flex-wrap mb-8">
+    <div class="font-kai font-bold tracking-tight flex-1 pr-2">
+      <h1 class="text-5xl">Maxwell DeMaio</h1>
+      <h2 class="font-bold text-4xl tracking-tight text-gray-600">Software Developer in Providence, RI</h2>
+    </div>
 
-        <div>
-          <img
-            src="public/me2.jpeg"
-            class="rounded-3xl"
-            height={260}
-            width={260}
-            alt="profile picture"
-          />
-        </div>
-      </div>
+    <div>
+      <img src="/me2.jpeg" class="rounded-3xl" height={260} width={260} alt="profile picture" />
+    </div>
+  </div>
 
-      <section>
-        <p>
-          Hi, I'm Max! I'm a self-taught software developer with a strong will
-          to learn, research new technologies, and design software architecture.
-          I like creating practical business solutions and making development
-          processes as efficient as possible. Currently, I'm working as an
-          Associate Software Developer at{" "}
-          <a class="text-blue-800" href="https://www.logicmanager.com">
-            LogicManager
-          </a>{" "}
-          where I work with frontend and backend technologies in an agile environment.
-        </p>
-        <p>
-          I'm working on growing my skills and gaining exposure to a variety of
-          technology, whether that be through work or personal projects. When
-          I'm not glued to my computer, I enjoy playing the guitar, chess, and
-          learning languages. Also, I believe in hard work, curiosity, and
-          diversity.
-        </p>
-        <p>
-          You can follow me on{" "}
-          <a class="text-blue-800" href="https://twitter.com/maxwelldemaio">
-            Twitter
-          </a>{" "}
-          where I mostly post about software, language, and business. My open source
-          projects are publicly available on{" "}
-          <a class="text-blue-800" href="https://github.com/maxdemaio">
-            GitHub
-          </a>
-          . Please feel free to reach out and contact me at{" "}
-          <a class="text-blue-800" href="mailto:maxwell.demaio@gmail.com">
-            maxwell.demaio@gmail.com
-          </a>
-          .
-        </p>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+  <div class="text-4xl">
+    <div class="i-carbon-campsite inline-block" />
+  </div>
+
+  <section>
+    <p>
+      Hi, I'm Max! I'm a self-taught software developer with a strong will to learn, research new technologies, and design software architecture. I like creating practical business solutions and
+      making development processes as efficient as possible. Currently, I'm working as an Associate Software Developer at{' '}
+      <a class="text-blue-800" href="https://www.logicmanager.com"> LogicManager</a>{' '}
+      where I work with frontend and backend technologies in an agile environment.
+    </p>
+    <p>
+      I'm working on growing my skills and gaining exposure to a variety of technology, whether that be through work or personal projects. When I'm not glued to my computer, I enjoy playing the
+      guitar, chess, and learning languages. Also, I believe in hard work, curiosity, and diversity.
+    </p>
+    <p>
+      You can follow me on{' '}
+      <a class="text-blue-800" href="https://twitter.com/maxwelldemaio"> Twitter</a>{' '}
+      where I mostly post about software, language, and business. My open source projects are publicly available on{' '}
+      <a class="text-blue-800" href="https://github.com/maxdemaio"> GitHub</a>
+      . Please feel free to reach out and contact me at{' '}
+      <a class="text-blue-800" href="mailto:maxwell.demaio@gmail.com"> maxwell.demaio@gmail.com</a>
+      .
+    </p>
+  </section>
+</Default>

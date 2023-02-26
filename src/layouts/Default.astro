@@ -1,15 +1,18 @@
 ---
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_IMAGE } from '../config';
+
 export interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
+// Defaults
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = SITE_IMAGE } = Astro.props;
 ---
 
 <html lang="en">
@@ -52,3 +55,4 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
     <Footer />
   </body>
 </html>
+

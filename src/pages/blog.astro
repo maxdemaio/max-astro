@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Default from '../layouts/Default.astro';
 
 // Astro.glob() to fetch all blog posts, and then sort them by date.
 const posts = (await Astro.glob("./blog/*.md")).sort(
@@ -12,44 +9,37 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
 );
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <section>
-      <h1>Blog</h1>
-      <p>
-        <strong>max overflow</strong> is a blog about software, language, and business.
-        Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
-        written {posts.length} posts.
-      </p>
-    </section>
-    <main>
-      <section>
-        <ul class="space-y-4">
-          {
-            posts.map((post) => (
-              <li class="opacity-80 hover:opacity-100">
-                <time datetime={post.frontmatter.pubDate}>
-                  {new Date(post.frontmatter.pubDate).toLocaleDateString(
-                    "en-us",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    }
-                  )}
-                </time>
-                <a href={post.url}>{post.frontmatter.title}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Default title="Blog Page" description="Blog page">
+  <section>
+    <h1>Blog</h1>
+    <p>
+      <strong>max overflow</strong> is a blog about software, language, and business.
+      Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
+      written {posts.length} posts.
+    </p>
+  </section>
+  <section>
+    <ul class="space-y-4">
+      {
+        posts.map((post) => (
+          <li class="opacity-80 hover:opacity-100">
+            <time datetime={post.frontmatter.pubDate}>
+              {new Date(post.frontmatter.pubDate).toLocaleDateString(
+                "en-us",
+                {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                }
+              )}
+            </time>
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Default>
+
+
+

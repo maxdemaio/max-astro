@@ -16,7 +16,12 @@ export default defineConfig({
             kai: 'Kaisei Tokumin',
           },
         }),
-        presetIcons(),
+        presetIcons({
+          extraProperties: {
+            'display': 'inline-block',
+            'vertical-align': 'middle',
+          },
+        }),
       ],
     }),
   ],

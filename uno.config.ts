@@ -25,22 +25,29 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         kai: 'Kaisei Tokumin',
+        mono: 'DM Mono',
       },
     }),
     // custom 'prose' stylings
     presetTypography({
       cssExtend: {
-        "main": {
-          "margin-left": "5px",
-        },
-        "p": {
+        p: {
           "margin-bottom": "1rem"
         },
+        hr: { 
+          "border-color": "gray"},
+        pre: {
+          "padding": "1rem",
+					"font-family": "DM Mono",
+					"overflow-x": "auto",
+          "border-radius": "0.375rem",
+          "white-space": "normal"
+				},
         "h1, h2, h3, h4, h5, h6": {
 					"font-family": "Kaisei Tokumin",
           "font-weight": "700",
           "letter-spacing": "-0.025em",
-          "margin": "0rem 0rem 2rem 0rem"
+          "margin": "1rem 0rem 1rem 0rem"
 				},
         "p > a, li > a": {
 					"color": "red",

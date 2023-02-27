@@ -47,7 +47,7 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
   </head>
   <body>
     <Navbar />
-    <main class="prose">
+    <main class="prose flex flex-col justify-center items-start px-8 max-w-3xl mx-auto">
       <h1>{title}</h1>
       <slot /> <!-- your content is injected here -->
     </main>

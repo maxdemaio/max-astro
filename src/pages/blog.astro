@@ -1,5 +1,5 @@
 ---
-import Default from '../layouts/Default.astro';
+import Default from '@layouts/Default.astro';
 
 // Astro.glob() to fetch all blog posts, and then sort them by date.
 const posts = (await Astro.glob("./blog/*.md")).sort(

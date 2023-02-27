@@ -1,18 +1,18 @@
 ---
-import Footer from '../components/Footer.astro';
-import Navbar from '../components/Navbar.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_IMAGE } from '../config';
+import Footer from '@components/Footer.astro';
+import Navbar from '@components/Navbar.astro';
+import { SITE_IMAGE } from '../config';
 
 export interface Props {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// Defaults
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = SITE_IMAGE } = Astro.props;
+// Image has website default
+const { title, description, image = SITE_IMAGE } = Astro.props;
 ---
 
 <html lang="en">

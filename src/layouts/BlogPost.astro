@@ -1,16 +1,22 @@
 ---
-import Footer from '../components/Footer.astro';
-import Navbar from '../components/Navbar.astro';
-export interface Props {
+import Footer from '@components/Footer.astro';
+import Navbar from '@components/Navbar.astro';
+import { SITE_IMAGE } from '../config';
+import type { MarkdownLayoutProps } from 'astro';
+
+type Props = MarkdownLayoutProps<{
+  // Frontmatter props
   title: string;
   description: string;
   image?: string;
   pubDate: string;
-}
+}>;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
+// Now, `frontmatter`, `url`, and other Markdown layout properties
+// are accessible with type safety
+const { frontmatter, url } = Astro.props;
 ---
 
 <html lang="en">
@@ -27,28 +33,33 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <title>{frontmatter.title}</title>
+    <meta name="title" content={frontmatter.title} />
+    <meta name="description" content={frontmatter.description} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:description" content={frontmatter.description} />
+    <!-- If an image URL exists, add it. Otherwise, use the site default.  -->
+    {!!frontmatter.image ?
+      <meta property="og:image" content={new URL(frontmatter.image, Astro.url)} /> 
+      : <meta property="og:image" content={new URL(SITE_IMAGE, Astro.url)} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta property="twitter:title" content={frontmatter.title} />
+    <meta property="twitter:description" content={frontmatter.description} />
+    {!!frontmatter.image ?
+      <meta property="twitter:image" content={new URL(frontmatter.image, Astro.url)} /> 
+      : <meta property="twitter:image" content={new URL(SITE_IMAGE, Astro.url)} />}
   </head>
   <body>
     <Navbar />
     <main class="prose px-8 max-w-3xl mx-auto">
-      <h1>{title}</h1>
+      <h1>{frontmatter.title}</h1>
       <slot /> <!-- your content is injected here -->
     </main>
     <Footer />

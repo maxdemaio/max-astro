@@ -35,7 +35,10 @@ export default defineConfig({
           "margin-bottom": "1rem"
         },
         hr: { 
-          "border-color": "gray"},
+          "border-sizing": "border-box",
+          "border-top-width": "1px",
+          "border": "0 solid"
+        },
         pre: {
           "padding": "1rem",
 					"font-family": "DM Mono",

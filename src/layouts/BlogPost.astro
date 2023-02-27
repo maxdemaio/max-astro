@@ -5,6 +5,7 @@ export interface Props {
   title: string;
   description: string;
   image?: string;
+  pubDate: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -46,7 +47,8 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
   </head>
   <body>
     <Navbar />
-    <main>
+    <main class="prose">
+      <h1>{title}</h1>
       <slot /> <!-- your content is injected here -->
     </main>
     <Footer />

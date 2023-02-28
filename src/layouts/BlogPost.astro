@@ -1,5 +1,5 @@
 ---
-import Footer from '@components/Footer.astro';
+import BlogPostFooter from '@components/BlogPostFooter.astro';
 import Navbar from '@components/Navbar.astro';
 import { SITE_IMAGE } from '../config';
 import type { MarkdownLayoutProps } from 'astro';
@@ -61,7 +61,7 @@ const { frontmatter, url } = Astro.props;
     <main class="prose px-8 max-w-3xl mx-auto">
       <h1>{frontmatter.title}</h1>
       <slot /> <!-- your content is injected here -->
+      <BlogPostFooter />
     </main>
-    <Footer />
   </body>
 </html>

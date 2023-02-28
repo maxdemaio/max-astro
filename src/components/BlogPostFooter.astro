@@ -1,0 +1,43 @@
+---
+const today = new Date();
+---
+
+<footer class="mt-10 mb-6">
+  <p>
+    <a href="/blog" aria-label="Blog link">← Back</a>
+  
+    <button id="top-button" class="cursor-pointer float-right">
+      <a>↑ Top</a>
+    </button>
+  </p>
+  
+
+  <hr />
+
+  <p>
+    <strong>max overflow</strong> is a blog about business, language, and
+    computer science. Sometimes my thoughts overflow and end up here for
+    safekeeping.
+  </p>
+  <p>
+    For corrections (typos, factual inaccuracies), please file a 
+    <a
+      href="https://github.com/maxdemaio/max-astro/issues"
+    >
+      GitHub issue</a>.
+  </p>
+
+  <p>
+    Website designed by Max DeMaio &copy; {today.getFullYear()}
+  </p>
+</footer>
+
+<script>
+const topButton = document.querySelector('#top-button');
+
+if (!!topButton) {
+  topButton.addEventListener('click', () => {
+    window.scrollTo(0, 0);
+  });
+}
+</script>

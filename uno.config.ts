@@ -37,7 +37,7 @@ export default defineConfig({
         hr: { 
           "border-sizing": "border-box",
           "border-top-width": "1px",
-          "border": "0 solid"
+          "border": "0 solid" 
         },
         pre: {
           "padding": "1rem",
@@ -52,11 +52,16 @@ export default defineConfig({
           "letter-spacing": "-0.025em",
           "margin": "1rem 0rem 1rem 0rem"
 				},
+        h1: {
+          "font-size": "2.25rem",
+          "line-height": "2.5rem",
+        },
         "p > a, li > a": {
-					"color": "red",
+					"color": "rgba(30,64,175)",
+          "text-decoration": "underline"
 				},
 				"p > a:hover, li > a:hover": {
-					"color": "blue",
+					"color": "rgba(30, 58, 138)",
 				},
       }
     })

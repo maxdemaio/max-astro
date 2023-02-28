@@ -60,9 +60,16 @@ export default defineConfig({
 					"color": "rgba(30,64,175)",
           "text-decoration": "underline"
 				},
-				"p > a:hover, li > a:hover": {
+        "p > a:hover, li > a:hover": {
 					"color": "rgba(30, 58, 138)",
 				},
+        "button > a": {
+          "color": "rgba(30,64,175)",
+          "text-decoration": "underline"
+        },
+        "button > a:hover": {
+          "color": "rgba(30, 58, 138)",
+        },
       }
     })
   ],

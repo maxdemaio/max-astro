@@ -13,7 +13,7 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
   <section>
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p class="mt-4 mb-6">
-      <strong>max overflow</strong> is a blog about software, language, and business.
+      <span class="font-bold text-gray-600 dark:text-gray-400">max overflow</span> is a blog about software, language, and business.
       Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
       written {posts.length} posts.
     </p>
@@ -23,8 +23,8 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
       {
         posts.map((post) => (
         <a href={post.url}>
-          <li class="opacity-80 hover:opacity-100">
-            {post.frontmatter.title}
+          <li class="flex flex-row space-between opacity-80 hover:opacity-100">
+            <div>{post.frontmatter.title}</div>
             <time datetime={post.frontmatter.pubDate}>
               {new Date(post.frontmatter.pubDate).toLocaleDateString(
                 "en-us",
@@ -36,6 +36,7 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
               )}
             </time>
           </li>
+          <hr />
         </a>
         ))
       }

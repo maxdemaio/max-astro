@@ -25,9 +25,7 @@
 .prose pre {
   color: #e5e7eb;
   overflow-x: auto;
-  font-size: 0.875em;
   line-height: 1.4;
-  margin: 1rem;
   border-radius: 0.375rem;
   padding: 0.75rem 1rem 0.75rem 1rem;
 }
@@ -38,8 +36,6 @@
   content: none;
 }
 .prose code {
-  color: var(--fg-deep);
-  font-weight: 600;
   font-size: 0.875em;
 }
 .prose code::before {

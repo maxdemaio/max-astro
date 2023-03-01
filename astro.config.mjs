@@ -9,4 +9,9 @@ export default defineConfig({
     sitemap(),
     UnoCSS(),
   ],
+  markdown: {
+    shikiConfig: {
+      theme: 'nord'
+    }
+  }
 });

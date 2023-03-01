@@ -40,16 +40,18 @@ export default defineConfig({
           "border": "0 solid" 
         },
         pre: {
-          "padding": "1rem",
+          "padding": "0.75rem 1rem 0.75rem 1rem",
 					"font-family": "DM Mono",
 					"overflow-x": "auto",
           "border-radius": "0.375rem",
-          "white-space": "normal"
+          "border-top-color": "black",
+          "border-style": "solid",
+          "white-space": "normal",
+          "line-height": "1.4",
 				},
         "h1, h2, h3, h4, h5, h6": {
 					"font-family": "Kaisei Tokumin",
           "font-weight": "700",
-          "letter-spacing": "-0.025em",
           "margin": "1rem 0rem 1rem 0rem"
 				},
         h1: {

@@ -13,8 +13,43 @@
       </div>
       <div class="i-carbon-logo-twitter text-3xl" />
       <div class="i-carbon-rss text-3xl" />
-      <button class="i-carbon-sun text-3xl dark:i-carbon-moon inline-block" />
+      <button class="theme-toggle i-carbon-sun text-3xl dark:i-carbon-moon inline-block" />
   
    
   </nav>
 </header>
+
+<script>
+  // Credits to satnaing/lancerossdev on GitHub
+  // Dark/Light toggle logic
+  const primaryColorScheme = "none";
+  const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const currentTheme = localStorage.getItem("theme");
+  let theme;
+  if (currentTheme) {
+    theme = currentTheme === "dark" ? "dark" : "";
+  } else {
+    if (primaryColorScheme === "dark" || (primaryColorScheme === "none" && darkModeMediaQuery)) {
+      theme = "dark";
+    } else if (primaryColorScheme === "light") {
+      theme = "";
+    } else {
+      theme = darkModeMediaQuery ? "dark" : "";
+    }
+  }
+  document.documentElement.className = theme;
+
+  const themeBtn = document.querySelector(".theme-toggle");
+  const htmlClassList = document.documentElement.classList;
+  if (!!themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      if (htmlClassList.contains("dark")) {
+        localStorage.setItem("theme", "light");
+        htmlClassList.remove("dark");
+      } else {
+        localStorage.setItem("theme", "dark");
+        htmlClassList.add("dark");
+      }
+    });
+  }
+</script>

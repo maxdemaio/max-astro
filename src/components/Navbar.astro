@@ -13,7 +13,7 @@
       </div>
       <div class="i-carbon-logo-twitter text-3xl" />
       <div class="i-carbon-rss text-3xl" />
-      <button class="theme-toggle i-carbon-sun text-3xl dark:i-carbon-moon inline-block" />
+      <button id="theme-button" class="i-carbon-sun text-3xl dark:i-carbon-moon inline-block" />
   
    
   </nav>
@@ -21,34 +21,42 @@
 
 <script>
   // Credits to satnaing/lancerossdev on GitHub
-  // Dark/Light toggle logic
-  const primaryColorScheme = "none";
+  // Dark and light mode toggle logic
   const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const currentTheme = localStorage.getItem("theme");
+  const storedTheme = localStorage.getItem("theme");
   let theme;
-  if (currentTheme) {
-    theme = currentTheme === "dark" ? "dark" : "";
+  if (!!storedTheme) {
+    // Theme exists, choose 
+    theme = storedTheme === "dark" ? "dark" : "light";
   } else {
-    if (primaryColorScheme === "dark" || (primaryColorScheme === "none" && darkModeMediaQuery)) {
+    // Theme does not exist, check browser preference
+    if (!!darkModeMediaQuery) {
       theme = "dark";
-    } else if (primaryColorScheme === "light") {
-      theme = "";
     } else {
-      theme = darkModeMediaQuery ? "dark" : "";
+      theme = darkModeMediaQuery ? "dark" : "light";
     }
   }
+
+  // Set the theme on the <html> element
   document.documentElement.className = theme;
 
-  const themeBtn = document.querySelector(".theme-toggle");
+  const themeButton = document.querySelector("#theme-button");
   const htmlClassList = document.documentElement.classList;
-  if (!!themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      if (htmlClassList.contains("dark")) {
-        localStorage.setItem("theme", "light");
-        htmlClassList.remove("dark");
-      } else {
-        localStorage.setItem("theme", "dark");
-        htmlClassList.add("dark");
+  
+  if (!!themeButton) {
+    // When the theme button is clicked, change theme
+    // We store the theme in local storage
+    themeButton.addEventListener("click", function () {
+      if (!!htmlClassList) {
+        if (htmlClassList.contains("dark")) {
+          localStorage.setItem("theme", "light");
+          htmlClassList.remove("dark");
+          htmlClassList.add("light");
+        } else {
+          localStorage.setItem("theme", "dark");
+          htmlClassList.remove("light");
+          htmlClassList.add("dark");
+        }
       }
     });
   }

@@ -56,7 +56,7 @@ const { frontmatter, url } = Astro.props;
       <meta property="twitter:image" content={new URL(frontmatter.image, Astro.url)} /> 
       : <meta property="twitter:image" content={new URL(SITE_IMAGE, Astro.url)} />}
   </head>
-  <body>
+  <body class="dark:bg-black bg-white">
     <Navbar />
     <main class="prose px-8 max-w-3xl mx-auto">
       <h1>{frontmatter.title}</h1>

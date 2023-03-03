@@ -21,6 +21,10 @@ export default defineConfig({
       },
     }),
   ],
+  shortcuts: {
+    'mlink': 'text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark',
+    'mproj': ''
+  },
   theme: {
     colors: {
       // class="text-primary-light"

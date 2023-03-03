@@ -1,16 +1,14 @@
 <header class="lt-xs:px-2 px-8 mt-8 mb-10 max-w-3xl mx-auto">
   <nav class="font-kai flex items-center justify-between mx-auto">
-    <a href="/" aria-label="Home link" class="text-primary-light dark:text-primary-dark">
+    <a href="/" title="Home" class="text-primary-light dark:text-primary-dark">
       Home
     </a>
-    <a href="/blog" aria-label="Blog link" class="text-primary-light dark:text-primary-dark">
+    <a href="/blog" title="Blog" class="text-primary-light dark:text-primary-dark">
       Blog
     </a>
-    <a href="/projects" aria-label="Projects link" class="text-primary-light dark:text-primary-dark">
+    <a href="/projects" title="Projects" class="text-primary-light dark:text-primary-dark">
       Projects
     </a>
-
-    
 
     <a href="https://twitter.com/maxwelldemaio" title="Twitter" class="grid items-center justify-center  lt-sm:hidden w-9 h-9  bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
       <div class="i-tabler-brand-twitter" />
@@ -21,7 +19,7 @@
     <a href="/rss.xml" title="RSS" class="grid items-center justify-center  lt-sm:hidden w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
       <div class="i-tabler-rss" />
     </a>
-    <button aria-label="Theme button" id="theme-button" class="grid items-center justify-center  w-9 h-9  bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
+    <button title="Theme" id="theme-button" class="grid items-center justify-center  w-9 h-9  bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
       <div class="i-tabler-sun-filled dark:i-tabler-moon-stars" />
     </button>
   </nav>
@@ -29,6 +27,7 @@
 
 <script>
   // Credits to satnaing/lancerossdev on GitHub
+  // Slightly modified
   // Dark and light mode toggle logic
   const darkModeMediaQuery   = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const storedTheme = localStorage.getItem("theme");

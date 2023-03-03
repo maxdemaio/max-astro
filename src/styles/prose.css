@@ -1,5 +1,10 @@
 /* light theme and overarching styles */
-.prose h1, h2, h3, h4, h5, h6 {
+.prose h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Kaisei Tokumin";
   font-weight: 700;
   margin: 1rem 0rem 1rem 0rem;
@@ -11,7 +16,7 @@
   line-height: 2.5rem;
 }
 .prose hr {
-  border-color: rgba(125,125,125,0.3);
+  border-color: rgba(125, 125, 125, 0.3);
   margin-top: 3em;
   margin-bottom: 3em;
 }
@@ -47,6 +52,11 @@
 }
 
 /* dark theme */
-html.dark .prose h1, h2, h3, h4, h5, h6 {
+html.dark .prose h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: white;
 }

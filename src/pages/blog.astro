@@ -1,5 +1,5 @@
 ---
-import Default from '@layouts/Default.astro';
+import Default from "@layouts/Default.astro";
 
 // Astro.glob() to fetch all blog posts, and then sort them by date.
 const posts = (await Astro.glob("./blog/*.md")).sort(
@@ -9,53 +9,60 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
 );
 ---
 
-<Default 
+<Default
   title="Blog – Max DeMaio"
   image="https://maxdemaio.com/spirited-blog.jpg"
   description="All my blog posts in one place."
 >
   <section>
-    <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
+    <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">
+      Blog
+    </h1>
     <p class="mt-4 mb-6">
-      <span class="font-bold text-gray-600 dark:text-gray-400">max overflow</span> is a blog about software, language, and business.
-      Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
-      written {posts.length} posts.
+      <span class="font-bold text-gray-600 dark:text-gray-400"
+        >max overflow</span
+      > is a blog about software, language, and business. Sometimes my thoughts overflow
+      and end up here for safekeeping. So far, I've written {posts.length} posts.
     </p>
   </section>
   <section class="mb-4">
     <ul class="space-y-4">
       {
         posts.map((post) => (
-          <li class="opacity-80 hover:opacity-100">
-            <a href={post.url}>
-              <div class="text-black dark:text-white">{post.frontmatter.title}</div>
-              <div>
-                <time datetime={post.frontmatter.pubDate}>
-                  {new Date(post.frontmatter.pubDate).toLocaleDateString(
-                    "en-us",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    }
-                  )}
-                </time>
-              </div>
-            </a>
-          </li>
-          <hr />
+          <>
+            <li class="opacity-80 hover:opacity-100">
+              <a href={post.url}>
+                <div class="text-black dark:text-white">
+                  {post.frontmatter.title}
+                </div>
+                <div>
+                  <time datetime={post.frontmatter.pubDate}>
+                    {new Date(post.frontmatter.pubDate).toLocaleDateString(
+                      "en-us",
+                      {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      }
+                    )}
+                  </time>
+                </div>
+              </a>
+            </li>
+            <hr />
+          </>
         ))
       }
     </ul>
 
-    <div>
-    </div>
+    <div></div>
   </section>
 
-  <img src="/spirited-blog.jpg" height={1038} width={1920} class="rounded" alt="Spirited Away - Blog Picture"
+  <img
+    src="/spirited-blog.jpg"
+    height={1038}
+    width={1920}
+    class="rounded"
+    alt="Spirited Away - Blog Picture"
   />
-
 </Default>
-
-
-

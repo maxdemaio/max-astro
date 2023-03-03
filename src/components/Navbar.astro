@@ -3,54 +3,80 @@
     <a href="/" title="Home" class="text-primary-light dark:text-primary-dark">
       Home
     </a>
-    <a href="/blog" title="Blog" class="text-primary-light dark:text-primary-dark">
+    <a
+      href="/blog"
+      title="Blog"
+      class="text-primary-light dark:text-primary-dark"
+    >
       Blog
     </a>
-    <a href="/projects" title="Projects" class="text-primary-light dark:text-primary-dark">
+    <a
+      href="/projects"
+      title="Projects"
+      class="text-primary-light dark:text-primary-dark"
+    >
       Projects
     </a>
 
-    <a href="https://twitter.com/maxwelldemaio" title="Twitter" class="grid items-center justify-center  lt-sm:hidden w-9 h-9  bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
-      <div class="i-tabler-brand-twitter" />
+    <a
+      href="https://twitter.com/maxwelldemaio"
+      title="Twitter"
+      class="grid items-center justify-center lt-sm:hidden w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
+    >
+      <div class="i-tabler-brand-twitter"></div>
     </a>
-    <a href="https://github.com/maxdemaio" title="GitHub" class="grid items-center justify-center lt-sm:hidden w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
-      <div class="i-tabler-brand-github" />
+    <a
+      href="https://github.com/maxdemaio"
+      title="GitHub"
+      class="grid items-center justify-center lt-sm:hidden w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
+    >
+      <div class="i-tabler-brand-github"></div>
     </a>
-    <a href="/rss.xml" title="RSS" class="grid items-center justify-center  lt-sm:hidden w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
-      <div class="i-tabler-rss" />
+    <a
+      href="/rss.xml"
+      title="RSS"
+      class="grid items-center justify-center lt-sm:hidden w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
+    >
+      <div class="i-tabler-rss"></div>
     </a>
-    <button title="Theme" id="theme-button" class="grid items-center justify-center  w-9 h-9  bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700">
-      <div class="i-tabler-sun-filled dark:i-tabler-moon-stars" />
+    <button
+      title="Theme"
+      id="theme-button"
+      class="grid items-center justify-center w-9 h-9 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
+    >
+      <div class="i-tabler-sun-filled dark:i-tabler-moon-stars"></div>
     </button>
   </nav>
 </header>
 
 <script is:inline>
   const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
     }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
     }
-      return 'light';
+    return "light";
   })();
-      
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
   } else {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add("dark");
   }
 
-  window.localStorage.setItem('theme', theme);
+  window.localStorage.setItem("theme", theme);
 
   const handleToggleClick = () => {
     const element = document.documentElement;
     element.classList.toggle("dark");
-    
+
     const isDark = element.classList.contains("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
-  }
+  };
 
-  document.getElementById("theme-button").addEventListener("click", handleToggleClick);
+  document
+    .getElementById("theme-button")
+    .addEventListener("click", handleToggleClick);
 </script>

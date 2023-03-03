@@ -9,7 +9,11 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
 );
 ---
 
-<Default title="Blog Page" description="Blog page">
+<Default 
+  title="Blog – Max DeMaio"
+  image="https://maxdemaio.com/spirited-blog.jpg"
+  description="All my blog posts in one place."
+>
   <section>
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p class="mt-4 mb-6">

@@ -16,7 +16,8 @@
     "astro": "^1.9.0"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.29",
+    "@iconify-json/tabler": "^1.1.63",
+    "@iconify-json/uil": "^1.1.4",
     "@unocss/reset": "^0.50.1",
     "unocss": "^0.50.1",
     "vite": "^4.1.4"

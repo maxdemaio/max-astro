@@ -11,7 +11,7 @@ export default defineConfig({
     presetIcons({
       extraProperties: {
         'display': 'inline-block',
-        'vertical-align': 'middle',
+        'vertical-align': 'text-bottom',
       },
     }),
     presetWebFonts({
@@ -33,6 +33,10 @@ export default defineConfig({
     [/^text-(.*)$/, ([, c], { theme }) => {
       if (theme.colors[c])
         return { color: theme.colors[c] }
+    }],
+    [/^border-(.*)$/, ([, c], {theme}) => {
+      if (theme.colors[c])
+        return { 'border-color': theme.colors[c]}
     }],
   ]
 })

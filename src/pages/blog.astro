@@ -18,7 +18,7 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
       written {posts.length} posts.
     </p>
   </section>
-  <section>
+  <section class="mb-4">
     <ul class="space-y-4">
       {
         posts.map((post) => (
@@ -43,7 +43,14 @@ const posts = (await Astro.glob("./blog/*.md")).sort(
         ))
       }
     </ul>
+
+    <div>
+    </div>
   </section>
+
+  <img src="/spirited-blog.jpg" height={1038} width={1920} class="rounded" alt="Spirited Away - Blog Picture"
+  />
+
 </Default>
 
 

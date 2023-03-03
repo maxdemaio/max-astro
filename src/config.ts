@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'My personal website.';
 export const SITE_DESCRIPTION = 'Welcome to my website!';
-export const SITE_IMAGE = '/placeholder-social.jpg';
+export const SITE_IMAGE = '/spirited-blog.jpg';

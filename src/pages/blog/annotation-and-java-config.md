@@ -1,8 +1,8 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: Spring Basics - Annotation and Java Based Configuration
-pubDate: "Feb 17 2022"
 description: All about annotation and Java Based Configuration in Spring.
+pubDate: 'Feb 02 2022'
+title: Spring Basics - Annotation and Java Based Configuration
 ---
 
 In this blog post we’ll learn about annotation and Java based configuration. Goodbye XML configuration! We’ll dive into the ways to autowire dependencies with annotations and their pros and cons. Finally, I’ll give an example using both annotation and Java based configuration.

@@ -28,6 +28,13 @@ export default defineConfig({
       'primary-light': '#224b37', 
       'primary-dark': '#a7b7af'
     },
+    breakpoints: {
+      // this overrides and doesn't merge
+      // as per https://github.com/unocss/unocss/blob/main/README.md#extend-theme
+      md: '770px',
+      sm: '640px',
+      xs: '430px',
+    }
   },
   rules: [
     [/^text-(.*)$/, ([, c], { theme }) => {

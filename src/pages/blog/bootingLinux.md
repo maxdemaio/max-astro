@@ -7,6 +7,8 @@ title: Installing Ubuntu on a Dell XPS-13 with Windows 10
 
 In this blog, we'll go over instructions for installing Ubuntu Linux on a Windows Dell XPS-13 computer. This includes creating a bootable USB drive, formatting the drive, and installing Ubuntu. It is important to back up all important data before proceeding, and additional drivers and software may need to be installed to get hardware working properly with Ubuntu.
 
+I did this installation together with my Dad and it was a lot of fun. Hope you enjoy!
+
 ---
 
 To install Ubuntu Linux on a Windows computer, we have a few options:

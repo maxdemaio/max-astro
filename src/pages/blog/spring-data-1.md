@@ -139,7 +139,7 @@ Setting this up is tedious. We have to write the code to perform common database
 
 Spring Data is a high-level project that searches to unify data access with SQL and NoSQL data stores. There are also sub projects for technologies like MongoDB, Redis, Neo4j and more. It simplifies the data access layer by removing the implementations as shown above from your application. The only artifact that needed is the interface.
 
-![Spring Data Image](/static/images/jpa/jpa.png)
+![Spring Data Image](/jpa/jpa.png)
 
 ## Spring Boot
 
@@ -175,7 +175,7 @@ To create a Spring Boot application, we can use the following tools (I'll be usi
 - Spring Tool Suite
 - Spring Boot CLI
 
-![Spring Initializr Image](/static/images/jpa/init.png)
+![Spring Initializr Image](/jpa/init.png)
 
 ## Overall Data Access
 
@@ -194,7 +194,3 @@ Spring also provides an API for transaction management that goes well with data 
 
 - [Spring Docs](http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/)
 - [Spring Data Docs](http://docs.spring.io/spring-data/data-commons/docs/1.9.2.RELEASE/reference/html/)
-
-```
-
-```

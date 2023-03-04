@@ -57,7 +57,7 @@ We then get subtraction for free because you can add any number against a negati
 
 From the [von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture), a core part to a computer's CPU is the ALU. A general abstraction of an ALU is that it takes two multi-bit inputs, a function to be computed (pre-defined, arithmetic, and logical), and creates an output. Examples of arithmetic operations would be integer addition, multiplication, subtraction, etc. Examples of logical operations would be And, Or, Xor, etc.
 
-![von Neumann architecture](/static/images/nand-tetris/von_structure.png)
+![von Neumann architecture](/nand-tetris/von_structure.png)
 
 The Hack ALU which I'll implement to build a computer will have the following components:
 

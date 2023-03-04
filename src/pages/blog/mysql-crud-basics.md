@@ -19,7 +19,7 @@ Also, it's noteworthy to mention the operators that we can use in SQL expression
 
 Imagine that you own a business. This business sells video games via its website and also via its physical store location. Customers can place orders with employees on-site or buy video games online without an employee's assistance. The order table links both employees and customers, however each order doesn't necessarily need an employee foreign key as mentioned before! A database and tables would help us manage all of this information:
 
-![Database and tables example](/static/images/mysql-crud-basics/overflowDB.png)
+![Database and tables example](/mysql-crud-basics/overflowDB.png)
 
 How would we create and populate the database and tables pictured above? It's quite straightforward, don't worry. Also, I'll dive into how to read data and use update/delete statements to alter data.
 

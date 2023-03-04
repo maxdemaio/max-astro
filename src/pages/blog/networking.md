@@ -21,7 +21,7 @@ Computer networks are classified in many different ways. The simplest way to cla
 - MAN stands for metropolitan area network
 - WAN stands for wide area network
 
-![Types of networks image](/static/images/networking/networks.png)
+![Types of networks image](/networking/networks.png)
 
 LANs are for computers that are all in the same building or in very close proximity (from 1km to 10km). Why would we want a LAN? LANs are great for resource sharing. For example, it's a really good strategy for sharing printers on an attached network. Also, if you have a local server you can have everyone on that network have access to it. With everything being local, you get the benefits of speed, low error rate, flexibility, and private ownership.
 

@@ -17,7 +17,7 @@ Demos:
 
 ## The Road Ahead
 
-```jack
+```
 class Main {
     function void main() {
         do Output.printString("Hello World!");
@@ -49,7 +49,7 @@ In addition to the stack, we can have memory segments in the VM. With it we can 
 
 We can also perform stack arithmetic. For example, we can pop items from the stack, perform an operation on them, and then push the result of that operation back to the stack. Not only can we do arithmetic, but we can do logical, memory, branching, and function commands.
 
-```VM
+```
 // jack arithmetic
 // r = (2-x)+(y+9)
 push 2
@@ -62,7 +62,7 @@ add
 pop r
 ```
 
-```VM
+```
 // jack logical
 // (x<7)or(y==8)
 push x
@@ -78,7 +78,7 @@ or
 
 We want to take a high-level language like Jack and compile it into VM code.
 
-```jack
+```
 class Bar {
     static int s1, s2;
     function int foo(int x, int y) {
@@ -90,7 +90,7 @@ class Bar {
 }
 ```
 
-```VM
+```
 // jack
 // let c = s1 + y;
 push static 0
@@ -105,7 +105,7 @@ We lose the variable names while defining these memory segments. But the VM lang
 
 The syntax for pushing/popping items to the stack now becomes:
 
-```code
+```
 push/pop segment i
 ```
 
@@ -117,7 +117,7 @@ Example code:
 
 Picture the following memory segments (constant just has integers to match each index: 0, 1, 2, etc.)
 
-```VM
+```
 push constant 0
 pop local 0
 push constant 15

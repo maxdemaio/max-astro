@@ -64,11 +64,11 @@ Symbolic example:
 
 Binary example:
 
-```code
+```
 0valueInBinary // starts with 0 bc it's an a-instruction
 ```
 
-```code
+```
 00000000000010101
 ```
 
@@ -78,31 +78,31 @@ For c-instructions we'd go through the same translation process. Based on the tr
 
 Symbolic example:
 
-```code
+```
 dest = comp ; jump
 ```
 
 Binary example:
 
-```code
+```
 111 a c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3
 ```
 
 Let's take a real example of a symbolic c-instruction to better understand the process. Every c-instruction consists of 3 fields. In the below example, `MD` is the destination field (part of truth table). `D+1` is the value of the computation field. The value of the jump field would be null (all zeroes).
 
-```code
+```
 MD=D+1
 ```
 
-![Comp Diagram](/static/images/assembler/comp.PNG)
+![Comp Diagram](/assembler/comp.PNG)
 
-![Dest Diagram](/static/images/assembler/dest.PNG)
+![Dest Diagram](/assembler/dest.PNG)
 
-![Jump Diagram](/static/images/assembler/jump.PNG)
+![Jump Diagram](/assembler/jump.PNG)
 
 The source instruction being decomposed will be done by an element of our assembler called the parser. Every c-instruction begins with three 1s `111`. Next we focus on the next 7 bits. These 7 bits correspond to the computation field. `D+1` would be `011111`. The computation `D+1` determines that the a-bit is `0`. There are 3 bits for the destination. We see that `MD` corresponds to `011`. Finally the remaining 3 bits are for the jump field. When we look at our c-instruction we see that its null so they would be `000`.
 
-```code
+```
 1110011111011000
 ```
 

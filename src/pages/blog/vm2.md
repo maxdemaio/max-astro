@@ -115,7 +115,7 @@ Now I'll show some examples of a high-level program translating at compile time 
 
 Example high level program:
 
-```jack
+```
 class Main {
     function int main() {
         return Main.factorial(3);
@@ -134,7 +134,7 @@ class Main {
 
 Example Pseudo VM code:
 
-```code
+```
 function main
     push 3
     call factorial
@@ -163,7 +163,7 @@ function mult(a,b)
 
 Actual VM program:
 
-```vm
+```
 function Main.main 0
 push constant 3
 call Main.factorial 1
@@ -237,7 +237,7 @@ The VM translator reads VM code and translates it into assembly. In our case, it
 
 So, something like:
 
-```vm
+```
 function Foo.main 4
     // ...
     // computes -(16 * (local 3))

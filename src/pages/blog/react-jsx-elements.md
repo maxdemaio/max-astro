@@ -17,7 +17,7 @@ Demos:
 
 Let’s look at an Instagram post I’ve made. The moment I “like” a post the status changes. The heart becomes red, the number of likes changes, and we can immediately see this on the web page.
 
-![Instagram post example](/static/images/react-jsx-elements/like.png)
+![Instagram post example](/react-jsx-elements/like.png)
 
 Instagram has to do the changes by updating the DOM tree of the page and re-rendering the page in the browser. The application also has to show other Instagrammers that I’ve liked this post if they’re looking at it too.
 

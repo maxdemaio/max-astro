@@ -36,7 +36,7 @@ Spring 5.x has the following key module groups:
 - Web: these modules provide support for web applications.
 - Others: Spring also provides other modules such as Test for testing Spring applications.
 
-![Spring Modules](/static/images/spring/springModules.png)
+![Spring Modules](/spring/springModules.png)
 
 ## Spring Inversion of Control
 
@@ -54,7 +54,7 @@ DI is a software design pattern that:
 
 As mentioned before, the core container module of the Spring framework provides IoC using dependency injection. The Spring container knows which objects to create and when to create them through the additional details that we provide in our application called configuration metadata.
 
-![Spring Config](/static/images/spring/config.png)
+![Spring Config](/spring/config.png)
 
 There are two types of containers Spring provides: BeanFactory and ApplicationContext (interfaces). The ApplicationContext is the preferred container for development and inherits from BeanFactory. ApplicationContext provides added features to support enterprise services such as internationalization, validation, etc.
 

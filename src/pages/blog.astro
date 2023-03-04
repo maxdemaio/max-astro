@@ -18,10 +18,10 @@ const posts = (await Astro.glob('./blog/*.md')).sort((a, b) => new Date(b.frontm
       {
         posts.map((post) => (
           <>
-            <li class="opacity-80 hover:opacity-100">
-              <a href={post.url}>
-                <div class="text-black dark:text-white">{post.frontmatter.title}</div>
-                <div>
+            <li>
+              <a href={post.url} class="group">
+                <div class="text-black dark:text-white transform transition duration-300 opacity-60 group-hover:opacity-100">{post.frontmatter.title}</div>
+                <div class="transform transition duration-300 opacity-40 group-hover:opacity-80">
                   <time datetime={post.frontmatter.pubDate}>
                     {new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',

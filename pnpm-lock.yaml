@@ -3,8 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/rss': ^2.0.0
   '@astrojs/sitemap': ^1.0.0
-  '@iconify-json/tabler': ^1.1.63
-  '@iconify-json/uil': ^1.1.4
+  '@iconify/json': ^2.2.30
   '@unocss/reset': ^0.50.1
   astro: ^1.9.0
   prettier: ^2.8.4
@@ -18,8 +17,7 @@ dependencies:
   astro: 1.9.2
 
 devDependencies:
-  '@iconify-json/tabler': 1.1.63
-  '@iconify-json/uil': 1.1.4
+  '@iconify/json': 2.2.30
   '@unocss/reset': 0.50.1
   prettier: 2.8.4
   prettier-plugin-astro: 0.8.0
@@ -628,16 +626,11 @@ packages:
     dev: true
     optional: true
 
-  /@iconify-json/tabler/1.1.63:
-    resolution: {integrity: sha512-WvIsUJsil2+U1lPbguzbjG4v5sYqMkHp5P0PDXjwz/3XqS4mlFSicxmtSQcthRdQBbX2hMfXamtvqUYrNc2sCQ==}
+  /@iconify/json/2.2.30:
+    resolution: {integrity: sha512-F+eeFDEe+5iZ6wn/GrpQhycWN5XeULA17oPZdl8t+BuOwrq0rRWanB0sruGRir+SScsUuKR2TJyWTaQwmqtnvQ==}
     dependencies:
       '@iconify/types': 2.0.0
-    dev: true
-
-  /@iconify-json/uil/1.1.4:
-    resolution: {integrity: sha512-ucuFHlUvkfQUnyq4l2Sskrdg8r5DB8IQwMxEpPQ2JG1QTRbUmliddTT9r8/b3h69w+/IySHUy+iJcbfiHoa9zA==}
-    dependencies:
-      '@iconify/types': 2.0.0
+      pathe: 1.1.0
     dev: true
 
   /@iconify/types/2.0.0:

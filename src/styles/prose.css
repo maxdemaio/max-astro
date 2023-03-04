@@ -1,4 +1,6 @@
 /** light theme and overarching styles **/
+
+/* heading styles */
 .prose h1,
 h2,
 h3,
@@ -24,9 +26,6 @@ h6 {
   margin-top: 1.25em;
   margin-bottom: 1.25em;
 }
-.prose a code {
-  color: #111827;
-}
 
 /* link styles */
 .prose * a {
@@ -42,7 +41,7 @@ h6 {
   border-color:#030705;
 }
 
-
+/* code styles */
 .prose pre {
   color: #e5e7eb;
   overflow-x: auto;
@@ -66,14 +65,44 @@ h6 {
 .prose code::after {
   content: '`';
 }
+.prose a code {
+  color: #111827;
+}
+
+/* list styles */
+.prose ol > li {
+  position: relative;
+  padding-left: 1.75em;
+}
+.prose ol > li::before {
+  content: counter(list-item, var(--list-counter-style, decimal)) ".";
+  position: absolute;
+  font-weight: 400;
+  color: #6b7280;
+  left: 0;
+}
+.prose ul > li {
+  position: relative;
+  padding-left: 1.75em;
+}
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  width: 0.375em;
+  height: 0.375em;
+  top: calc(0.875em - 0.1875em);
+  left: 0.25em;
+}
 
 /** dark theme **/
 html.dark .prose h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+html.dark .prose h2,
+html.dark .prose h3,
+html.dark .prose h4,
+html.dark .prose h5,
+html.dark .prose h6 {
   color: white;
 }
 

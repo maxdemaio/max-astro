@@ -1,4 +1,4 @@
-/* light theme and overarching styles */
+/** light theme and overarching styles **/
 .prose h1,
 h2,
 h3,
@@ -27,6 +27,22 @@ h6 {
 .prose a code {
   color: #111827;
 }
+
+/* link styles */
+.prose * a {
+  border-bottom-width: 1px;
+  transition-property: color,border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  color: #224b37;
+  border-color: #224b37;
+}
+.prose * a:hover {
+  color:#030705;
+  border-color:#030705;
+}
+
+
 .prose pre {
   color: #e5e7eb;
   overflow-x: auto;
@@ -51,7 +67,7 @@ h6 {
   content: '`';
 }
 
-/* dark theme */
+/** dark theme **/
 html.dark .prose h1,
 h2,
 h3,
@@ -59,4 +75,18 @@ h4,
 h5,
 h6 {
   color: white;
+}
+
+/* dark link styles */
+html.dark .prose * a {
+  border-bottom-width: 1px;
+  transition-property: color,border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  color:#a7b7af;
+  border-color:#a7b7af;
+}
+html.dark .prose * a:hover{
+  color:#f6f8f7;
+  border-color:#f6f8f7;
 }

@@ -1,9 +1,9 @@
 ---
-import BlogPostFooter from "@components/BlogPostFooter.astro";
-import Navbar from "@components/Navbar.astro";
-import { SITE_IMAGE } from "../config";
-import type { MarkdownLayoutProps } from "astro";
-import "../styles/prose.css";
+import BlogPostFooter from '@components/BlogPostFooter.astro';
+import Navbar from '@components/Navbar.astro';
+import { SITE_IMAGE } from '../config';
+import type { MarkdownLayoutProps } from 'astro';
+import '../styles/prose.css';
 
 type Props = MarkdownLayoutProps<{
   // Frontmatter props
@@ -31,24 +31,9 @@ const { frontmatter, url } = Astro.props;
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="/favicon_io/favicon.png"
-      sizes="32x32"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href="/favicon_io/favicon-16x16.png"
-      sizes="16x16"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      href="/favicon_io/apple-touch-icon.png"
-      sizes="180x180"
-    />
+    <link rel="icon" type="image/png" href="/favicon_io/favicon.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon_io/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" type="image/png" href="/favicon_io/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/favicon_io/site.webmanifest" />
 
     <!-- Canonical URL -->
@@ -65,35 +50,14 @@ const { frontmatter, url } = Astro.props;
     <meta property="og:title" content={frontmatter.title} />
     <meta property="og:description" content={frontmatter.description} />
     <!-- If an image URL exists, add it. Otherwise, use the site default.  -->
-    {
-      !!frontmatter.image ? (
-        <meta
-          property="og:image"
-          content={new URL(frontmatter.image, Astro.url)}
-        />
-      ) : (
-        <meta property="og:image" content={new URL(SITE_IMAGE, Astro.url)} />
-      )
-    }
+    {!!frontmatter.image ? <meta property="og:image" content={new URL(frontmatter.image, Astro.url)} /> : <meta property="og:image" content={new URL(SITE_IMAGE, Astro.url)} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={frontmatter.title} />
     <meta property="twitter:description" content={frontmatter.description} />
-    {
-      !!frontmatter.image ? (
-        <meta
-          property="twitter:image"
-          content={new URL(frontmatter.image, Astro.url)}
-        />
-      ) : (
-        <meta
-          property="twitter:image"
-          content={new URL(SITE_IMAGE, Astro.url)}
-        />
-      )
-    }
+    {!!frontmatter.image ? <meta property="twitter:image" content={new URL(frontmatter.image, Astro.url)} /> : <meta property="twitter:image" content={new URL(SITE_IMAGE, Astro.url)} />}
   </head>
   <body class="text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />

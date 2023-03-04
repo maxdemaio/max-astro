@@ -4,15 +4,8 @@ const today = new Date();
 
 <footer class="mt-10 mb-6 prose lt-xs:px-2 px-8 max-w-3xl mx-auto">
   <p>
-    <a
-      href="/blog"
-      aria-label="Blog link"
-      class="text-primary-light dark:text-primary-dark underline">← Back</a
-    >
-    <button
-      id="top-button"
-      class="cursor-pointer float-right text-primary-light dark:text-primary-dark underline"
-    >
+    <a href="/blog" aria-label="Blog link" class="text-primary-light dark:text-primary-dark underline">← Back</a>
+    <button id="top-button" class="cursor-pointer float-right text-primary-light dark:text-primary-dark underline">
       <a>↑ Top</a>
     </button>
   </p>
@@ -20,8 +13,7 @@ const today = new Date();
   <hr />
 
   <p>
-    <strong>max overflow</strong> is a blog about business, language, and computer
-    science. Sometimes my thoughts overflow and end up here for safekeeping.
+    <strong>max overflow</strong> is a blog about business, language, and computer science. Sometimes my thoughts overflow and end up here for safekeeping.
   </p>
   <p>
     For corrections (typos, factual inaccuracies), please file a
@@ -34,9 +26,9 @@ const today = new Date();
 </footer>
 
 <script>
-  const topButton = document.querySelector("#top-button");
+  const topButton = document.querySelector('#top-button');
   if (!!topButton) {
-    topButton.addEventListener("click", () => {
+    topButton.addEventListener('click', () => {
       window.scrollTo(0, 0);
     });
   }

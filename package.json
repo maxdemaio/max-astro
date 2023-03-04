@@ -19,6 +19,8 @@
     "@iconify-json/tabler": "^1.1.63",
     "@iconify-json/uil": "^1.1.4",
     "@unocss/reset": "^0.50.1",
+    "prettier": "^2.8.4",
+    "prettier-plugin-astro": "^0.8.0",
     "unocss": "^0.50.1",
     "vite": "^4.1.4"
   }

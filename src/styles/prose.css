@@ -5,7 +5,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Kaisei Tokumin";
+  font-family: 'Kaisei Tokumin';
   font-weight: 700;
   margin: 1rem 0rem 1rem 0rem;
   color: black;
@@ -45,10 +45,10 @@ h6 {
   font-size: 0.875em;
 }
 .prose code::before {
-  content: "`";
+  content: '`';
 }
 .prose code::after {
-  content: "`";
+  content: '`';
 }
 
 /* dark theme */

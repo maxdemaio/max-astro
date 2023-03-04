@@ -19,8 +19,13 @@ export default defineConfig({
   shortcuts: {
     mlink:
       "text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark",
+    transf:
+      "transform transition duration-300 ease-in-out",
+    // unfortunately, group doesn't quite work yet in a shortcut
     mproj:
-      "transform transition duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-900 rounded p-4",
+      "group rounded p-4 bg-transparent hover:bg-#88888808",
+    mprojItem:
+      "transf opacity-80 group-hover:opacity-100",
   },
   theme: {
     colors: {

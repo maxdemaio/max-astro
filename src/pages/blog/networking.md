@@ -48,6 +48,18 @@ We browse the web using web browsers. Among the computers on the internet infras
 
 To send messages to other computers we need to specify which one. Any computer linked to a network has an IP address that uniquely identifies it. Think of IP addresses like postal addresses for houses. We alias IP addresses with domain names so they're easier to find. For example, Google's IP address is `142.250.190.78` but its domain name is just `google.com`.
 
+## CIDR Notation
+
+CIDR notation, or Classless Inter-Domain Routing notation, is a method of representing IP addresses and their associated network prefixes. It is used to simplify network address management and reduce the amount of routing table entries in internet routers.
+
+CIDR notation expresses an IP address and its subnet mask as a single string, in the form "x.x.x.x/n", where "x.x.x.x" is the IP address, and "n" is the number of bits in the subnet mask.
+
+The subnet mask is used to determine the network prefix, which is the portion of the IP address that identifies the network. The remaining bits identify the host on that network. For example, in the CIDR notation "192.168.1.0/24", the first 24 bits represent the network prefix, and the remaining 8 bits represent the host.
+
+CIDR notation also allows for the aggregation of multiple smaller networks into a single larger network. For example, four /24 networks can be aggregated into a single /22 network by combining the first 22 bits of the IP addresses. This can reduce the size of routing tables and improve network performance.
+
+Overall, CIDR notation is an efficient and flexible method of representing IP addresses and network prefixes in networking.
+
 ## Resources
 
 - [Bucky Roberts Networking Playlist](https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBpuvPW0aHa7mKdn_k9SPKO)

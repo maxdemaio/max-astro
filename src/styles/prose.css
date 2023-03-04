@@ -1,6 +1,6 @@
 /** light theme and overarching styles **/
 
-/* heading styles */
+/* heading and body styles */
 .prose h1,
 h2,
 h3,
@@ -14,6 +14,7 @@ h6 {
 }
 .prose h1 {
   font-size: 2.25rem;
+  margin-top: 0rem;
   line-height: 2.5rem;
 }
 .prose h2 {
@@ -28,7 +29,6 @@ h6 {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-
 .prose hr {
   border-color: rgba(125, 125, 125, 0.3);
   margin-top: 3em;
@@ -55,6 +55,7 @@ h6 {
 
 /* code styles */
 .prose pre {
+  margin: 0.5em 0em 0.5em 0em;
   color: #e5e7eb;
   overflow-x: auto;
   line-height: 1.4;
@@ -108,6 +109,37 @@ h6 {
   left: 0.25em;
 }
 
+/* table styles */
+.prose table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.6rem;
+}
+.prose thead {
+  font-weight: 600;
+  border-bottom-width: 1px;
+  border-bottom-color: #d1d5db;
+}
+.prose thead th {
+  vertical-align: bottom;
+  padding: 0em 0.6em 0.6em 0.6em;
+}
+.prose tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: #e5e7eb;
+}
+.prose tbody tr:last-child {
+  border-bottom-width: 0;
+}
+.prose tbody td {
+  vertical-align: top;
+  padding: 0.6em;
+}
+
 /** dark theme **/
 html.dark .prose h1,
 html.dark .prose h2,
@@ -130,4 +162,14 @@ html.dark .prose * a {
 html.dark .prose * a:hover{
   color:#f6f8f7;
   border-color:#f6f8f7;
+}
+
+/* dark table styles */
+html.dark .prose thead {
+  border-bottom-color: #313334;
+}
+
+html.dark .prose tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: #252627;
 }

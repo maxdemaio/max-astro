@@ -9,7 +9,7 @@ const posts = (await Astro.glob('./blog/*.md')).sort((a, b) => new Date(b.frontm
   <section>
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p class="mt-4 mb-6">
-      <span class="font-bold text-gray-600 dark:text-gray-400">max overflow</span> is a blog about software, language, and business. Sometimes my thoughts overflow and end up here for safekeeping. So far,
+      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, and business. Sometimes my thoughts overflow and end up here for safekeeping. So far,
       I've written {posts.length} posts.
     </p>
   </section>

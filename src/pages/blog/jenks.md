@@ -1,8 +1,8 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: Jenkins Container That Uses Docker on an M1 Mac
+title: Jenkins Container That Uses Docker on a M1 Mac
 pubDate: 'Mar 04 2023'
-description: How to run a Jenkins container that uses Docker on an M1 Mac
+description: How to run a Jenkins container that uses Docker on a M1 Mac
 ---
 
 Let's say we would like to build Docker images inside a Jenkins container for the CI/CD process. In my research, I came across two approaches to do so: DooD (Docker-outside-of-Docker) and DinD (Docker-in-Docker).

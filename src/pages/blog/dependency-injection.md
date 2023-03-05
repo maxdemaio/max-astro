@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: dependency-injection
 title: Spring Basics - Dependency Injection
 pubDate: 'Feb 01 2022'
 description: How to use different types of dependency injection in the Spring framework.

@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: hostAnonNamedDockerVolumes
 title: Host, Anonymous, and Named Docker Volumes
 pubDate: 'Mar 04 2023'
 description: Different Docker volume types explained.
@@ -50,7 +51,7 @@ Named volumes and anonymous volumes are similar because Docker manages where the
 
 ```
 docker volume create somevolumename
-docker run -v somevolumename:/path/in/container
+docker run -v somevolumefileName:/path/in/container
 ```
 
 Like anonymous volumes, named volumes provide flexibility, but they are also explicit, which makes them easier to manage.

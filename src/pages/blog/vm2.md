@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: vm2
 title: Nand to Tetris - Virtual Machine II
 pubDate: 'May 11 2022'
 description: Building a virtual machine and its specification over the Hack computer.

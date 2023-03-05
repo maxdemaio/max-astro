@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: boolean-functions-and-gate-logic
 title: Nand to Tetris - Boolean Functions & Gate Logic
 pubDate: 'Dec 23 2021'
 description: All about boolean functions and gate logic.

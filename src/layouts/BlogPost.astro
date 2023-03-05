@@ -9,6 +9,7 @@ type Props = MarkdownLayoutProps<{
   // Frontmatter props
   title: string;
   description: string;
+  fileName: string;
   image?: string;
   pubDate: string;
 }>;
@@ -17,7 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Now, `frontmatter`, `url`, and other Markdown layout properties
 // are accessible with type safety
-const { frontmatter, url } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <html lang="en">
@@ -64,8 +65,8 @@ const { frontmatter, url } = Astro.props;
     <main class="prose lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
       <h1>{frontmatter.title}</h1>
       <slot />
-      <!-- your content is injected here -->
+      <!-- blog content is injected here -->
     </main>
-    <BlogPostFooter />
+    <BlogPostFooter fileName={frontmatter.fileName}/>
   </body>
 </html>

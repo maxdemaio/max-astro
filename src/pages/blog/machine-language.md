@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: machine-language
 title: Nand to Tetris - Machine Language
 pubDate: 'Jan 17 2022'
 description: All about machine language.

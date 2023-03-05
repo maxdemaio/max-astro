@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: dtos
 title: Spring Data Transfer Objects
 pubDate: 'Oct 06 2021'
 description: What data transfer objects are and their importance in REST calls.
@@ -45,7 +46,7 @@ public class PersonDTO {
 	}
 
 	public String toString() {
-		return "Person(Name: " + this.name + ", Age: " + this.age + ")";
+		return "Person(fileName: " + this.name + ", Age: " + this.age + ")";
 	}
 }
 ```

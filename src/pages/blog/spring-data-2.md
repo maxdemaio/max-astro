@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: spring-data-2
 title: Spring Data Access - Spring Data JPA
 pubDate: 'May 07 2022'
 description: Overview of Spring Data JPA

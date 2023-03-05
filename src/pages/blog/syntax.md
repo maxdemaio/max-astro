@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: syntax
 title: Syntax - The Science of Sentences
 pubDate: 'Aug 07 2021'
 description: Syntax, the study of word order and how words are put together into larger units.

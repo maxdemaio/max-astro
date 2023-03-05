@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: spring-data-1
 title: Spring Data Access - JDBC, Boot, and Spring Data
 pubDate: 'May 02 2022'
 description: Introduction to Spring Boot and advantages to using Spring Data

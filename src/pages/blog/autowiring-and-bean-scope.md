@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: autowiring-and-bean-scope
 title: Spring Basics - XML Autowiring and Bean Scope
 pubDate: 'Feb 12 2022'
 description: How XML autowiring works in the Spring framework.

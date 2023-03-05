@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: networking
 title: Networking - The Basics
 pubDate: 'June 16 2022'
 description: The basics of networking. What is a computer network? How does the internet work?

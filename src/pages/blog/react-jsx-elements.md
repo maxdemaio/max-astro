@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: react-jsx-elements
 title: Intro to React - JSX and Elements
 pubDate: 'Feb 23 2022'
 description: Introduction to React and why we use it.
@@ -115,7 +116,7 @@ const myElement = <h1 className="yo">Yo, world!</h1>;
 ```
 
 ```jsx
-const myElement = React.createElement('h1', { className: 'yo' }, 'Yo, world!');
+const myElement = React.createElement('h1', { classfileName: 'yo' }, 'Yo, world!');
 ```
 
 Unlike browser DOM elements, React elements are cheap to create because they’re plain JavaScript objects. Our `React.render()` would render these React elements since Babel compiles JSX down to `React.createElement()` calls. Then, `React.createElement()` creates objects aka React elements that generally look like this:
@@ -125,7 +126,7 @@ Unlike browser DOM elements, React elements are cheap to create because they’r
 const myElement = {
   type: 'h1',
   props: {
-    className: 'yo',
+    classfileName: 'yo',
     children: 'Yo, world!',
   },
 };

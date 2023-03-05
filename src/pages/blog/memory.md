@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: memory
 title: Nand to Tetris - Memory
 pubDate: 'Jan 05 2022'
 description: All about sequential logic and memory.

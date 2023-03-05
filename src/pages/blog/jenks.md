@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: jenks
 title: Jenkins Container That Uses Docker on a M1 Mac
 pubDate: 'Mar 04 2023'
 description: How to run a Jenkins container that uses Docker on a M1 Mac

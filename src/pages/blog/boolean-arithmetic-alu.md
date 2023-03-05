@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: boolean-arithmetic-alu
 title: Nand to Tetris - Boolean Arithmetic & the ALU
 pubDate: 'Dec 27 2021'
 description: How gate logic works and specification for the ALU.

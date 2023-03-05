@@ -1,5 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
+fileName: mysql-crud-basics
 title: MySQL CRUD Basics - Creating a Database
 pubDate: 'July 14 2021'
 description: MySQL basics and how to use it while building applications.

@@ -6,8 +6,8 @@ const { fileName } = Astro.props;
 
 const today = new Date();
 
-const tweetLink1 = "https://twitter.com/intent/tweet?text=Reading%20%40maxwelldemaio%27s%20https%3A%2F%2Fmaxdemaio.com%2Fblog%2F";
-const finalTweetLink = tweetLink1 + fileName + "%0A%0AI%20think...";
+const tweetLink1 = 'https://twitter.com/intent/tweet?text=Reading%20%40maxwelldemaio%27s%20https%3A%2F%2Fmaxdemaio.com%2Fblog%2F';
+const finalTweetLink = tweetLink1 + fileName + '%0A%0AI%20think...';
 ---
 
 <footer class="prose mt-6 mb-10 lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
@@ -26,12 +26,13 @@ const finalTweetLink = tweetLink1 + fileName + "%0A%0AI%20think...";
   <p>
     Feel free to
     <a href={finalTweetLink}>
-      <span class="i-uil-twitter"/>
-      tweet about this blog post</a>!
-    For corrections (typos, factual inaccuracies), please file a
-    <a href="https://github.com/maxdemaio/max-astro/issues"> 
-      <span class="i-uil-github"/>
-      GitHub issue</a>.
+      <span class="i-uil-twitter"></span>
+      tweet about this blog post</a
+    >! For corrections (typos, factual inaccuracies), please file a
+    <a href="https://github.com/maxdemaio/max-astro/issues">
+      <span class="i-uil-github"></span>
+      GitHub issue</a
+    >.
   </p>
 
   <p>

@@ -66,15 +66,18 @@ const { frontmatter } = Astro.props;
       <h1>{frontmatter.title}</h1>
       <div class="font-kai opacity-60 mb-6">
         <time datetime={frontmatter.pubDate}>
-          {new Date(frontmatter.pubDate).toLocaleDateString('en-us', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          })}</time>
+          {
+            new Date(frontmatter.pubDate).toLocaleDateString('en-us', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })
+          }</time
+        >
       </div>
       <slot />
       <!-- blog content is injected here -->
     </main>
-    <BlogPostFooter fileName={frontmatter.fileName}/>
+    <BlogPostFooter fileName={frontmatter.fileName} />
   </body>
 </html>

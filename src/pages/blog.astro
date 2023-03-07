@@ -6,9 +6,9 @@ const posts = (await Astro.glob('./blog/*.md')).sort((a, b) => new Date(b.frontm
 ---
 
 <Default title="Blog – Max DeMaio" image="https://maxdemaio.com/spirited-blog.jpg" description="All my blog posts in one place.">
-  <section>
+  <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
-    <p class="mt-4 mb-6">
+    <p>
       <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, and business. Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
       written {posts.length} posts.
     </p>

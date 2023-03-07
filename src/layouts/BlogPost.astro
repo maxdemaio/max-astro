@@ -63,18 +63,20 @@ const { frontmatter } = Astro.props;
   <body class="text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
-      <h1>{frontmatter.title}</h1>
-      <div class="font-kai opacity-60 mb-6">
-        <time datetime={frontmatter.pubDate}>
-          {
-            new Date(frontmatter.pubDate).toLocaleDateString('en-us', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })
-          }</time
-        >
-      </div>
+      <section class="mb-6">
+        <h1>{frontmatter.title}</h1>
+        <div class="font-kai opacity-60">
+          <time datetime={frontmatter.pubDate}>
+            {
+              new Date(frontmatter.pubDate).toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })
+            }</time
+          >
+        </div>
+      </section>
       <slot />
       <!-- blog content is injected here -->
     </main>

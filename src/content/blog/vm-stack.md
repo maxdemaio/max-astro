@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: vm-stack
 title: Nand to Tetris - Virtual Machine I
 pubDate: 'Apr 11 2022'

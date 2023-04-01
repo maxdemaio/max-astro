@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: dtos
 title: Spring Data Transfer Objects
 pubDate: 'Oct 06 2021'

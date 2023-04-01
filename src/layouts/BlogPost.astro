@@ -2,23 +2,16 @@
 import BlogPostFooter from '@components/BlogPostFooter.astro';
 import Navbar from '@components/Navbar.astro';
 import { SITE_IMAGE } from '../config';
-import type { MarkdownLayoutProps } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import '@styles/prose.css';
 
-type Props = MarkdownLayoutProps<{
-  // Frontmatter props
-  title: string;
-  description: string;
-  fileName: string;
-  image?: string;
-  pubDate: string;
-}>;
+type Props = CollectionEntry<'blog'>['data'];
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Now, `frontmatter`, `url`, and other Markdown layout properties
 // are accessible with type safety
-const { frontmatter } = Astro.props;
+const { title, description, pubDate, fileName, image } = Astro.props;
 ---
 
 <html lang="en">
@@ -41,34 +34,34 @@ const { frontmatter } = Astro.props;
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Primary Meta Tags -->
-    <title>{frontmatter.title}</title>
-    <meta name="title" content={frontmatter.title} />
-    <meta name="description" content={frontmatter.description} />
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={frontmatter.title} />
-    <meta property="og:description" content={frontmatter.description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <!-- If an image URL exists, add it. Otherwise, use the site default.  -->
-    {!!frontmatter.image ? <meta property="og:image" content={new URL(frontmatter.image, Astro.url)} /> : <meta property="og:image" content={new URL(SITE_IMAGE, Astro.url)} />}
+    {!!image ? <meta property="og:image" content={new URL(image, Astro.url)} /> : <meta property="og:image" content={new URL(SITE_IMAGE, Astro.url)} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={frontmatter.title} />
-    <meta property="twitter:description" content={frontmatter.description} />
-    {!!frontmatter.image ? <meta property="twitter:image" content={new URL(frontmatter.image, Astro.url)} /> : <meta property="twitter:image" content={new URL(SITE_IMAGE, Astro.url)} />}
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    {!!image ? <meta property="twitter:image" content={new URL(image, Astro.url)} /> : <meta property="twitter:image" content={new URL(SITE_IMAGE, Astro.url)} />}
   </head>
   <body class="text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
       <section class="mb-6">
-        <h1>{frontmatter.title}</h1>
+        <h1>{title}</h1>
         <div class="font-kai opacity-60">
-          <time datetime={frontmatter.pubDate}>
+          <time datetime={pubDate}>
             {
-              new Date(frontmatter.pubDate).toLocaleDateString('en-us', {
+              new Date(pubDate).toLocaleDateString('en-us', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',
@@ -80,6 +73,6 @@ const { frontmatter } = Astro.props;
       <slot />
       <!-- blog content is injected here -->
     </main>
-    <BlogPostFooter fileName={frontmatter.fileName} />
+    <BlogPostFooter fileName={fileName} />
   </body>
 </html>

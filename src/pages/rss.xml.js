@@ -1,10 +1,19 @@
 import rss from '@astrojs/rss';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import { getCollection } from 'astro:content';
 
-export const get = () =>
-  rss({
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    site: import.meta.env.SITE,
-    items: import.meta.glob('./blog/**/*.{md,mdx}'),
+export async function get(context) {
+  const blog = await getCollection('blog');
+  return rss({
+    title: 'max overflow',
+    description: "Max DeMaio's blog about software, language, and business.",
+    site: context.site,
+    items: blog.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.pubDate,
+      description: post.data.description,
+      // Compute RSS link from post `slug`
+      // This assumes all posts are rendered as `/blog/[slug]` routes
+      link: `/blog/${post.slug}/`,
+    })),
   });
+}

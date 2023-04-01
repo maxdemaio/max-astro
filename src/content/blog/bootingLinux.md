@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: bootingLinux
 description: How to install Ubuntu on a Dell XPS-13 with Windows 10
 pubDate: 'Mar 04 2023'

@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: annotation-and-java-config
 description: All about annotation and Java Based Configuration in Spring.
 pubDate: 'Feb 02 2022'

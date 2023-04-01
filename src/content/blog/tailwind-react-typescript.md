@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: tailwind-react-typescript
 title: Tailwind, React, and TypeScript - How to Get Started
 pubDate: 'Sep 04 2021'

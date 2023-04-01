@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: networking
 title: Networking - The Basics
 pubDate: 'June 16 2022'

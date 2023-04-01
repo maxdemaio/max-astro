@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: trunk-based-development
 description: All about trunk based development.
 pubDate: 'Mar 17 2023'

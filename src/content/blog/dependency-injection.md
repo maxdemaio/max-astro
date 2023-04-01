@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: dependency-injection
 title: Spring Basics - Dependency Injection
 pubDate: 'Feb 01 2022'

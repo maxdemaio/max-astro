@@ -1,8 +1,13 @@
 ---
 import Default from '@layouts/Default.astro';
+import { getCollection } from 'astro:content';
 
-// Astro.glob() to fetch all blog posts, and then sort them by date.
-const posts = (await Astro.glob('../content/blog/*.md')).sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+const blogPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort my blog posts
+blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
 <Default title="Blog – Max DeMaio" image="https://maxdemaio.com/spirited-blog.jpg" description="All my blog posts in one place.">
@@ -10,7 +15,7 @@ const posts = (await Astro.glob('../content/blog/*.md')).sort((a, b) => new Date
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p>
       <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, and business. Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
-      written {posts.length} posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
+      written {blogPosts.length} posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
         <span class="i-tabler-rss"></span>
         RSS feed</a
       >.
@@ -19,14 +24,14 @@ const posts = (await Astro.glob('../content/blog/*.md')).sort((a, b) => new Date
   <section class="mb-4">
     <ul class="space-y-4">
       {
-        posts.map((post) => (
+        blogPosts.map((post) => (
           <>
             <li>
-              <a href={post.url} class="group">
-                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">{post.frontmatter.title}</div>
+              <a href={`/blog/${post.slug}`} class="group">
+                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">{post.data.title}</div>
                 <div class="transf opacity-40 group-hover:opacity-80">
-                  <time datetime={post.frontmatter.pubDate}>
-                    {new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
+                  <time datetime={post.data.pubDate}>
+                    {new Date(post.data.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',

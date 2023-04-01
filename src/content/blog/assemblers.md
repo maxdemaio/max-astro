@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: assemblers
 title: Nand to Tetris - Building an Assembler
 pubDate: 'Feb 11 2022'

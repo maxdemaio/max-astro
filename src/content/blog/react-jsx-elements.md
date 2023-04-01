@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: react-jsx-elements
 title: Intro to React - JSX and Elements
 pubDate: 'Feb 23 2022'

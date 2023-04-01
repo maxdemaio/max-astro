@@ -1,2 +1,3 @@
-src/pages/blog
+src/content/blog
 src/styles/
+.astro/

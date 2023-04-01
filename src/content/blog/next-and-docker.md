@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: next-and-docker
 title: Next.js and Docker
 pubDate: 'Dec 11 2021'

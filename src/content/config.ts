@@ -1,11 +1,10 @@
 // 1. Import utilities from `astro:content`
 import { z, defineCollection } from 'astro:content';
-// 2. Define a schema for each collection we'd like to validate.
+
+// Define schemas for each collection we'd like to validate.
 // We could define more content collections below if we'd like
-// must have same name as folder
 const blog = defineCollection({
   schema: z.object({
-    layout: z.string(),
     fileName: z.string(),
     title: z.string(),
     pubDate: z.string(),
@@ -15,7 +14,9 @@ const blog = defineCollection({
     image: z.string().optional(),
   }),
 });
-// 3. Export a single `collections` object to register your collection(s)
+
+// Export a single `collections` object to register our collection(s)
+// This key should match your collection directory name in "src/content"
 export const collections = {
   blog: blog,
 };

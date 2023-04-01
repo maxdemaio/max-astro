@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: inversion-of-control
 title: Spring Basics - Inversion of Control
 pubDate: 'Jan 27 2022'

@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: hostAnonNamedDockerVolumes
 title: Host, Anonymous, and Named Docker Volumes
 pubDate: 'Mar 04 2023'

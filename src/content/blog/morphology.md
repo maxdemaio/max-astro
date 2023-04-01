@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 fileName: morphology
 title: Morphology - How Words Are Studied
 pubDate: 'July 04 2021'

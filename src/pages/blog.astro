@@ -1,6 +1,8 @@
 ---
 import Default from '@layouts/Default.astro';
 import { getCollection } from 'astro:content';
+import { Tag } from 'src/content/config';
+import { presetTagify } from 'unocss';
 
 const blogPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
@@ -14,8 +16,8 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
   <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p>
-      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, and business. Sometimes my thoughts overflow and end up here for safekeeping. So far, I've
-      written {blogPosts.length} posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
+      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, business, and life. Sometimes my thoughts overflow and end up here for safekeeping. So far,
+      I've written {blogPosts.length} posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
         <span class="i-tabler-rss"></span>
         RSS feed</a
       >.
@@ -29,14 +31,12 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
             <li>
               <a href={`/blog/${post.slug}`} class="group">
                 <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">{post.data.title}</div>
-                <div class="transf opacity-40 group-hover:opacity-80">
-                  <time datetime={post.data.pubDate}>
-                    {new Date(post.data.pubDate).toLocaleDateString('en-us', {
+                <div class="transf opacity-40 group-hover:opacity-80 space-x-2">
+                  <time datetime={post.data.pubDate}>{new Date(post.data.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',
-                    })}
-                  </time>
+                    })}</time>{post.data.life && <span class="transf text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">life</span>}
                 </div>
               </a>
             </li>

@@ -1,8 +1,6 @@
 ---
 import Default from '@layouts/Default.astro';
 import { getCollection } from 'astro:content';
-import { Tag } from 'src/content/config';
-import { presetTagify } from 'unocss';
 
 const blogPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;

@@ -38,6 +38,17 @@ h6 {
   margin-top: 1.25em;
   margin-bottom: 1.25em;
 }
+.prose blockquote {
+  font-weight: 500;
+  font-style: italic;
+  color: inherit;
+  border-left-width: 0.25rem;
+  border-color: rgba(125,125,125,0.3);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
 
 /* link styles */
 .prose * a {

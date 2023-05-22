@@ -12,7 +12,6 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         kai: 'Kaisei Tokumin',
-        mono: 'DM Mono',
       },
     }),
   ],

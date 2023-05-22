@@ -5,13 +5,10 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://maxdemaio.com',
-  integrations: [
-    sitemap(),
-    UnoCSS(),
-  ],
+  integrations: [sitemap(), UnoCSS({ injectReset: true })],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark-dimmed'
-    }
-  }
+      theme: 'github-dark-dimmed',
+    },
+  },
 });

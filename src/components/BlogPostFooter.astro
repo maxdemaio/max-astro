@@ -14,7 +14,7 @@ const finalTweetLink = tweetLink1 + fileName + '%0A%0AI%20think...';
   <p>
     <a href="/blog" title="Back to blog link">← Back</a>
     <button title="Top button" id="top-button" class="cursor-pointer float-right">
-      <a>↑ Top</a>
+      <a href={"#" + fileName}>↑ Top</a>
     </button>
   </p>
 
@@ -39,12 +39,3 @@ const finalTweetLink = tweetLink1 + fileName + '%0A%0AI%20think...';
     Website designed by Max DeMaio &copy; {today.getFullYear()}
   </div>
 </footer>
-
-<script>
-  const topButton = document.querySelector('#top-button');
-  if (!!topButton) {
-    topButton.addEventListener('click', () => {
-      window.scrollTo(0, 0);
-    });
-  }
-</script>

@@ -11,7 +11,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Now, `frontmatter`, `url`, and other Markdown layout properties
 // are accessible with type safety
-const { title, description, pubDate, fileName, image } = Astro.props;
+const { title, description, duration, pubDate, fileName, image } = Astro.props;
 ---
 
 <html lang="en">
@@ -57,7 +57,7 @@ const { title, description, pubDate, fileName, image } = Astro.props;
     <Navbar />
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
       <section class="mb-6">
-        <h1>{title}</h1>
+        <h1 id={fileName}>{title}</h1>
         <div class="font-kai opacity-60">
           <time datetime={pubDate}>
             {
@@ -66,8 +66,9 @@ const { title, description, pubDate, fileName, image } = Astro.props;
                 month: 'short',
                 day: 'numeric',
               })
-            }</time
-          >
+            }</time>
+            <span>·</span>
+            <span>{duration}min</span>
         </div>
       </section>
       <slot />

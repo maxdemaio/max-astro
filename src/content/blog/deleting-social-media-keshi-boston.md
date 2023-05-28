@@ -1,8 +1,8 @@
 ---
 fileName: deleting-social-media-keshi-boston
-description: Keshi, Boston, and Deleting Social Media, 
+description: Keshi, Boston, and Deleting Social Media
 pubDate: 'Apr 13 2023'
-title: Deleting Social Media, Keshi, and Boston
+title: Keshi, Boston, and Deleting Social Media
 life: true
 duration: 3
 ---

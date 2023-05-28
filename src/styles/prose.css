@@ -1,31 +1,36 @@
 /** light theme and overarching styles **/
 
 /* heading and body styles */
-.prose h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.prose h1 {
   font-family: 'Kaisei Tokumin';
   font-weight: 700;
   margin: 2rem 0rem 2rem 0rem;
   color: black;
-}
-.prose h1 {
   font-size: 2.25rem;
   margin-top: 0rem;
   line-height: 2.5rem;
 }
 .prose h2 {
+  font-family: 'Kaisei Tokumin';
+  font-weight: 700;
+  margin: 2rem 0rem 2rem 0rem;
+  color: black;
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 .prose h3 {
+  font-family: 'Kaisei Tokumin';
+  font-weight: 700;
+  margin: 2rem 0rem 2rem 0rem;
+  color: black;
   font-size: 1.5rem;
   line-height: 2rem;
 }
 .prose h4 {
+  font-family: 'Kaisei Tokumin';
+  font-weight: 700;
+  margin: 2rem 0rem 2rem 0rem;
+  color: black;
   font-size: 1.25rem;
   line-height: 1.75rem;
 }

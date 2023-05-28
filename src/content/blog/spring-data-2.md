@@ -3,6 +3,7 @@ fileName: spring-data-2
 title: Spring Data Access - Spring Data JPA
 pubDate: 'May 07 2022'
 description: Overview of Spring Data JPA
+duration: 5
 ---
 
 In my previous blog post we discussed Spring Data. Spring Data JPA is project under this higher-level project. Spring Data JPA makes it easy to implement JPA (specification) based repositories. It is a data access abstraction.

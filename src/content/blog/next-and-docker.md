@@ -3,6 +3,7 @@ fileName: next-and-docker
 title: Next.js and Docker
 pubDate: 'Dec 11 2021'
 description: How to use Next.js and Docker together.
+duration: 5
 ---
 
 In this blog post I'm introducing a dangerously good application development duo, Next.js and Docker. To start, I'll briefly go over both Next.js and Docker. After, I'll explain how you can combine these two technologies. Let's get this party `docker start`ed!

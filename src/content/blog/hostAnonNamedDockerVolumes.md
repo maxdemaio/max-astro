@@ -3,6 +3,7 @@ fileName: hostAnonNamedDockerVolumes
 title: Host, Anonymous, and Named Docker Volumes
 pubDate: 'Mar 04 2023'
 description: Different Docker volume types explained.
+duration: 2
 ---
 
 What are the differences between host, anonymous, and named Docker volumes? In this blog post, we will explore their differences as well as their advantages and disadvantages.

@@ -3,6 +3,7 @@ fileName: machine-language
 title: Nand to Tetris - Machine Language
 pubDate: 'Jan 17 2022'
 description: All about machine language.
+duration: 4
 ---
 
 Machine language is any low level programming language that has machine language instructions. These instructions control a computer's central processing unit (CPU).

@@ -3,6 +3,7 @@ fileName: trunk-based-development
 description: All about trunk based development.
 pubDate: 'Mar 17 2023'
 title: Trunk Based Development
+duration: 4
 ---
 
 When it comes to version control in software development, GitFlow has long been the go-to branching model for many teams. But, there's a new kid on the block that's gaining popularity - Trunk Based Development (TBD). In this article, we'll explore the benefits of TBD and how it can improve your team's workflow.

@@ -3,6 +3,7 @@ fileName: mysql-crud-basics
 title: MySQL CRUD Basics - Creating a Database
 pubDate: 'July 14 2021'
 description: MySQL basics and how to use it while building applications.
+duration: 5
 ---
 
 Structured Query Language (SQL) is used to manage data in all relational database management systems such as MySQL, Oracle, SQL Server, and more. SQL standards are maintained by [ISO](https://en.wikipedia.org/wiki/ISO/IEC_9075). While most database products comply with the ISO standard, they also offer additional proprietary features. In this blog post we're going to restrict ourselves to the feature set offered by [MySQL](https://www.mysql.com/) databases.

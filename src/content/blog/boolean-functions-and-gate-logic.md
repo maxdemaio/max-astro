@@ -3,6 +3,7 @@ fileName: boolean-functions-and-gate-logic
 title: Nand to Tetris - Boolean Functions & Gate Logic
 pubDate: 'Dec 23 2021'
 description: All about boolean functions and gate logic.
+duration: 6
 ---
 
 Hardware Platform: Low level code --(assembler)--> computer architecture --(digital design)--> CPU, RAM, chipset --(gate logic)--> elementary logic gates --> EE, physics, and hardware.

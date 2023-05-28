@@ -3,6 +3,7 @@ fileName: memory
 title: Nand to Tetris - Memory
 pubDate: 'Jan 05 2022'
 description: All about sequential logic and memory.
+duration: 4
 ---
 
 Memory is built from sequential chips. In this blog post, we'll explore what sequential chips are, examples of them, and how they compose RAM.

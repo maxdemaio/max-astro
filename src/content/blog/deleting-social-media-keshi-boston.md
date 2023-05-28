@@ -1,9 +1,10 @@
 ---
 fileName: deleting-social-media-keshi-boston
-description: Deleting Social Media, Keshi, and Boston
+description: Keshi, Boston, and Deleting Social Media, 
 pubDate: 'Apr 13 2023'
 title: Deleting Social Media, Keshi, and Boston
 life: true
+duration: 3
 ---
 
 If you're reading this, welcome to my first life-related post! This will be my way of sharing what's going on in my life. These posts will be like handwritten letters to friends and family. Also, I'd like to improve my writing to share my thoughts in a more concise and clear manner.

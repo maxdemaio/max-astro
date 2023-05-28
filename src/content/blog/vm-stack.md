@@ -3,6 +3,7 @@ fileName: vm-stack
 title: Nand to Tetris - Virtual Machine I
 pubDate: 'Apr 11 2022'
 description: Building a virtual machine and its specification over the Hack computer.
+duration: 10
 ---
 
 In my previous blog posts, we built a computer from the ground up using HDL, assembly, and binary. This was the hardware hierarchy. Now, we'll be diving into the world of software where the assembler bridges this gap.

@@ -3,6 +3,7 @@ fileName: vm2
 title: Nand to Tetris - Virtual Machine II
 pubDate: 'May 11 2022'
 description: Building a virtual machine and its specification over the Hack computer.
+duration: 8
 ---
 
 In my first blog post on building a virtual machine, we went over arithmetic, logical, and mem segment commands. But this is a limited view of programming. For example, `push`, `pop`, `add`, and `sub` are all linear.

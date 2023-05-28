@@ -3,6 +3,7 @@ fileName: react-jsx-elements
 title: Intro to React - JSX and Elements
 pubDate: 'Feb 23 2022'
 description: Introduction to React and why we use it.
+duration: 5
 ---
 
 React is a modern JavaScript library for building interactive user interfaces. In this blog post, we'll get a brief introduction and how to get started with React.

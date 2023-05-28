@@ -3,6 +3,7 @@ fileName: spring-data-1
 title: Spring Data Access - JDBC, Boot, and Spring Data
 pubDate: 'May 02 2022'
 description: Introduction to Spring Boot and advantages to using Spring Data
+duration: 6
 ---
 
 In my Spring basics series, I described how Spring is an open-source Java application framework. For the persistence layer of an application, we can use many approaches in Spring. In this post we will go over JDBC, Spring Data, and data access as a whole in Spring applications.

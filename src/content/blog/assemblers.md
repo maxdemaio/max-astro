@@ -3,6 +3,7 @@ fileName: assemblers
 title: Nand to Tetris - Building an Assembler
 pubDate: 'Feb 11 2022'
 description: What assemblers are and how to build one.
+duration: 8
 ---
 
 In this blog post we'll talk about what assemblers are and how to build one. Specifically, we'll talk about how to build an assembler for hack assembly.

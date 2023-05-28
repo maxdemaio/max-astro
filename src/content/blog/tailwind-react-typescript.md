@@ -3,6 +3,7 @@ fileName: tailwind-react-typescript
 title: Tailwind, React, and TypeScript - How to Get Started
 pubDate: 'Sep 04 2021'
 description: How to get set up with Tailwind, React, and Typescript.
+duration: 2
 ---
 
 Want to construct your frontend with Tailwind, React, and Typescript? Look no further; here we will discuss everything that you'll need to get setup.

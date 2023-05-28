@@ -3,6 +3,7 @@ fileName: syntax
 title: Syntax - The Science of Sentences
 pubDate: 'Aug 07 2021'
 description: Syntax, the study of word order and how words are put together into larger units.
+duration: 3
 ---
 
 The science of sentences and the relationships between words. Syntax is broadly understood as the study of word order and how words are put together into larger units.

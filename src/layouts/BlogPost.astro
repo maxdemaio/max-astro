@@ -66,9 +66,10 @@ const { title, description, duration, pubDate, fileName, image } = Astro.props;
                 month: 'short',
                 day: 'numeric',
               })
-            }</time>
-            <span>·</span>
-            <span>{duration}min</span>
+            }</time
+          >
+          <span>·</span>
+          <span>{duration}min</span>
         </div>
       </section>
       <slot />

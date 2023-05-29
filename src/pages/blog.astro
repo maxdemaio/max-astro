@@ -28,11 +28,10 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
           <>
             <li>
               <a href={`/blog/${post.slug}`} class="group">
-                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">
-                  {post.data.title}
-                </div>
+                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">{post.data.title}</div>
                 <div class="transf opacity-40 group-hover:opacity-80 space-x-1">
-                  <time datetime={post.data.pubDate}>{new Date(post.data.pubDate).toLocaleDateString('en-us', {
+                  <time datetime={post.data.pubDate}>
+                    {new Date(post.data.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',

@@ -1,4 +1,9 @@
+# ignore my markdown blog posts
 src/content/blog
+# ignore my css
 src/styles/
-src/pages/blog.astro
+# misc
 .astro/
+node_modules/
+dist/
+public/

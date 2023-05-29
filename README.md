@@ -18,12 +18,12 @@ Any static assets, like images, are placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                                                            | Action                                                                    |
-| :----------------------------------------------------------------- | :------------------------------------------------------------------------ |
-| `pnpm i`                                                           | Installs dependencies                                                     |
-| `pnpm dev`                                                         | Starts local dev server at `localhost:3000`                               |
-| `pnpm build`                                                       | Build your production site to `./dist/`                                   |
-| `pnpm preview`                                                     | Preview your build locally, before deploying                              |
-| `pnpm run astro ...`                                               | Run CLI commands like `astro add`, `astro check`                          |
-| `pnpm run astro --help`                                            | Get help using the Astro CLI                                              |
-| `pnpm prettier --config ./.prettierrc -w --plugin-search-dir=. ./` | Prettier cleanup (see https://github.com/withastro/prettier-plugin-astro) |
+| Command                                                                | Action                                                                    |
+| :--------------------------------------------------------------------- | :------------------------------------------------------------------------ |
+| `pnpm i`                                                               | Installs dependencies                                                     |
+| `pnpm dev`                                                             | Starts local dev server at `localhost:3000`                               |
+| `pnpm build`                                                           | Build your production site to `./dist/`                                   |
+| `pnpm preview`                                                         | Preview your build locally, before deploying                              |
+| `pnpm run astro ...`                                                   | Run CLI commands like `astro add`, `astro check`                          |
+| `pnpm run astro --help`                                                | Get help using the Astro CLI                                              |
+| `pnpm prettier --config ./.prettierrc.cjs -w --plugin-search-dir=. ./` | Prettier cleanup (see https://github.com/withastro/prettier-plugin-astro) |

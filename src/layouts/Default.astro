@@ -53,11 +53,11 @@ const { title, description, image = SITE_IMAGE } = Astro.props;
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
   </head>
-  <body class="text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
+  <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
-    <main class="px-8 lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
-      <slot />
+    <main class="px-8 lt-xs:px-4 px-8 max-w-3xl mx-auto">
       <!-- content is injected here -->
+      <slot />
     </main>
     <Footer />
   </body>

@@ -19,7 +19,7 @@ At first, it was difficult deleting these applications. I had spent a considerab
 
 By deleting these social media applications, my attention isn't diverted across many platforms. If I'd like to have a conversation with someone, I'll text or call them. It's that simple.
 
-I still enjoy platforms like Twitter <span class="i-tabler-brand-twitter"></span> and Mastodon <span class="i-tabler-brand-mastodon"></span>, though. They allow you to meet like-minded people and actually make friends on the internet. Although, my thoughts on those platforms could change in the future.
+I still enjoy platforms like Twitter <span class="i-carbon-logo-twitter"></span> and Mastodon <span class="i-carbon-logo-mastodon"></span>, though. They allow you to meet like-minded people and actually make friends on the internet. Although, my thoughts on those platforms could change in the future.
 
 ## Keshi
 

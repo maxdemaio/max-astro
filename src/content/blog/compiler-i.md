@@ -71,7 +71,7 @@ if
 ```
 ## Grammars
 
-Having a set of valid tokens is not enough to be a valid input. For example, the English sentence "he dog has a" has valid tokens but don't make sense together. We need grammar rules to describe how to arrange tokens to form meaningful statements in the language. Grammar rules fall into two categories: terminal rules (constants only) and non-terminal rules (all other rules).
+Having a set of valid tokens is not enough to be a valid input. For example, the English sentence "he dog has a" has valid tokens but doesn't make sense. We need grammar rules to describe how to arrange tokens to form meaningful statements in the language. Grammar rules fall into two categories: terminal rules (constants only) and non-terminal rules (all other rules).
 
 Here's a basic example of English grammar:
 

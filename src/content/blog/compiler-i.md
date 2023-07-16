@@ -167,7 +167,7 @@ Before diving into the grammar, it's essential to understand the notation used:
 - x? = indicates that x appears 0 or 1 times
 - x\* = indicates that x appears 0 or more times
 
-The complete Jack grammar can is in the book mentioned in the resources section of this blog post. There are four grammar sections: lexical elements, program structure, statements, and expressions. Each section contains rules that define the structure and syntax of Jack programs.
+The complete Jack grammar is in the book mentioned in the resources section of this blog post. There are four grammar sections: lexical elements, program structure, statements, and expressions. Each section contains rules that define the structure and syntax of Jack programs.
 
 ### Lexical elements
 

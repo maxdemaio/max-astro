@@ -2,13 +2,13 @@
 fileName: compiler-i
 description: Builder a syntax analyzer for a compiler
 pubDate: 'Jul 16 2023'
-title: Compiler I / Syntax Analysis
+title: Nand to Tetris - Compiler I / Syntax Analysis
 duration: 6
 ---
 
 ## Syntax Analysis
 
-Once again, we revisit the concept of two-tier compilation. For example, Java programs compile to byte code, while C# programs compile to IL (intermediate language). Jack compiles to VM code. In this blog post, we focus on the syntax analysis part of building a Jack compiler. Our goal is to create a program that generates an XML file. This XML file showcases a comprehensive understanding of all the elements of the input Jack code. Let's explore the key aspects we'll be covering:
+Once again, we revisit the concept of two-tier compilation. For example, Java programs compile to byte code, while C# programs compile to IL (intermediate language). Jack programs compile to VM code. In this blog post, we focus on the syntax analysis part of building a Jack compiler. Our goal is to create a program that generates an XML file. This XML file will showcase a comprehensive understanding of all the elements of the input Jack code. Let's explore the key aspects we'll be covering:
 
 - Tokenizing
 - Grammars
@@ -29,7 +29,7 @@ Consider the following Jack code snippet:
 
 ```
 if (x < 0) {
-  // prints the sign
+  // sign comment
   let sign = "negative"
 }
 ```

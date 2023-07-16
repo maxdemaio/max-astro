@@ -137,7 +137,7 @@ The corresponding XML markup would be:
 
 ## Parser Logic
 
-To develop the parser for the syntax analyzer, we'll create a class with a set of `compileXXX` methods. `XXX` corresponds to each non-terminal rule in the Jack grammar. We'll follow the right-hand side of each rule and parse the input. If the right-hand side specifies a non-terminal rule, we call the corresponding `compileXXX` method recursively. This assumes the input is already tokenized.
+To develop the parser for the syntax analyzer, we'll create a class with a set of `compileXXX` methods. `XXX` corresponds to each non-terminal rule in the Jack grammar. We'll follow the right-hand side of each rule and parse the input. If the right-hand side specifies a non-terminal rule, we call the corresponding `compileXXX` method recursively. This assumes the input is already tokenized. The parser relies on the tokenized input.
 
 - Follow right-hand side of rule and parse input
 - If the right-hand side specifies a non-terminal rule `XXX`, call `compileXXX`
@@ -179,40 +179,23 @@ There are five categories of terminal elements (tokens)
 - StringConstant
 - identifier
 
+![lexical elements grammar](/compiler-i/lexicalElements.png)
+
 ### Program structure
 
 Jack programs are collections of classes. Classes have their own files and compile seperately. They are structured like this in the grammar rules:
 
-- class
-- classVarDec
-- type
-- subroutineDec
-- parameterList
-- subroutineBody
-- varDec
-- className
-- subroutineName
-- varName
+![program structure grammar](/compiler-i/programStructure.png)
 
 ## Statements
 
-- statements
-- statement
-- letStatement
-- ifStatement
-- whileStatement
-- doStatement
-- returnStatement
+![statement grammar](/compiler-i/statements.png)
+
 
 ### Expressions
 
-- expression
-- term
-- subroutineCall
-- expressionList
-- op
-- unaryOp
-- keywordConstant
+![expressions grammar](/compiler-i/expressions.png)
+
 
 The handling of expressions is a bit more challenging. It's tricky because of the handling of the term rule. If the current token is a string/integer/keyword constant it's very simple. But, if it's a `varName` there are different possibilities of handling it. The token could be any one of the possibilities below:
 

@@ -1,10 +1,14 @@
-# Compiler I / Syntax Analysis
+---
+fileName: compiler-i
+description: Builder a syntax analyzer for a compiler
+pubDate: 'Jul 16 2023'
+title: Compiler I / Syntax Analysis
+duration: 6
+---
 
 ## Syntax Analysis
 
-Once again, we will revisit the idea of two tier compilation. For example, in Java it first compiles to byte code and in C# it compiles to IL (intermediate language). Jack is no different, it compiles to VM code. After the first compilation step, we take the VM code and translate it, with a VM translator to the target machine language.
-
-I've already written a VM translator. Now, I'm going to approach writing a Jack compiler that turns high-level into VM code. Specifically, in this blog post I'll take about the syntax analysis part of the compiler. To ensure this works, I'll make a program that outputs an XML file. This XML file will show an understanding of all the elements of the input Jack code. This is what I'll be learning:
+Once again, we revisit the concept of two-tier compilation. For example, Java programs compile to byte code, while C# programs compile to IL (intermediate language). Jack compiles to VM code. In this blog post, we focus on the syntax analysis part of building a Jack compiler. Our goal is to create a program that generates an XML file. This XML file showcases a comprehensive understanding of all the elements of the input Jack code. Let's explore the key aspects we'll be covering:
 
 - Tokenizing
 - Grammars
@@ -14,12 +18,14 @@ I've already written a VM translator. Now, I'm going to approach writing a Jack 
 - Compilation
 - Handling data
 
-There are two parts to the syntax analyzer we will construct before being able to move on to code generation.
+There are two parts that make up our syntax analyzer:
 
 1. Tokenizer
 2. Parser
 
 ## Lexical Analysis
+
+Consider the following Jack code snippet:
 
 ```
 if (x < 0) {
@@ -28,7 +34,7 @@ if (x < 0) {
 }
 ```
 
-This above Jack file is a stream of characters. Tokenizing is the act of transforming this primitive stream of characters into a stream of meaningful tokens. See the tokenized output below:
+The first step is tokenizing. Tokenizing transforms the stream of characters into a stream of meaningful tokens. Here's the tokenized output:
 
 ```
 if
@@ -46,9 +52,7 @@ sign
 }
 ```
 
-A token is a string of characters that has a meaning. Different programming languages have different tokens. We need a very well specified documentation of tokens of a language.
-
-For example, in Jack, we have five categories of tokens:
+Each token represents a string of characters with specific meaning. Different programming languages have their own set of tokens. Hence, it is crucial to have a well-defined documentation of the language's tokens. In Jack, we have five categories of tokens:
 
 1. keyword
 2. symbol
@@ -65,14 +69,11 @@ if
 </symbol>
 <!-- ... -->
 ```
-
 ## Grammars
 
-A set of valid tokens does not imply that we have a valid input file. Consider this English sentence, "he dog has a." These are all valid tokens, but together they don't make sense. But, the sentence "he has a dog" makes sense.
+Having a set of valid tokens is not enough to be a valid input. For example, the English sentence "he dog has a" has valid tokens but don't make sense together. We need grammar rules to describe how to arrange tokens to form meaningful statements in the language. Grammar rules fall into two categories: terminal rules (constants only) and non-terminal rules (all other rules).
 
-Not only do the tokens matter, the order matters. Grammar is a set of rules to describe how tokens are arranged to make meaningful statements in the underlying language. The rules fall into two broad categories of terminal rules (constants only) and non-terminal rules (all other rules).
-
-Basic English grammar example:
+Here's a basic example of English grammar:
 
 ```
 sentence: nounPhrase verbPhrase
@@ -83,17 +84,15 @@ verb: 'has'
 determiner : 'a'
 ```
 
-We'll want to write a Jack compiler using a similar grammar for a Jack program's tokens. This is in the realm of computational linguistics.
+We'll use a grammar to write a Jack compiler, specifying the tokens and their arrangement. This falls under the domain of computational linguistics.
 
 ## Parse Trees
 
- Parsing determines if the give input conforms to the grammar. Through parsing, we get the complete morphology or grammatical structure of the given input. 
+Parsing determines if the given input conforms to the grammar. It constructs a grammatical structure called a parse tree. The parse tree represents the complete morphology or grammatical structure of the input:
 
- In the process we construct a grammatical structure known as a parse tree:
+![parse tree english](/compiler-i/englishParseTree.png)
 
-![parse tree english](/compiler-i/)
-
-Unlike programming languages, the parsing of natural languages like English can be very ambiguous. Looking at sentences there could be many interpretations of a parse tree.
+Unlike programming languages, parsing natural languages like English can be ambiguous. There could be many interpretations of a natural language parse tree.
 
 > Time flies like an arrow
 
@@ -103,16 +102,18 @@ Possible interpretations:
 2. There is a certain species of insects, called “time flies”, and those insects happen to like a particular arrow.
 3. Use a stop watch to time the flight of flies, just like you time the flight of an arrow.
 
-But, we will focus on the grammar of the Jack programming language. With it, we can construct parse trees as well.
+But, we will focus on the grammar of the Jack programming language. With it, we can construct parse trees too. This parse tree will have an accurate representation of the input Jack program. 
 
-![jack parse tree]()
+![jack parse tree](/compiler-i/jackParseTree.png)
 
-We will use this parse tree to generate XML / mark up that describes the structure of the data in a readable format.
+We can use the parse tree to generate XML markup that describes the data's structure in a readable format. For example, given the Jack code snippet:
 
 ```
 if (x < 153)
 {let city = "Paris";}
 ```
+
+The corresponding XML markup would be:
 
 ```xml
 <tokens>
@@ -136,21 +137,135 @@ if (x < 153)
 
 ## Parser Logic
 
-We'll be creating a class with a set of `compileXXX` methods, one for almost each non-terminal rule `XXX` in the Jack grammar. The handling of some rules is embedded in other rules. We will construct this method by following exactly what the right hand side of the rule dictates. This assumes the input is already tokenized.
+To develop the parser for the syntax analyzer, we'll create a class with a set of `compileXXX` methods. `XXX` corresponds to each non-terminal rule in the Jack grammar. We'll follow the right-hand side of each rule and parse the input. If the right-hand side specifies a non-terminal rule, we call the corresponding `compileXXX` method recursively. This assumes the input is already tokenized.
 
-- Follow right-hand side of rule and parse input accordingly
+- Follow right-hand side of rule and parse input
 - If the right-hand side specifies a non-terminal rule `XXX`, call `compileXXX`
 - Do this recursively
 
-To develop the syntax analyzer, we'll use the grammar of the Jack language as the recipe to write the code of the parser. Note, an LL grammar can be parsed by a recursive descent parser without backtracking (once you start advancing, you don't have to do back). LL(k) parsers need to look ahead at most k tokens in order to determine which rule is applicable. LL(1) is as soon as you have a particular token in hand, you know which rule to apply .
+To develop the syntax analyzer, we'll use the grammar of the Jack language as the recipe to write the code of the parser. Note, an LL grammar can be parsed by a recursive descent parser without backtracking. LL(k) parsers need to look ahead at most k tokens to determine which rule is applicable. LL(1) is as soon as you have a particular token in hand, you know which rule to apply .
 
 ```
 let x = 5 + foo - a       // program 1. Here foo represents a simple variable.
-let y = foo[12] - 3     // program 2. Here foo represents an array.
+let y = foo[12] - 3      // program 2. Here foo represents an array.
 let z = 2 * foo.val()   // program 3. Here foo represents an object.
 ```
 
 We have to read one more token.  If it’s `[`, we know that we have an array reference. If it’s `.`, we know that we have a method call. Otherwise, it must be a simple variable.  This is the only case in the Jack language in which the parser has to look ahead one more token. Except for this one case, Jack is an LL(1) language. 
 
 
+
 ## Jack Grammar
+
+Before diving into the grammar, it's essential to understand the notation used:
+
+- 'xxx' = quoted boldface is used to list language tokens that appears verbatim ("terminals")
+- xxx = regular typeface represents names of non terminals
+- () = used for grouping
+- x | y = indicates that either x or y appears 
+- x y = indicates that x appears, and then y appears
+- x? = indicates that x appears 0 or 1 times
+- x\* = indicates that x appears 0 or more times
+
+The complete Jack grammar can is in the book mentioned in the resources section of this blog post. There are four grammar sections: lexical elements, program structure, statements, and expressions. Each section contains rules that define the structure and syntax of Jack programs.
+
+### Lexical elements
+
+There are five categories of terminal elements (tokens)
+
+- keyword
+- symbol
+- integerConstant
+- StringConstant
+- identifier
+
+### Program structure
+
+Jack programs are collections of classes. Classes have their own files and compile seperately. They are structured like this in the grammar rules:
+
+- class
+- classVarDec
+- type
+- subroutineDec
+- parameterList
+- subroutineBody
+- varDec
+- className
+- subroutineName
+- varName
+
+## Statements
+
+- statements
+- statement
+- letStatement
+- ifStatement
+- whileStatement
+- doStatement
+- returnStatement
+
+### Expressions
+
+- expression
+- term
+- subroutineCall
+- expressionList
+- op
+- unaryOp
+- keywordConstant
+
+The handling of expressions is a bit more challenging. It's tricky because of the handling of the term rule. If the current token is a string/integer/keyword constant it's very simple. But, if it's a `varName` there are different possibilities of handling it. The token could be any one of the possibilities below:
+
+```
+foo
+foo[expression]
+foo.bar(expressionList)
+Foo.bar(expressionList)
+bar(expressionList)
+```
+
+To resolve which possibility we're in, the parser will look ahead. It will save the current token, and advance to get to the next one. This is the only case in the Jack grammar where the language becomes LL(2) rather than LL(1).
+
+### The Jack Analyzer
+
+![jack compiler structure image](/compiler-i/jackCompiler.png)
+
+To ensure the syntax analyzer understands the source code, we need to perform unit testing. Our goal is to output a structured syntax (in our case, XML) of the source code, adhering to the Jack grammar. The generated markup represents a textual parse tree and provides a syntactic understanding of the Jack code in a recursive manner.
+
+Here's an example of the Jack analyzer's output for a `returnStatement`:
+
+```xml
+<returnStatement>
+  <keyword>
+    return
+  </keyword>
+  <expression>
+    <term>
+      <identifier>x</identifier>
+    </term>
+  </expression>
+  <symbol>;</symbol>
+</returnStatement>
+```
+
+Also, if we encounter a `nonTerminal` element of type type, class name, subroutine name, variable name, statement, or subroutine call, the parser handles it without marking it up.
+
+```xml
+<terminalElement>
+xxx
+</terminalElement>
+```
+
+```xml
+<nonTerminal>
+ Recursive output for the non-terminal body
+</nonTerminal>
+```
+
+## Conclusion
+
+You can find my complete implementation of the [Jack analyzer on GitHub](https://github.com/maxdemaio/hack-computer/tree/main/jackAnalyzer). Understanding the syntax analysis step in compilation has been fascinating, especially with its parallels to linguistics. Stay tuned for the next steps in code generation!
+
+## Resources
+
+- Nisan, Noam, and Shimon Schocken. The Elements of Computing Systems: Building a Modern Computer from First Principles. MIT, 2021.

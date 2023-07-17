@@ -60,15 +60,35 @@ Each token represents a string of characters with specific meaning. Different pr
 4. stringConstant
 5. identifier
 
-```xml
-<keyword>
-if
-</keyword>
-<symbol>
-(
-</symbol>
-<!-- ... -->
+For example, given the Jack code snippet:
+
 ```
+if (x < 153)
+{let city = "Paris";}
+```
+
+The corresponding tokenized XML markup would be:
+
+```xml
+<tokens>
+  <keyword> if </keyword>
+  <symbol> ( </symbol>
+  <identifier> x </identifier>
+  <symbol> &lt; </symbol>
+  <integerConstant> 153
+  </integerConstant>
+  <symbol> ) </symbol>
+  <symbol> { </symbol>
+  <keyword> let </keyword>
+  <identifier> city </identifier>
+  <symbol> = </symbol>
+  <stringConstant> Paris
+  </stringConstant>
+  <symbol> ; </symbol>
+  <symbol> } </symbol>
+</tokens>
+```
+
 ## Grammars
 
 Having a set of valid tokens is not enough to be a valid input. For example, the English sentence "he dog has a" has valid tokens but doesn't make sense. We need grammar rules to describe how to arrange tokens to form meaningful statements in the language. Grammar rules fall into two categories: terminal rules (constants only) and non-terminal rules (all other rules).
@@ -106,34 +126,7 @@ But, we will focus on the grammar of the Jack programming language. With it, we 
 
 ![jack parse tree](/compiler-i/jackParseTree.png)
 
-We can use the parse tree to generate XML markup that describes the data's structure in a readable format. For example, given the Jack code snippet:
-
-```
-if (x < 153)
-{let city = "Paris";}
-```
-
-The corresponding XML markup would be:
-
-```xml
-<tokens>
-  <keyword> if </keyword>
-  <symbol> ( </symbol>
-  <identifier> x </identifier>
-  <symbol> &lt; </symbol>
-  <integerConstant> 153
-  </integerConstant>
-  <symbol> ) </symbol>
-  <symbol> { </symbol>
-  <keyword> let </keyword>
-  <identifier> city </identifier>
-  <symbol> = </symbol>
-  <stringConstant> Paris
-  </stringConstant>
-  <symbol> ; </symbol>
-  <symbol> } </symbol>
-</tokens>
-```
+We can use the parse tree to generate XML markup that describes the data's structure in a readable format.
 
 ## Parser Logic
 
@@ -143,7 +136,7 @@ To develop the parser for the syntax analyzer, we'll create a class with a set o
 - If the right-hand side specifies a non-terminal rule `XXX`, call `compileXXX`
 - Do this recursively
 
-To develop the syntax analyzer, we'll use the grammar of the Jack language as the recipe to write the code of the parser. Note, an LL grammar can be parsed by a recursive descent parser without backtracking. LL(k) parsers need to look ahead at most k tokens to determine which rule is applicable. LL(1) is as soon as you have a particular token in hand, you know which rule to apply .
+To develop the syntax analyzer, we'll use the grammar of the Jack language as the recipe to write the code of the parser. Note, an LL grammar can be parsed by a recursive descent parser without backtracking. LL(k) parsers need to look ahead at most k tokens to determine which rule is applicable. LL(1) is as soon as you have a particular token in hand, you know which rule to apply.
 
 ```
 let x = 5 + foo - a       // program 1. Here foo represents a simple variable.
@@ -153,13 +146,11 @@ let z = 2 * foo.val()   // program 3. Here foo represents an object.
 
 We have to read one more token.  If it’s `[`, we know that we have an array reference. If it’s `.`, we know that we have a method call. Otherwise, it must be a simple variable.  This is the only case in the Jack language in which the parser has to look ahead one more token. Except for this one case, Jack is an LL(1) language. 
 
-
-
 ## Jack Grammar
 
 Before diving into the grammar, it's essential to understand the notation used:
 
-- 'xxx' = quoted boldface is used to list language tokens that appears verbatim ("terminals")
+- '**xxx**' = quoted boldface is used to list language tokens that appears verbatim ("terminals")
 - xxx = regular typeface represents names of non terminals
 - () = used for grouping
 - x | y = indicates that either x or y appears 
@@ -169,7 +160,7 @@ Before diving into the grammar, it's essential to understand the notation used:
 
 The complete Jack grammar is in the book mentioned in the resources section of this blog post. There are four grammar sections: lexical elements, program structure, statements, and expressions. Each section contains rules that define the structure and syntax of Jack programs.
 
-### Lexical elements
+## Lexical elements
 
 There are five categories of terminal elements (tokens)
 
@@ -181,7 +172,7 @@ There are five categories of terminal elements (tokens)
 
 ![lexical elements grammar](/compiler-i/lexicalElements.png)
 
-### Program structure
+## Program structure
 
 Jack programs are collections of classes. Classes have their own files and compile seperately. They are structured like this in the grammar rules:
 
@@ -191,11 +182,9 @@ Jack programs are collections of classes. Classes have their own files and compi
 
 ![statement grammar](/compiler-i/statements.png)
 
-
-### Expressions
+## Expressions
 
 ![expressions grammar](/compiler-i/expressions.png)
-
 
 The handling of expressions is a bit more challenging. It's tricky because of the handling of the term rule. If the current token is a string/integer/keyword constant it's very simple. But, if it's a `varName` there are different possibilities of handling it. The token could be any one of the possibilities below:
 
@@ -209,7 +198,7 @@ bar(expressionList)
 
 To resolve which possibility we're in, the parser will look ahead. It will save the current token, and advance to get to the next one. This is the only case in the Jack grammar where the language becomes LL(2) rather than LL(1).
 
-### The Jack Analyzer
+## The Jack Analyzer
 
 ![jack compiler structure image](/compiler-i/jackCompiler.png)
 

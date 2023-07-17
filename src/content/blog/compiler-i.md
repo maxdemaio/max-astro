@@ -160,7 +160,7 @@ Before diving into the grammar, it's essential to understand the notation used:
 
 The complete Jack grammar is in the book mentioned in the resources section of this blog post. There are four grammar sections: lexical elements, program structure, statements, and expressions. Each section contains rules that define the structure and syntax of Jack programs.
 
-## Lexical elements
+### Lexical elements
 
 There are five categories of terminal elements (tokens)
 
@@ -172,17 +172,17 @@ There are five categories of terminal elements (tokens)
 
 ![lexical elements grammar](/compiler-i/lexicalElements.png)
 
-## Program structure
+### Program structure
 
 Jack programs are collections of classes. Classes have their own files and compile seperately. They are structured like this in the grammar rules:
 
 ![program structure grammar](/compiler-i/programStructure.png)
 
-## Statements
+### Statements
 
 ![statement grammar](/compiler-i/statements.png)
 
-## Expressions
+### Expressions
 
 ![expressions grammar](/compiler-i/expressions.png)
 

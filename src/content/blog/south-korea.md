@@ -639,7 +639,7 @@ The above example conjugations are all in present tense informal form. As mentio
 
 ## Conclusion
 
-Although it was only 20 days of studying Korean, I sure learned a whole lot. Seoul was so cool and I’d definitely travel there again. Anyways, thank you for reading this life-related post about travel and language learning! Hope to catch you in the next blog post.
+Although it was only 20 days of studying Korean, I sure learned a whole lot. Seoul was so cool and I’d definitely travel there again. Anyways, thank you for reading this life-related post about travel and language learning! Once I figure out setting up Cloudflare I'll be creating a "Photos" section to my last couple posts. Hope to catch you in the next blog post!
 
 Best,
 

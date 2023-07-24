@@ -1,7 +1,7 @@
 ---
 fileName: south-korea
 title: Learning Korean for 20 Days and Traveling to Seoul, South Korea
-pubDate: 'July 21 2023'
+pubDate: 'July 24 2023'
 description: Learning Korean for 20 days and then traveling to Seoul, South Korea.
 duration: 20
 life: true

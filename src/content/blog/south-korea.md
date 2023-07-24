@@ -15,7 +15,9 @@ In this post, I’ll talk about all the places my family and I visited. Also, we
 
 I am by no means a travel blogger. I didn’t take many notes during the trip because I like enjoying the moment. In fact, I almost never take pictures but I’m trying to be better about it. Most of the photos I have from the trip are stolen from my sister 😂.
 
-Below are all the notable places we visited. Our visit was five days long, with two days for travel. I recommend you check these out if you visit Seoul! Also, one of the nights I took the metro to the Gangnam district. I went to a language exchange meetup from [meetup.com](http://meetup.com) where I met some awesome people living in South Korea (both natives and foreigners). They gave me great tips and suggestions on where to visit!
+Below are all the notable places we visited. Our visit was five days long, with two days for travel. I recommend you check these out if you visit Seoul! For transportation, buy yourself a T-Money Card. It's a prepaid public transportation card for cities across South Korea. You can buy one at Incheon Airport, in convenience stores, or in public transportation stations.
+
+Also, one of the nights I took the metro to the Gangnam district. I went to a language exchange meetup from [meetup.com](http://meetup.com) where I met some awesome people living in South Korea (both natives and foreigners). They gave me great tips and suggestions on where to visit!
 
 - Incheon Airport (where we arrived)
 - Somerset Palace (hotel)

@@ -1,0 +1,70 @@
+<div class="overflow-hidden relative rounded-lg border-4">
+  <div id="img-container" class="flex duration-500">
+    <img src="/castle-projects.jpg" />
+    <img src="/naus-404.jpg" />
+    <img src="/spirited-blog.jpg" />
+  </div>
+  <div class="absolute inset-0 grid grid-rows-3 p-2">
+    <div></div>
+    <div class="flex items-center justify-between">
+      <button id="prev-button" class="bg-white">prev</button>
+      <button id="next-button" class="bg-white">next</button>
+    </div>
+    <div class="flex items-end justify-center space-x-4">
+      <div class="indicator bg-white">1</div>
+      <div class="indicator bg-white">2</div>
+      <div class="indicator bg-white">3</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /**
+   * Update the display of images and indicators based on the current active image index.
+   * @param {number} activeIndex - The index of the active image.
+   * @param {HTMLElement} imgContainer - The image container element.
+   */
+  function updateDisplay(activeIndex, imgContainer) {
+    curr = activeIndex;
+    imgContainer.style.transform = `translateX(-${(curr - 1) * 100}%)`;
+    indicators.forEach((indicator, index) => {
+      indicator.style.backgroundColor =
+        index === curr - 1 ? "pink" : "white";
+    });
+  }
+
+  // Query for needed elements
+  const nextButton = document.querySelector<HTMLElement>("#next-button");
+  const prevButton = document.querySelector<HTMLElement>("#prev-button");
+  const imgContainer = document.querySelector<HTMLElement>("#img-container");
+  const indicators = document.querySelectorAll<HTMLElement>(".indicator");
+
+  let curr = 1;
+  const photosAmount =
+    document.querySelectorAll("#img-container img").length;
+
+  // Make sure we have all the needed elements
+  if (imgContainer && prevButton && nextButton && indicators) {
+    indicators[0].style.backgroundColor = "pink";
+
+    nextButton.addEventListener("click", function () {
+      // Check if we are on the last photo, go back to the first
+      // Otherwise increase curr
+      if (curr === photosAmount) {
+        updateDisplay(1, imgContainer);
+      } else {
+        updateDisplay(curr + 1, imgContainer);
+      }
+    });
+
+    prevButton.addEventListener("click", function () {
+      // If at the first element, go back to the last
+      // Otherwise decrease curr
+      if (curr === 1) {
+        updateDisplay(photosAmount, imgContainer);
+      } else {
+        updateDisplay(curr - 1, imgContainer);
+      }
+    });
+  }
+</script>

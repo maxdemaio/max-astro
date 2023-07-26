@@ -1,83 +1,112 @@
 ---
+export interface IBlogPostPhoto {
+  photoPath: string;
+  width: number;
+  height: number;
+}
 export interface Props {
-  photoPaths: string[];
+  blogPostPhotos: IBlogPostPhoto[];
+  index: number;
 }
 
-const { photoPaths } = Astro.props;
+const { blogPostPhotos, index } = Astro.props;
 ---
 
-<div class="overflow-hidden relative rounded-lg border-4">
-  <div id="img-container" class="flex duration-500">
-    {
-      photoPaths.map((photoPath) => (
-        <>
-          <img src={photoPath} />
-        </>
-      ))
-    }
-  </div>
-  <div class="absolute inset-0 grid grid-rows-3 p-2">
-    <div></div>
-    <div class="flex items-center justify-between">
-      <button aria-label="Previous" id="prev-button" class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"><span class="i-carbon-chevron-left"></span></button>
-      <button aria-label="Next" id="next-button" class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"><span class="i-carbon-chevron-right"></span></button>
+<!-- 
+  Web component:
+  Store the index prop as a data attribute
+  this is so we have unique element selectors 
+-->
+<blog-post-photos data-index={index}>
+  <div class="my-5 overflow-hidden relative rounded-md border-4 border-neutral-700 bg-neutral-900">
+    <div id=`img-container-${index}` class="flex items-center duration-500">
+      <!--
+        I had to use inline style bc 
+        https://unocss.dev/guide/extracting#limitations
+      -->
+      {
+        blogPostPhotos.map((blogPostPhoto) => (
+          <>
+            <img
+              style=`margin-left: calc(50% - ${blogPostPhoto.width/2}px); margin-right: calc(50% - ${blogPostPhoto.width/2}px);`
+              width={blogPostPhoto.width}
+              height={blogPostPhoto.height}
+              src={blogPostPhoto.photoPath}
+            />
+          </>
+        ))
+      }
     </div>
-    <div id="indicator-container" class="flex items-end justify-center space-x-1.2">
-      {photoPaths.map((_, index: number) => {
-        if (index === 0) {
-          return <div class="indicator bg-white opacity-100 w-1.5 h-1.5 rounded-full ease-in-out duration-200"></div>;
-        }
-        return <div class="indicator bg-white opacity-40 w-1.5 h-1.5 rounded-full ease-in-out duration-200"></div>;
-      })}
+    <div class="absolute inset-0 grid grid-rows-3 p-2">
+      <div></div>
+      <div class="flex items-center justify-between">
+        <button aria-label="Previous" id=`prev-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"><span class="i-carbon-chevron-left bg-neutral-900 opacity-60"></span></button>
+        <button aria-label="Next" id=`next-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"><span class="i-carbon-chevron-right bg-neutral-900 opacity-60"></span></button>
+      </div>
+      <div id="indicator-container" class="flex items-end justify-center space-x-1.2">
+        {blogPostPhotos.map((_, num: number) => {
+          if (num === 0) {
+            return <div class={"indicator-" + index + " bg-white opacity-100 w-1.5 h-1.5 rounded-full ease-in-out duration-200"}></div>;
+          }
+          return <div class={"indicator-" + index + " bg-white opacity-40 w-1.5 h-1.5 rounded-full ease-in-out duration-200"}></div>;
+        })}
+      </div>
     </div>
   </div>
-</div>
+</blog-post-photos>
 
 <script>
-  /**
-   * Update the display of images and indicators based on the current active image index.
-   * @param {number} activeIndex - The index of the active image.
-   * @param {HTMLElement} imgContainer - The image container element.
-   */
-  function updateDisplay(activeIndex, imgContainer) {
-    curr = activeIndex;
-    imgContainer.style.transform = `translateX(-${(curr - 1) * 100}%)`;
-    indicators.forEach((indicator, index) => {
-      indicator.style.opacity =
-        index === curr - 1 ? "1" : "0.4";
-    });
-  }
+  class BlogPostPhotos extends HTMLElement {
+    constructor() {
+      super();
 
-  // Query for needed elements
-  const nextButton = document.querySelector<HTMLElement>("#next-button");
-  const prevButton = document.querySelector<HTMLElement>("#prev-button");
-  const imgContainer = document.querySelector<HTMLElement>("#img-container");
-  const indicators = document.querySelectorAll<HTMLElement>(".indicator");
-
-  let curr = 1;
-  const photosAmount =
-    document.querySelectorAll("#img-container img").length;
-
-  // Make sure we have all the needed elements
-  if (imgContainer && prevButton && nextButton && indicators) {
-    nextButton.addEventListener("click", function () {
-      // Check if we are on the last photo, go back to the first
-      // Otherwise increase curr
-      if (curr === photosAmount) {
-        updateDisplay(1, imgContainer);
-      } else {
-        updateDisplay(curr + 1, imgContainer);
+      /**
+       * Update the display of images and indicators based on the current active image index.
+       * @param {number} activeIndex - The index of the active image.
+       * @param {HTMLElement} imgContainer - The image container element.
+      */
+      function updateDisplay(activeIndex, imgContainer, indicators) {
+        curr = activeIndex;
+        imgContainer.style.transform = `translateX(-${(curr - 1) * 100}%)`;
+        indicators.forEach((indicator, index) => {
+          indicator.style.opacity =
+            index === curr - 1 ? "1" : "0.4";
+        });
       }
-    });
 
-    prevButton.addEventListener("click", function () {
-      // If at the first element, go back to the last
-      // Otherwise decrease curr
-      if (curr === 1) {
-        updateDisplay(photosAmount, imgContainer);
-      } else {
-        updateDisplay(curr - 1, imgContainer);
+      // Query for needed elements within web component
+      const nextButton = this.querySelector<HTMLElement>("#next-button-" + this.dataset.index);
+      const prevButton = this.querySelector<HTMLElement>("#prev-button-" + this.dataset.index);
+      const imgContainer = this.querySelector<HTMLElement>("#img-container-" + this.dataset.index);
+      const indicators = this.querySelectorAll<HTMLElement>(".indicator-" + this.dataset.index);
+
+      let curr = 1;
+      const photosAmount =
+        this.querySelectorAll("#img-container-" +  this.dataset.index + " img").length;
+
+      // Make sure we have all the needed elements
+      if (imgContainer && prevButton && nextButton && indicators) {
+        nextButton.addEventListener("click", function () {
+          // Check if we are on the last photo, go back to the first
+          // Otherwise increase curr
+          if (curr === photosAmount) {
+            updateDisplay(1, imgContainer, indicators);
+          } else {
+            updateDisplay(curr + 1, imgContainer, indicators);
+          }
+        });
+
+        prevButton.addEventListener("click", function () {
+          // If at the first element, go back to the last
+          // Otherwise decrease curr
+          if (curr === 1) {
+            updateDisplay(photosAmount, imgContainer, indicators);
+          } else {
+            updateDisplay(curr - 1, imgContainer, indicators);
+          }
+        });
       }
-    });
+    }
   }
+  customElements.define('blog-post-photos', BlogPostPhotos);
 </script>

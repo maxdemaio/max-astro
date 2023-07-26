@@ -1,5 +1,5 @@
 # ignore my markdown blog posts
-src/content/blog
+src/content/blog/
 # ignore my css
 src/styles/
 # misc

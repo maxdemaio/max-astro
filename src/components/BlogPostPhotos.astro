@@ -19,7 +19,7 @@ const { blogPostPhotos, index } = Astro.props;
 -->
 <blog-post-photos data-index={index}>
   <div class="my-5 overflow-hidden relative rounded-md border-4 border-neutral-700 bg-neutral-900">
-    <div id=`img-container-${index}` class="flex items-center duration-500">
+    <div id=`img-container-${index}` class="h-[468px] flex items-center duration-500">
       <!--
         We want margin to move towards 0 as we get to smaller screens
         margin will be 0 when the size of the parent is the same size
@@ -93,6 +93,23 @@ const { blogPostPhotos, index } = Astro.props;
         });
       }
 
+      /**
+       * 
+       * @param {HTMLImageElement} photo
+       * @param {number} parentHeight
+       * @param {number} parentWidth
+       */
+      function updatePhotoHeightAndMargin(photo, parentHeight, parentWidth) {
+        // make sure the photo fits to the max-height of container
+        if (photo.offsetHeight > parentHeight) {
+          photo.style.height = "100%";
+        }
+        const photoWidth = photo.offsetWidth;
+        const marginLr = Math.max(0, (parentWidth/2) - (photoWidth/2));
+        photo.style.marginLeft = marginLr.toString() + "px";
+        photo.style.marginRight = marginLr.toString() + "px";
+      }
+    
       // Query for needed elements within web component
       const nextButton = this.querySelector<HTMLElement>("#next-button-" + this.dataset.index);
       const prevButton = this.querySelector<HTMLElement>("#prev-button-" + this.dataset.index);
@@ -106,14 +123,17 @@ const { blogPostPhotos, index } = Astro.props;
         
         // Set left/right margin if needed on photos
         const parentWidth = imgContainer.offsetWidth;
-        photos.forEach((photo) => {
-          photo.onload = function() {
-            const photoWidth = photo.offsetWidth;
-            const marginLr = Math.max(0, (parentWidth/2) - (photoWidth/2));
-            photo.style.marginLeft = marginLr.toString() + "px";
-            photo.style.marginRight = marginLr.toString() + "px";
+        const parentHeight = imgContainer.offsetHeight;
+        photos.forEach((photo: HTMLImageElement) => {
+          if(photo.complete){
+            // photo is cached
+            updatePhotoHeightAndMargin(photo, parentHeight, parentWidth);
+          } else {
+            photo.onload = () => {
+              updatePhotoHeightAndMargin(photo, parentHeight, parentWidth);
+            } 
           }
-        })
+        });
 
         nextButton.addEventListener("click", function () {
           // Check if we are on the last photo, go back to the first

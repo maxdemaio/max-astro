@@ -21,31 +21,26 @@ const { blogPostPhotos, index } = Astro.props;
   <div class="my-5 overflow-hidden relative rounded-md border-4 border-neutral-700 bg-neutral-900">
     <div id=`img-container-${index}` class="flex items-center duration-500">
       <!--
-        I had to use inline style bc 
-        https://unocss.dev/guide/extracting#limitations
-
-        Margin moves towards 0 as we get to smaller screens (w/ calc)
+        We want margin to move towards 0 as we get to smaller screens
         margin will be 0 when the size of the parent is the same size
         as the image width. Then the image will just resize with the
         parent size and we want no margin. 
-        Since we use a max func there is never negative margin.
 
-        Note: If you have an image that is a different size that rest
-        it needs width/height. Or if all unique they all need them.
+        W/ max func there is never negative margin.
 
-        // idea: 
-        // after the images come in, with javascript, calculate the l/r margin
-        // needed and give it to them.
+        With the images that ome in, with JS we calc the l/r margin
 
-        // for each img (querySelectorAll) 
-        // 50% is the parent /2 (img container width)
-        // marginLr = max(0px, (50% - [imageWidth / 2]))
+        // for each img (querySelectorAll)
+        // marginLr = max(0px, (50% of parent - [50% of photo]))
         // img.marginLeft = marginLr
-        // img.marginRight = marginRi
+        // img.marginRight = marginLr
 
-        make width/ height optional (can still add if wanted)
-
-        debounce the onresize event and then recalc needed margin
+        This allows the width/ height to be optional (can still add if wanted)
+        
+        Next steps:
+        - debounce the onresize event and then recalc needed margin
+        - it only calcs the margin once and doesn't change it
+        LOOK TO ADD ONLOAD FUN TO PHOTOS TO CALC MARGIN
       -->
       {
         blogPostPhotos.map((blogPostPhoto) => (
@@ -112,10 +107,12 @@ const { blogPostPhotos, index } = Astro.props;
         // Set left/right margin if needed on photos
         const parentWidth = imgContainer.offsetWidth;
         photos.forEach((photo) => {
-          const photoWidth = photo.offsetWidth;
-          const marginLr = Math.max(0, (parentWidth/2) - (photoWidth/2));
-          photo.style.marginLeft = marginLr.toString() + "px";
-          photo.style.marginRight = marginLr.toString() + "px";
+          photo.onload = function() {
+            const photoWidth = photo.offsetWidth;
+            const marginLr = Math.max(0, (parentWidth/2) - (photoWidth/2));
+            photo.style.marginLeft = marginLr.toString() + "px";
+            photo.style.marginRight = marginLr.toString() + "px";
+          }
         })
 
         nextButton.addEventListener("click", function () {

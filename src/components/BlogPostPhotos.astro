@@ -23,12 +23,19 @@ const { blogPostPhotos, index } = Astro.props;
       <!--
         I had to use inline style bc 
         https://unocss.dev/guide/extracting#limitations
+
+        Margin moves towards 0 as we get to smaller screens (w/ calc)
+        margin will be 0 when the size of the parent is the same size
+        as the image width. Then the image will just resize with the
+        parent size and we want no margin. 
+
+        Since we use a max func there is never negative margin.
       -->
       {
         blogPostPhotos.map((blogPostPhoto) => (
           <>
             <img
-              style=`margin-left: calc(50% - ${blogPostPhoto.width/2}px); margin-right: calc(50% - ${blogPostPhoto.width/2}px);`
+              style=`margin-left: max(0px, calc(50% - ${blogPostPhoto.width/2}px)); margin-right: max(0px, calc(50% - ${blogPostPhoto.width/2}px));`
               width={blogPostPhoto.width}
               height={blogPostPhoto.height}
               src={blogPostPhoto.photoPath}

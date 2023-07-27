@@ -1,8 +1,8 @@
 ---
 export interface IBlogPostPhoto {
   photoPath: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 export interface Props {
   blogPostPhotos: IBlogPostPhoto[];
@@ -28,14 +28,29 @@ const { blogPostPhotos, index } = Astro.props;
         margin will be 0 when the size of the parent is the same size
         as the image width. Then the image will just resize with the
         parent size and we want no margin. 
-
         Since we use a max func there is never negative margin.
+
+        Note: If you have an image that is a different size that rest
+        it needs width/height. Or if all unique they all need them.
+
+        // idea: 
+        // after the images come in, with javascript, calculate the l/r margin
+        // needed and give it to them.
+
+        // for each img (querySelectorAll) 
+        // 50% is the parent /2 (img container width)
+        // marginLr = max(0px, (50% - [imageWidth / 2]))
+        // img.marginLeft = marginLr
+        // img.marginRight = marginRi
+
+        make width/ height optional (can still add if wanted)
+
+        debounce the onresize event and then recalc needed margin
       -->
       {
         blogPostPhotos.map((blogPostPhoto) => (
           <>
             <img
-              style=`margin-left: max(0px, calc(50% - ${blogPostPhoto.width/2}px)); margin-right: max(0px, calc(50% - ${blogPostPhoto.width/2}px));`
               width={blogPostPhoto.width}
               height={blogPostPhoto.height}
               src={blogPostPhoto.photoPath}
@@ -67,6 +82,8 @@ const { blogPostPhotos, index } = Astro.props;
     constructor() {
       super();
 
+      let curr = 1;
+
       /**
        * Update the display of images and indicators based on the current active image index.
        * @param {number} activeIndex - The index of the active image.
@@ -86,13 +103,21 @@ const { blogPostPhotos, index } = Astro.props;
       const prevButton = this.querySelector<HTMLElement>("#prev-button-" + this.dataset.index);
       const imgContainer = this.querySelector<HTMLElement>("#img-container-" + this.dataset.index);
       const indicators = this.querySelectorAll<HTMLElement>(".indicator-" + this.dataset.index);
-
-      let curr = 1;
-      const photosAmount =
-        this.querySelectorAll("#img-container-" +  this.dataset.index + " img").length;
-
+      const photos = this.querySelectorAll<HTMLElement>("#img-container-" +  this.dataset.index + " img");
+      
       // Make sure we have all the needed elements
-      if (imgContainer && prevButton && nextButton && indicators) {
+      if (imgContainer && photos && prevButton && nextButton && indicators) {
+        const photosAmount = photos.length;
+        
+        // Set left/right margin if needed on photos
+        const parentWidth = imgContainer.offsetWidth;
+        photos.forEach((photo) => {
+          const photoWidth = photo.offsetWidth;
+          const marginLr = Math.max(0, (parentWidth/2) - (photoWidth/2));
+          photo.style.marginLeft = marginLr.toString() + "px";
+          photo.style.marginRight = marginLr.toString() + "px";
+        })
+
         nextButton.addEventListener("click", function () {
           // Check if we are on the last photo, go back to the first
           // Otherwise increase curr

@@ -6,6 +6,8 @@ description: Learning Korean for 20 days and then traveling to Seoul, South Kore
 duration: 20
 life: true
 ---
+import BlogPostPhotos from '../../components/BlogPostPhotos.astro';
+
 
 I studied Korean for 20 days and traveled to Seoul, South Korea! I spent around 1 hour each morning studying. My sister is from Seoul and this trip was in the works for a long time. As of this post, I’m still a beginner in Korean. But, I sure learned a lot! I enjoyed the experience of traveling to a new country and appreciating their culture.
 
@@ -639,9 +641,26 @@ The above example conjugations are all in present tense informal form. As mentio
 
 ---
 
+## Photos
+
+<BlogPostPhotos 
+  index={0}
+  blogPostPhotos={[
+    {
+        photoPath: "/south-korea/IMG_5018.jpeg",
+    },
+    {
+        photoPath: "/south-korea/IMG_5024.jpeg",
+    },
+    {
+        photoPath: "/south-korea/IMG_5030.jpeg",
+    },
+  ]}
+/>
+
 ## Conclusion
 
-Although it was only 20 days of studying Korean, I sure learned a whole lot. Seoul was so cool and I’d definitely travel there again. Anyways, thank you for reading this life-related post about travel and language learning! Once I figure out setting up Cloudflare I'll be creating a "Photos" section to my last couple posts. Hope to catch you in the next blog post!
+Although it was only 20 days of studying Korean, I sure learned a whole lot. Seoul was so cool and I’d definitely travel there again. Anyways, thank you for reading this life-related post about travel and language learning! Once I figure out setting up Cloudflare I'll be creating a "Photos" section to my last couple posts (it's updated now!). Hope to catch you in the next blog post!
 
 Best,
 

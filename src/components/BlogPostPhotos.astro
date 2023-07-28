@@ -28,7 +28,7 @@ const { blogPostPhotos, index } = Astro.props;
 
         W/ max func there is never negative margin.
 
-        With the images that ome in, with JS we calc the l/r margin
+        With the images that come in, with JS we calc the l/r margin
 
         // for each img (querySelectorAll)
         // marginLr = max(0px, (50% of parent - [50% of photo]))
@@ -36,20 +36,14 @@ const { blogPostPhotos, index } = Astro.props;
         // img.marginRight = marginLr
 
         This allows the width/ height to be optional (can still add if wanted)
-        
-        Next steps:
-        - debounce the onresize event and then recalc needed margin
-        - it only calcs the margin once and doesn't change it
-        LOOK TO ADD ONLOAD FUN TO PHOTOS TO CALC MARGIN
+
+        Then, if the image has a height greater than the container
+        We make it 100%
       -->
       {
         blogPostPhotos.map((blogPostPhoto) => (
           <>
-            <img
-              width={blogPostPhoto.width}
-              height={blogPostPhoto.height}
-              src={blogPostPhoto.photoPath}
-            />
+            <img width={blogPostPhoto.width} height={blogPostPhoto.height} src={blogPostPhoto.photoPath} />
           </>
         ))
       }
@@ -57,16 +51,22 @@ const { blogPostPhotos, index } = Astro.props;
     <div class="absolute inset-0 grid grid-rows-3 p-2">
       <div></div>
       <div class="flex items-center justify-between">
-        <button aria-label="Previous" id=`prev-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"><span class="i-carbon-chevron-left bg-neutral-900 opacity-60"></span></button>
-        <button aria-label="Next" id=`next-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"><span class="i-carbon-chevron-right bg-neutral-900 opacity-60"></span></button>
+        <button aria-label="Previous" id=`prev-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"
+          ><span class="i-carbon-chevron-left bg-neutral-900 opacity-60"></span></button
+        >
+        <button aria-label="Next" id=`next-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"
+          ><span class="i-carbon-chevron-right bg-neutral-900 opacity-60"></span></button
+        >
       </div>
       <div id="indicator-container" class="flex items-end justify-center space-x-1.2">
-        {blogPostPhotos.map((_, num: number) => {
-          if (num === 0) {
-            return <div class={"indicator-" + index + " bg-white opacity-100 w-1.5 h-1.5 rounded-full ease-in-out duration-200"}></div>;
-          }
-          return <div class={"indicator-" + index + " bg-white opacity-40 w-1.5 h-1.5 rounded-full ease-in-out duration-200"}></div>;
-        })}
+        {
+          blogPostPhotos.map((_, num: number) => {
+            if (num === 0) {
+              return <div class={'indicator-' + index + ' bg-white opacity-100 w-1.5 h-1.5 rounded-full ease-in-out duration-200'} />;
+            }
+            return <div class={'indicator-' + index + ' bg-white opacity-40 w-1.5 h-1.5 rounded-full ease-in-out duration-200'} />;
+          })
+        }
       </div>
     </div>
   </div>
@@ -83,18 +83,17 @@ const { blogPostPhotos, index } = Astro.props;
        * Update the display of images and indicators based on the current active image index.
        * @param {number} activeIndex - The index of the active image.
        * @param {HTMLElement} imgContainer - The image container element.
-      */
+       */
       function updateDisplay(activeIndex, imgContainer, indicators) {
         curr = activeIndex;
         imgContainer.style.transform = `translateX(-${(curr - 1) * 100}%)`;
         indicators.forEach((indicator, index) => {
-          indicator.style.opacity =
-            index === curr - 1 ? "1" : "0.4";
+          indicator.style.opacity = index === curr - 1 ? '1' : '0.4';
         });
       }
 
       /**
-       * 
+       *
        * @param {HTMLImageElement} photo
        * @param {number} parentHeight
        * @param {number} parentWidth
@@ -102,40 +101,40 @@ const { blogPostPhotos, index } = Astro.props;
       function updatePhotoHeightAndMargin(photo, parentHeight, parentWidth) {
         // make sure the photo fits to the max-height of container
         if (photo.offsetHeight > parentHeight) {
-          photo.style.height = "100%";
+          photo.style.height = '100%';
         }
         const photoWidth = photo.offsetWidth;
-        const marginLr = Math.max(0, (parentWidth/2) - (photoWidth/2));
-        photo.style.marginLeft = marginLr.toString() + "px";
-        photo.style.marginRight = marginLr.toString() + "px";
+        const marginLr = Math.max(0, parentWidth / 2 - photoWidth / 2);
+        photo.style.marginLeft = marginLr.toString() + 'px';
+        photo.style.marginRight = marginLr.toString() + 'px';
       }
-    
+
       // Query for needed elements within web component
-      const nextButton = this.querySelector<HTMLElement>("#next-button-" + this.dataset.index);
-      const prevButton = this.querySelector<HTMLElement>("#prev-button-" + this.dataset.index);
-      const imgContainer = this.querySelector<HTMLElement>("#img-container-" + this.dataset.index);
-      const indicators = this.querySelectorAll<HTMLElement>(".indicator-" + this.dataset.index);
-      const photos = this.querySelectorAll<HTMLElement>("#img-container-" +  this.dataset.index + " img");
-      
+      const nextButton = this.querySelector<HTMLElement>('#next-button-' + this.dataset.index);
+      const prevButton = this.querySelector<HTMLElement>('#prev-button-' + this.dataset.index);
+      const imgContainer = this.querySelector<HTMLElement>('#img-container-' + this.dataset.index);
+      const indicators = this.querySelectorAll<HTMLElement>('.indicator-' + this.dataset.index);
+      const photos = this.querySelectorAll<HTMLElement>('#img-container-' + this.dataset.index + ' img');
+
       // Make sure we have all the needed elements
       if (imgContainer && photos && prevButton && nextButton && indicators) {
         const photosAmount = photos.length;
-        
+
         // Set left/right margin if needed on photos
         const parentWidth = imgContainer.offsetWidth;
         const parentHeight = imgContainer.offsetHeight;
         photos.forEach((photo: HTMLImageElement) => {
-          if(photo.complete){
+          if (photo.complete) {
             // photo is cached
             updatePhotoHeightAndMargin(photo, parentHeight, parentWidth);
           } else {
             photo.onload = () => {
               updatePhotoHeightAndMargin(photo, parentHeight, parentWidth);
-            } 
+            };
           }
         });
 
-        nextButton.addEventListener("click", function () {
+        nextButton.addEventListener('click', function () {
           // Check if we are on the last photo, go back to the first
           // Otherwise increase curr
           if (curr === photosAmount) {
@@ -145,7 +144,7 @@ const { blogPostPhotos, index } = Astro.props;
           }
         });
 
-        prevButton.addEventListener("click", function () {
+        prevButton.addEventListener('click', function () {
           // If at the first element, go back to the last
           // Otherwise decrease curr
           if (curr === 1) {

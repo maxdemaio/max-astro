@@ -52,7 +52,7 @@ const { blogPostPhotos, index } = Astro.props;
       <div></div>
       <div class="flex items-center justify-between">
         <button aria-label="Previous" id=`prev-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"
-          ><span class="i-carbon-chevron-left bg-neutral-900 opacity-60"></span></button
+          ><span class="i-carbon-chevron-left opacity-60"></span></button
         >
         <button aria-label="Next" id=`next-button-${index}` class="bg-white grid items-center justify-center w-8 h-8 rounded-full opacity-60"
           ><span class="i-carbon-chevron-right bg-neutral-900 opacity-60"></span></button
@@ -77,14 +77,11 @@ const { blogPostPhotos, index } = Astro.props;
     constructor() {
       super();
 
-      let curr = 1;
+      // Keep track of active photo index
+      let curr: number = 1;
 
-      /**
-       * Update the display of images and indicators based on the current active image index.
-       * @param {number} activeIndex - The index of the active image.
-       * @param {HTMLElement} imgContainer - The image container element.
-       */
-      function updateDisplay(activeIndex, imgContainer, indicators) {
+      // Update indicators and active photo index
+      function updateDisplay(activeIndex: number, imgContainer: HTMLElement, indicators: NodeListOf<HTMLElement>) {
         curr = activeIndex;
         imgContainer.style.transform = `translateX(-${(curr - 1) * 100}%)`;
         indicators.forEach((indicator, index) => {
@@ -92,14 +89,8 @@ const { blogPostPhotos, index } = Astro.props;
         });
       }
 
-      /**
-       *
-       * @param {HTMLImageElement} photo
-       * @param {number} parentHeight
-       * @param {number} parentWidth
-       */
-      function updatePhotoHeightAndMargin(photo, parentHeight, parentWidth) {
-        // make sure the photo fits to the max-height of container
+      function updatePhotoHeightAndMargin(photo: HTMLImageElement, parentHeight: number, parentWidth: number) {
+        // Make sure the photo fits to the max-height of container
         if (photo.offsetHeight > parentHeight) {
           photo.style.height = '100%';
         }
@@ -113,19 +104,19 @@ const { blogPostPhotos, index } = Astro.props;
       const nextButton = this.querySelector<HTMLElement>('#next-button-' + this.dataset.index);
       const prevButton = this.querySelector<HTMLElement>('#prev-button-' + this.dataset.index);
       const imgContainer = this.querySelector<HTMLElement>('#img-container-' + this.dataset.index);
-      const indicators = this.querySelectorAll<HTMLElement>('.indicator-' + this.dataset.index);
-      const photos = this.querySelectorAll<HTMLElement>('#img-container-' + this.dataset.index + ' img');
+      const indicators: NodeListOf<HTMLElement> = this.querySelectorAll<HTMLElement>('.indicator-' + this.dataset.index);
+      const photos: NodeListOf<HTMLImageElement> = this.querySelectorAll('#img-container-' + this.dataset.index + ' img');
 
       // Make sure we have all the needed elements
       if (imgContainer && photos && prevButton && nextButton && indicators) {
         const photosAmount = photos.length;
 
         // Set left/right margin if needed on photos
-        const parentWidth = imgContainer.offsetWidth;
-        const parentHeight = imgContainer.offsetHeight;
+        const parentWidth: number = imgContainer.offsetWidth;
+        const parentHeight: number = imgContainer.offsetHeight;
         photos.forEach((photo: HTMLImageElement) => {
           if (photo.complete) {
-            // photo is cached
+            // Photo is cached
             updatePhotoHeightAndMargin(photo, parentHeight, parentWidth);
           } else {
             photo.onload = () => {
@@ -134,7 +125,10 @@ const { blogPostPhotos, index } = Astro.props;
           }
         });
 
-        nextButton.addEventListener('click', function () {
+        nextButton.addEventListener('click', function (event) {
+          // Prevent the default submit behavior of the button
+          event.preventDefault();
+
           // Check if we are on the last photo, go back to the first
           // Otherwise increase curr
           if (curr === photosAmount) {
@@ -144,7 +138,10 @@ const { blogPostPhotos, index } = Astro.props;
           }
         });
 
-        prevButton.addEventListener('click', function () {
+        prevButton.addEventListener('click', function (event) {
+          // Prevent the default submit behavior of the button
+          event.preventDefault();
+
           // If at the first element, go back to the last
           // Otherwise decrease curr
           if (curr === 1) {

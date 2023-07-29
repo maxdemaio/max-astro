@@ -7,12 +7,13 @@ export interface Props {
   title: string;
   description: string;
   image?: string;
+  tumblrRedir?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Image has website default
-const { title, description, image = SITE_IMAGE } = Astro.props;
+const { title, description, image = SITE_IMAGE, tumblrRedir } = Astro.props;
 ---
 
 <html lang="en">
@@ -52,6 +53,9 @@ const { title, description, image = SITE_IMAGE } = Astro.props;
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Tumblr Redir -->
+    {tumblrRedir ? <meta http-equiv="refresh" content="0; URL=https://maxoverflow.tumblr.com" /> : null}
   </head>
   <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />

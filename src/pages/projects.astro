@@ -1,5 +1,7 @@
 ---
+import ProjectGridItem from '@components/ProjectGridItem.astro';
 import Default from '@layouts/Default.astro';
+import ProjectGrid from '@layouts/ProjectGrid.astro';
 ---
 
 <Default title="Projects – Max DeMaio" image="/castle-projects.jpg" description="Featured projects as well as the technology I use to build business and software architecture.">
@@ -15,41 +17,28 @@ import Default from '@layouts/Default.astro';
     </p>
   </section>
   <section class="mb-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-      <div class="group rounded p-4 bg-transparent hover:bg-#88888808">
-        <a href="https://github.com/maxdemaio/thelangbot" class="mlink opacity-100"> The Language Bot</a>
-        <span class="mprojItem">
-          is a Twitter bot to help individuals learn foreign languages. It naturally built a community through tweets by retweeting #langtwt and #100DaysOfLanguage. Archived since the monetization of
-          the Twitter API.</span
-        >
-      </div>
-      <div class="group rounded p-4 bg-transparent hover:bg-#88888808">
-        <a href="https://github.com/maxdemaio/hack-computer" class="mlink"> Hack Computer</a>
-        <span class="mprojItem">
-          is a computer system built from the ground up as described in the book, "The Elements of Computing Systems". Made with hardware description language, assembly, and Java.
-        </span>
-      </div>
-      <div class="group rounded p-4 bg-transparent hover:bg-#88888808">
-        <a href="https://chessheat.com" class="mlink"> Chess Heat</a>
-        <span class="mprojItem">
-          fetches monthly chess games from Chess.com and creates a heatmap of a player's game activity over the year. It's a fun and easy way to track consistency over time! Created with
-          HTML/CSS/JavaScript.
-        </span>
-      </div>
-      <div class="group rounded p-4 bg-transparent hover:bg-#88888808">
-        <a href="https://github.com/maxdemaio/langlab" class="mlink"> LangLab</a>
-        <span class="mprojItem">
-          is a free and open source language learning website that allows users to practice the conjugations of the 25 most common verbs in English. Helpful resources have also been provided to help
-          learners on their path.
-        </span>
-      </div>
-      <div class="group rounded p-4 bg-transparent hover:bg-#88888808">
-        <a href="https://github.com/maxdemaio/house_party" class="mlink"> House Party</a><span class="mprojItem"
-          >, a Spotify collaborative music playing system built with React and Django REST. With Spotify authentication, listeners can create listening parties others can join. One can pause/play and
-          skip tracks from the host's music queue.
-        </span>
-      </div>
-    </div>
+    <ProjectGrid>
+      <ProjectGridItem
+        link='https://chessheat.com'
+        linkName='Chess Heat'
+        description="fetches monthly chess games from Chess.com and creates a heatmap of a player's game activity over the year. It's a fun and easy way to track consistency over time! Created with HTML/CSS/JavaScript."
+      />
+      <ProjectGridItem
+        link='https://github.com/maxdemaio/hack-computer'
+        linkName='Hack Computer'
+        description='is a computer system built from the ground up as described in the book, "The Elements of Computing Systems". Made with hardware description language, assembly, Python, and Java.'
+      />
+      <ProjectGridItem
+        link='https://github.com/maxdemaio/thelangbot'
+        linkName='The Language Bot'
+        description='is a Twitter bot to help individuals learn foreign languages. It naturally built a community through tweets by retweeting #langtwt and #100DaysOfLanguage. Archived since the monetization of the Twitter API.'
+      />
+      <ProjectGridItem
+        link='https://github.com/maxdemaio/langlab'
+        linkName='LangLab'
+        description='is a free and open source language learning website that allows users to practice the conjugations of the 25 most common verbs in English. Helpful resources have also been provided to help learners on their path.'
+      />
+    </ProjectGrid>
   </section>
 
   <img src="/castle-projects.jpg" height={1038} width={1920} class="rounded my-10" alt="Castle in the Sky - Projects Picture" />

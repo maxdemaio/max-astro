@@ -57,7 +57,7 @@ const { link, linkName, description } = Astro.props;
   }
 </style>
 
-<div class="my-bg-mask rounded p-4 z-1 relative after:bg-#888888 dark:after:bg-black after:opacity-20">
+<div ontouchstart="" class="my-bg-mask rounded p-4 z-1 relative after:bg-#888888 dark:after:bg-black after:opacity-20">
   <a href={link} class="mlink opacity-100 z-2 relative">{linkName}</a>
   <span class="z-2 relative">{description}</span>
 </div>
@@ -71,11 +71,13 @@ const { link, linkName, description } = Astro.props;
       this.classList.add("beenHovered");
       // Remove the event listener after the first hover
       this.removeEventListener("mouseenter", onHover);
+      this.removeEventListener("touchstart", onHover);
     }
 
     // Add the event listener for the first hover to each element
     elements.forEach(element => {
       element.addEventListener("mouseenter", onHover);
+      element.addEventListener("touchstart", onHover);
     });
   });
 </script>

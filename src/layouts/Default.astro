@@ -57,7 +57,7 @@ const { title, description, image = SITE_IMAGE, tumblrRedir } = Astro.props;
     <!-- Tumblr Redir -->
     {tumblrRedir ? <meta http-equiv="refresh" content="0; URL=https://maxoverflow.tumblr.com" /> : null}
   </head>
-  <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
+  <body ontouchstart="" class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
     <main class="px-8 lt-xs:px-4 px-8 max-w-3xl mx-auto">
       <!-- content is injected here -->

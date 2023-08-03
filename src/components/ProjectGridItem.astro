@@ -10,6 +10,7 @@ const { link, linkName, description } = Astro.props;
 
 <style>
   .my-bg-mask::after {
+    visibility: visible;
     border-radius: 0.25rem;
     content: "";
     width: 100%;
@@ -24,7 +25,6 @@ const { link, linkName, description } = Astro.props;
     mask-size: 2300% 100%;
     -webkit-mask-position: 100% 0;
     mask-position: 100% 0;
-    cursor: pointer;
   }
 
   .my-bg-mask.beenHovered::after {

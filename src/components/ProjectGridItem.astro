@@ -1,0 +1,80 @@
+---
+export interface Props {
+  link: string;
+  linkName: string;
+  description: string;
+}
+
+const { link, linkName, description } = Astro.props;
+---
+
+<style>
+  .my-bg-mask::after {
+    border-radius: 0.25rem;
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    -webkit-mask: url("bg-mask.png");
+    mask: url("bg-mask.png");
+    -webkit-mask-size: 2300% 100%;
+    mask-size: 2300% 100%;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+
+  .my-bg-mask.beenHovered::after {
+    animation: ani 0.7s steps(22) forwards;
+  }
+  
+  .my-bg-mask:hover::after {
+    animation: ani2 0.7s steps(22) forwards;
+  }
+  
+  @keyframes ani2 {
+    from {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+    to {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+  }
+  @keyframes ani {
+    from {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+    to {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+  }
+</style>
+
+<div class="my-bg-mask rounded p-4 z-1 relative after:bg-#888888 dark:after:bg-neutral-950 after:opacity-5 dark:after:opacity-40">
+  <a href={link} class="mlink opacity-100 z-2 relative">{linkName}</a>
+  <span class="z-2 relative">{description}</span>
+</div>
+
+<script>
+  // Delay the initial animation until hovered
+  document.addEventListener("DOMContentLoaded", function() {
+    const elements = document.querySelectorAll(".my-bg-mask");
+
+    function onHover() {
+      this.classList.add("beenHovered");
+      // Remove the event listener after the first hover
+      this.removeEventListener("mouseover", onHover);
+    }
+
+    // Add the event listener for the first hover to each element
+    elements.forEach(element => {
+      element.addEventListener("mouseover", onHover);
+    });
+  });
+</script>

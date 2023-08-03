@@ -69,14 +69,12 @@ const { link, linkName, description } = Astro.props;
     function onHover() {
       this.classList.add("beenHovered");
       // Remove the event listener after the first hover
-      this.removeEventListener("touchstart", onHover);
-      this.removeEventListener("mouseover", onHover);
+      this.removeEventListener("pointerenter", onHover);
     }
 
     // Add the event listener for the first hover to each element
     elements.forEach(element => {
-      element.addEventListener("mouseover", onHover);
-      element.addEventListener("touchstart", onHover);
+      element.addEventListener("pointerenter", onHover);
     });
   });
 </script>

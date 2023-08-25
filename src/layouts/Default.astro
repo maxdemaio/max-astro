@@ -1,9 +1,13 @@
 ---
+import CommonHead from '@components/CommonHead.astro';
 import Footer from '@components/Footer.astro';
 import Navbar from '@components/Navbar.astro';
+<<<<<<< HEAD
 import { SITE_IMAGE } from '../config';
 import { ViewTransitions } from 'astro:transitions';
 
+=======
+>>>>>>> origin
 
 export interface Props {
   title: string;
@@ -12,13 +16,11 @@ export interface Props {
   tumblrRedir?: boolean;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-// Image has website default
-const { title, description, image = SITE_IMAGE, tumblrRedir } = Astro.props;
+const { title, description, tumblrRedir } = Astro.props;
 ---
 
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,6 +62,13 @@ const { title, description, image = SITE_IMAGE, tumblrRedir } = Astro.props;
     {tumblrRedir ? <meta http-equiv="refresh" content="0; URL=https://maxoverflow.tumblr.com" /> : null}
     <ViewTransitions />
   </head>
+=======
+  <CommonHead
+    title={title}
+    description={description}
+    tumblrRedir={tumblrRedir} 
+  />
+>>>>>>> origin
   <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
     <main class="px-8 lt-xs:px-4 px-8 max-w-3xl mx-auto">

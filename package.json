@@ -14,10 +14,10 @@
     "@astrojs/mdx": "^0.19.7",
     "@astrojs/rss": "^2.4.4",
     "@astrojs/sitemap": "^1.4.0",
-    "astro": "^2.10.7"
+    "astro": "^2.10.15"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.101",
+    "@iconify/json": "^2.2.109",
     "@unocss/reset": "0.52.4",
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.1",

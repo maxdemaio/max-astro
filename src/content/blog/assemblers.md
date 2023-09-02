@@ -95,11 +95,11 @@ Let's take a real example of a symbolic c-instruction to better understand the p
 MD=D+1
 ```
 
-![Comp Diagram](../../../public/assembler/comp.PNG)
+![Comp Diagram](../../../public/assembler/comp1.png)
 
-![Dest Diagram](../../../public/assembler/dest.PNG)
+![Dest Diagram](../../../public/assembler/dest1.png)
 
-![Jump Diagram](../../../public/assembler/jump.PNG)
+![Jump Diagram](../../../public/assembler/jump1.png)
 
 The source instruction being decomposed will be done by an element of our assembler called the parser. Every c-instruction begins with three 1s `111`. Next we focus on the next 7 bits. These 7 bits correspond to the computation field. `D+1` would be `011111`. The computation `D+1` determines that the a-bit is `0`. There are 3 bits for the destination. We see that `MD` corresponds to `011`. Finally the remaining 3 bits are for the jump field. When we look at our c-instruction we see that its null so they would be `000`.
 

@@ -14,7 +14,7 @@
     "@astrojs/mdx": "^1.0.0",
     "@astrojs/rss": "^2.4.4",
     "@astrojs/sitemap": "^3.0.0",
-    "astro": "^3.0.0"
+    "astro": "^3.0.7"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.109",

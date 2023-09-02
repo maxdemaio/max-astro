@@ -17,9 +17,6 @@ dependencies:
   astro:
     specifier: ^3.0.0
     version: 3.0.0
-  mdx@latest:
-    specifier: link:astrojs/mdx@latest
-    version: link:astrojs/mdx@latest
 
 devDependencies:
   '@iconify/json':

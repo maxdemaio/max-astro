@@ -26,4 +26,4 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm preview`                                                         | Preview your build locally, before deploying                              |
 | `pnpm run astro ...`                                                   | Run CLI commands like `astro add`, `astro check`                          |
 | `pnpm run astro --help`                                                | Get help using the Astro CLI                                              |
-| `pnpm prettier --config ./.prettierrc.cjs -w --plugin-search-dir=. ./` | Prettier cleanup (see https://github.com/withastro/prettier-plugin-astro) |
+| `pnpm format`                                                          | Prettier cleanup (see https://github.com/withastro/prettier-plugin-astro) |

@@ -23,7 +23,7 @@ const { title, description, duration, pubDate, fileName, image } = Astro.props;
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
       <section class="mb-6">
         <h1 id={fileName}>{title}</h1>
-        <div class="font-kai opacity-60">
+        <div class="font-kai dark:opacity-70 opacity-80">
           <time datetime={pubDate}>
             {
               new Date(pubDate).toLocaleDateString('en-us', {
@@ -33,7 +33,7 @@ const { title, description, duration, pubDate, fileName, image } = Astro.props;
               })
             }</time
           >
-          <span>·</span>
+          {" "}<span>·</span>{" "}
           <span>{duration}min</span>
         </div>
       </section>

@@ -14,7 +14,7 @@ Programming allows us to have multiple levels of abstraction that lets us forget
 
 This series of blog posts will contain my reflections while teaching myself about elementary logic gates, ALUs, memory systems, low level programs, computer architecture, assemblers, and how to build a [Hack Computer](https://en.wikipedia.org/wiki/Hack_computer). This computer will have 3 components (ROM, CPU, RAM) and the final product can be connected to a keyboard and a display unit. I'll teach myself this by going through the course [Build a Modern Computer from First Principles](https://click.linksynergy.com/deeplink?id=PtFMiHYfEVk&mid=40328&murl=https%3A%2F%2Fwww.coursera.org%2Flearn%2Fbuild-a-computer).
 
-![The Hack Computer Block Diagram](/nand-tetris/Hack_Diagram.png)
+![The Hack Computer Block Diagram](../../../public/nand-tetris/Hack_Diagram.png)
 
 ---
 
@@ -76,7 +76,7 @@ We see only the inputs and outputs and not the implementation. If you wanted to 
 
 Circuit implementations can realize these gates with electricity. The light bulb in a circuit being on/off would represent the output of a gate.
 
-![And Circuit Diagram](/nand-tetris/and-circuit.png)
+![And Circuit Diagram](../../../public/nand-tetris/and-circuit.png)
 
 However, I will not be diving into physical implementations since that would be more aligned with electrical engineering and physics than computer science.
 

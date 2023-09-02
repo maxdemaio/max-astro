@@ -110,7 +110,7 @@ We'll use a grammar to write a Jack compiler, specifying the tokens and their ar
 
 Parsing determines if the given input conforms to the grammar. It constructs a grammatical structure called a parse tree. The parse tree represents the complete morphology or grammatical structure of the input:
 
-![parse tree english](/compiler-i/englishParseTree.png)
+![parse tree english](../../../public/compiler-i/englishParseTree.png)
 
 Unlike programming languages, parsing natural languages like English can be ambiguous. There could be many interpretations of a natural language parse tree.
 
@@ -124,7 +124,7 @@ Possible interpretations:
 
 But, we will focus on the grammar of the Jack programming language. With it, we can construct parse trees too. This parse tree will have an accurate representation of the input Jack program. 
 
-![jack parse tree](/compiler-i/jackParseTree.png)
+![jack parse tree](../../../public/compiler-i/jackParseTree.png)
 
 We can use the parse tree to generate XML markup that describes the data's structure in a readable format.
 
@@ -170,21 +170,21 @@ There are five categories of terminal elements (tokens)
 - StringConstant
 - identifier
 
-![lexical elements grammar](/compiler-i/lexicalElements.png)
+![lexical elements grammar](../../../public/compiler-i/lexicalElements.png)
 
 ### Program structure
 
 Jack programs are collections of classes. Classes have their own files and compile seperately. They are structured like this in the grammar rules:
 
-![program structure grammar](/compiler-i/programStructure.png)
+![program structure grammar](../../../public/compiler-i/programStructure.png)
 
 ### Statements
 
-![statement grammar](/compiler-i/statements.png)
+![statement grammar](../../../public/compiler-i/statements.png)
 
 ### Expressions
 
-![expressions grammar](/compiler-i/expressions.png)
+![expressions grammar](../../../public/compiler-i/expressions.png)
 
 The handling of expressions is a bit more challenging. It's tricky because of the handling of the term rule. If the current token is a string/integer/keyword constant it's very simple. But, if it's a `varName` there are different possibilities of handling it. The token could be any one of the possibilities below:
 
@@ -200,7 +200,7 @@ To resolve which possibility we're in, the parser will look ahead. It will save 
 
 ## The Jack Analyzer
 
-![jack compiler structure image](/compiler-i/jackCompiler.png)
+![jack compiler structure image](../../../public/compiler-i/jackCompiler.png)
 
 To ensure the syntax analyzer understands the source code, we need to perform unit testing. Our goal is to output a structured syntax (in our case, XML) of the source code, adhering to the Jack grammar. The generated markup represents a textual parse tree and provides a syntactic understanding of the Jack code in a recursive manner.
 

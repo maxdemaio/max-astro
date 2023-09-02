@@ -1,5 +1,7 @@
 ---
 import Default from '@layouts/Default.astro';
+import { Image } from 'astro:assets';
+import naus from "../../public/naus-404.jpg";
 ---
 
 <Default title="404" description="404" image="/naus-404.jpg">
@@ -10,5 +12,5 @@ import Default from '@layouts/Default.astro';
     </p>
   </section>
 
-  <img src="/naus-404.jpg" height={1038} width={1920} class="rounded my-10" alt="Nausicaä of the Valley of the Wind - 404 Picture" />
+  <Image src={naus} quality="max" height={1038} width={1920} class="rounded my-10" alt="Nausicaä of the Valley of the Wind - 404 Picture" />
 </Default>

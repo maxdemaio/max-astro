@@ -1,6 +1,8 @@
 ---
 import Default from '@layouts/Default.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import spirited from "../../public/spirited-blog.jpg";
 
 const blogPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
@@ -51,5 +53,5 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
     <div></div>
   </section>
 
-  <img src="/spirited-blog.jpg" height={1038} width={1920} class="rounded my-10" alt="Spirited Away - Blog Picture" />
+  <Image src={spirited} quality="max" height={1038} width={1920} class="rounded my-10" alt="Spirited Away - Blog Picture" />
 </Default>

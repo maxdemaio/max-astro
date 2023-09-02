@@ -2,6 +2,8 @@
 import ProjectGridItem from '@components/ProjectGridItem.astro';
 import Default from '@layouts/Default.astro';
 import ProjectGrid from '@layouts/ProjectGrid.astro';
+import { Image } from 'astro:assets';
+import castle from "../../public/castle-projects.jpg";
 ---
 
 <Default title="Projects – Max DeMaio" image="/castle-projects.jpg" description="Featured projects as well as the technology I use to build business and software architecture.">
@@ -53,5 +55,5 @@ import ProjectGrid from '@layouts/ProjectGrid.astro';
     </ProjectGrid>
   </section>
 
-  <img src="/castle-projects.jpg" height={1038} width={1920} class="rounded my-10" alt="Castle in the Sky - Projects Picture" />
+  <Image src={castle} quality="max" height={1038} width={1920} class="rounded my-10" alt="Castle in the Sky - Projects Picture" />
 </Default>

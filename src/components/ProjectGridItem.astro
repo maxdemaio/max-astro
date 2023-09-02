@@ -60,7 +60,7 @@ const { link, linkName, description, contributor } = Astro.props;
 
 <!-- Adding ontouchstart because Safari doesn't like hover/unhover events on pseudo elements -->
 <div ontouchstart="" class="my-bg-mask rounded p-4 z-1 relative after:bg-#888888 dark:after:bg-black after:opacity-20 dark:after:opacity-80">
-  <a href={link} class="mlink opacity-100 z-2 relative">{linkName}</a>
+  <a href={link} class="mlink opacity-100 z-2 relative">{linkName}</a>{" "}
   <span class="z-2 relative">{description}</span>
   {contributor && <span class="z-2 relative opacity-80">(contributor)</span>}
 </div>

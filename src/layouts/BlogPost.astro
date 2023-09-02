@@ -13,11 +13,7 @@ const { title, description, duration, pubDate, fileName, image } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
-  <CommonHead
-    title={title}
-    description={description}
-    image={image}
-  />
+  <CommonHead title={title} description={description} image={image} />
   <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
@@ -33,7 +29,7 @@ const { title, description, duration, pubDate, fileName, image } = Astro.props;
               })
             }</time
           >
-          {" "}<span>·</span>{" "}
+          {' '}<span>·</span>{' '}
           <span>{duration}min</span>
         </div>
       </section>

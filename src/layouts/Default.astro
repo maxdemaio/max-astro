@@ -14,11 +14,7 @@ const { title, description, tumblrRedir } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
-  <CommonHead
-    title={title}
-    description={description}
-    tumblrRedir={tumblrRedir} 
-  />
+  <CommonHead title={title} description={description} tumblrRedir={tumblrRedir} />
   <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-900">
     <Navbar />
     <main class="px-8 lt-xs:px-4 px-8 max-w-3xl mx-auto">

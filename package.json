@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "pnpm prettier --config ./.prettierrc.cjs -w --plugin-search-dir=. ./"
   },
   "dependencies": {
     "@astrojs/mdx": "^1.0.0",

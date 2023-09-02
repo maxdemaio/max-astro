@@ -3,7 +3,7 @@ import ProjectGridItem from '@components/ProjectGridItem.astro';
 import Default from '@layouts/Default.astro';
 import ProjectGrid from '@layouts/ProjectGrid.astro';
 import { Image } from 'astro:assets';
-import castle from "../../public/castle-projects.jpg";
+import castle from '../../public/castle-projects.jpg';
 ---
 
 <Default title="Projects – Max DeMaio" image="/castle-projects.jpg" description="Featured projects as well as the technology I use to build business and software architecture.">
@@ -21,35 +21,35 @@ import castle from "../../public/castle-projects.jpg";
   <section class="mb-4">
     <ProjectGrid>
       <ProjectGridItem
-        link='https://chessheat.com'
-        linkName='Chess Heat'
+        link="https://chessheat.com"
+        linkName="Chess Heat"
         description="fetches monthly chess games from Chess.com and creates a heatmap of a player's game activity over the year. It's a fun and easy way to track consistency over time! Created with HTML, CSS, and JavaScript."
       />
       <ProjectGridItem
-        link='https://github.com/maxdemaio/hack-computer'
-        linkName='Hack Computer'
+        link="https://github.com/maxdemaio/hack-computer"
+        linkName="Hack Computer"
         description='is a computer system built from the ground up as described in the book, "The Elements of Computing Systems." Made with hardware description language, assembly, Python, and Java.'
       />
       <ProjectGridItem
-        link='https://github.com/maxdemaio/leetcode'
-        linkName='Data Structures and Algorithms'
-        description='is a repository of programming problem solutions. It spans various categories such as: arrays & hashing, two pointers, stacks, sliding window, linked list, binary search, trees, tries, heap/priority queues, backtracking, and more. All test cases are verified via GitHub Actions.'
+        link="https://github.com/maxdemaio/leetcode"
+        linkName="Data Structures and Algorithms"
+        description="is a repository of programming problem solutions. It spans various categories such as: arrays & hashing, two pointers, stacks, sliding window, linked list, binary search, trees, tries, heap/priority queues, backtracking, and more. All test cases are verified via GitHub Actions."
       />
       <ProjectGridItem
-        link='https://github.com/maxdemaio/thelangbot'
-        linkName='The Language Bot'
-        description='is a Twitter bot to help individuals learn foreign languages. It naturally built a community by retweeting #langtwt and #100DaysOfLanguage hashtagged tweets. Archived since the monetization of the Twitter API. Built with Python, CRON, and Docker.'
-      />
-      <ProjectGridItem
-        contributor
-        link='https://github.com/bautistaaa/typehero'
-        linkName='TypeHero'
-        description='- connect, collaborate, and grow with a community of TypeScript developers. Elevate your skills through interactive coding challenges, discussions, and knowledge sharing.'
+        link="https://github.com/maxdemaio/thelangbot"
+        linkName="The Language Bot"
+        description="is a Twitter bot to help individuals learn foreign languages. It naturally built a community by retweeting #langtwt and #100DaysOfLanguage hashtagged tweets. Archived since the monetization of the Twitter API. Built with Python, CRON, and Docker."
       />
       <ProjectGridItem
         contributor
-        link='https://github.com/TheOpenDictionary/odict'
-        linkName='ODict'
+        link="https://github.com/bautistaaa/typehero"
+        linkName="TypeHero"
+        description="- connect, collaborate, and grow with a community of TypeScript developers. Elevate your skills through interactive coding challenges, discussions, and knowledge sharing."
+      />
+      <ProjectGridItem
+        contributor
+        link="https://github.com/TheOpenDictionary/odict"
+        linkName="ODict"
         description="- a blazingly-fast portable lexical dictionary format. It is an open-source, modern alternative to dictionary file formats like StarDict, Babylon and Apple Dictionaries."
       />
     </ProjectGrid>

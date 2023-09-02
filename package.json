@@ -11,17 +11,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/mdx": "^1.0.0",
     "@astrojs/rss": "^2.4.4",
-    "@astrojs/sitemap": "^1.4.0",
-    "astro": "^2.10.15"
+    "@astrojs/sitemap": "^3.0.0",
+    "astro": "^3.0.0",
+    "mdx@latest": "link:astrojs/mdx@latest"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.109",
-    "@unocss/reset": "0.52.4",
+    "@unocss/reset": "0.55.4",
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.1",
-    "unocss": "0.55.0",
+    "unocss": "0.55.4",
     "vite": "^4.4.9"
   }
 }

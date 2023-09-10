@@ -1,10 +1,30 @@
+<style>
+  @media (min-width: 770px) {
+    .max-rounded-l {
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+      border-top-right-radius: 0rem;
+      border-bottom-right-radius: 0rem;
+    }
+  }
+
+  @media (min-width: 770px) {
+    .max-rounded-r {
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      border-top-left-radius: 0rem;
+      border-bottom-left-radius: 0rem;
+    }
+  }
+</style>
+
 <div id="email-list" class="flex flex-col md:flex-row items-center bg-zinc-100 dark:bg-zinc-800 p-6 rounded gap-4">
   <div>
     <h3 class="text-2xl font-kai mb-4 text-black dark:text-white font-bold">Subscribe</h3>
-    <p>Get notified about new blog posts, projects, and videos! Sign up if you're a coot cat<span class="i-noto-cat ml-1"/></p>
+    <p>Get notified about new blog posts, projects, and videos! Sign up if you're a coot cat<span class="i-noto-cat ml-1"></span></p>
   </div>
-  <form class="w-full flex items-center justify-center sm:justify-end" action="https://app.convertkit.com/forms/5586752/subscriptions" method="POST">
-    <input class="flex-1 py-3 px-4 rounded-l text-black outline-none" name="email_address" type="email" placeholder="Please enter your email" />
-    <button class="transition duration-300 bg-primary-light hover:opacity-85 text-white rounded-r py-3 px-4 whitespace-nowrap" type="submit">Sign up</button>
+  <form class="w-full flex md:flex-row flex-col gap-2 md:gap-0 md:items-center items-start justify-center" action="https://app.convertkit.com/forms/5586752/subscriptions" method="POST">
+    <input class="w-full flex-1 py-3 px-4 rounded max-rounded-l text-black outline-none" name="email_address" type="email" placeholder="example@email.com" />
+    <button class="transition duration-300 bg-primary-light hover:opacity-85 text-white rounded max-rounded-r py-3 px-4 whitespace-nowrap" type="submit">Sign up</button>
   </form>
 </div>

@@ -26,4 +26,4 @@ All commands are run from the root of the project, from a terminal:
 | `bun run preview`      | Preview your build locally, before deploying                              |
 | `bun run astro ...`    | Run CLI commands like `astro add`, `astro check`                          |
 | `bun run astro --help` | Get help using the Astro CLI                                              |
-| `bun format`       | Prettier cleanup (see https://github.com/withastro/prettier-plugin-astro) |
+| `bun format`           | Prettier cleanup (see https://github.com/withastro/prettier-plugin-astro) |

@@ -28,6 +28,6 @@
   },
   "sharpComment": "https://github.com/oven-sh/bun/issues/4549",
   "trustedDependencies": [
-    "sharp" 
- ]
+    "sharp"
+  ]
 }

@@ -1,4 +1,5 @@
 ---
+import EmailList from './EmailList.astro';
 export interface Props {
   fileName: string;
 }
@@ -35,6 +36,7 @@ const finalTweetLink = tweetLink1 + fileName + '%0A%0AI%20think...';
     >.
   </p>
 
+  <EmailList />
   <div class="my-10">
     Website designed by Max DeMaio &copy; {today.getFullYear()}
   </div>

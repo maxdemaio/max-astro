@@ -22,8 +22,10 @@ export default defineConfig({
     mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
     mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
     transf: 'transform transition duration-300 ease-in-out',
-    mlink: 'transf text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
-    mySponsorLink: 'transf text-pink-400 dark:text-pink-300 border-b-1 border-pink-400 dark:border-pink-300 mySponsorLinkHover',
+    mlink:
+      'transf text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
+    mySponsorLink:
+      'transf text-pink-400 dark:text-pink-300 border-b-1 border-pink-400 dark:border-pink-300 mySponsorLinkHover',
     // unfortunately, group doesn't quite work yet in a shortcut
     // mproj: 'group rounded p-4 bg-transparent hover:bg-#88888808',
     mprojItem: 'transf opacity-80 group-hover:opacity-100',

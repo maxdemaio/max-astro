@@ -35,9 +35,11 @@
   line-height: 1.75rem;
 }
 .prose hr {
-  border-color: rgba(125, 125, 125, 0.3);
+  border-color: rgba(115, 115, 115, 0.3);
   margin-top: 3em;
   margin-bottom: 3em;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 .prose p {
   margin-top: 1.25em;
@@ -48,7 +50,7 @@
   font-style: italic;
   color: inherit;
   border-left-width: 0.25rem;
-  border-color: rgba(125,125,125,0.3);
+  border-color: rgba(115,115,115,0.3);
   quotes: "\201C""\201D""\2018""\2019";
   margin-top: 1.6em;
   margin-bottom: 1.6em;
@@ -188,4 +190,13 @@ html.dark .prose thead {
 html.dark .prose tbody tr {
   border-bottom-width: 1px;
   border-bottom-color: #252627;
+}
+
+/* email list overrides */
+#email-list h3 {
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+#email-list p {
+  margin: 0rem;
 }

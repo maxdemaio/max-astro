@@ -191,3 +191,12 @@ html.dark .prose tbody tr {
   border-bottom-width: 1px;
   border-bottom-color: #252627;
 }
+
+/* email list overrides */
+#email-list h3 {
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+#email-list p {
+  margin: 0rem;
+}

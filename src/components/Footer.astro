@@ -1,17 +1,10 @@
-<footer class="lt-xs:px-4 px-8 max-w-3xl mx-auto">
-  <hr class="my-10 mx-4 border-pink-600" />
-  <div class="flex flex-col md:flex-row bg-pink-200 p-8 rounded gap-2">
-    <div class="">
-      <h3 class="text-2xl text-black font-kai mb-2">Subscribe</h3>
-      <p>Get notified about new content! And look out for the occasional preview of new projects...</p>
-    </div>
-    <!-- -->
-    <form class="flex items-center justify-center sm:justify-end" action="https://app.convertkit.com/forms/5586752/subscriptions" method="POST">
-      <input class="py-2 px-4 rounded-l text-black" name="email_address" type="email" placeholder="Please enter your email" />
-      <button class="bg-pink-800 text-white rounded-r py-2 px-4 whitespace-nowrap" type="submit">Sign up</button>
-    </form>
-  </div>
+---
+import EmailList from "./EmailList.astro";
+---
 
+<footer class="lt-xs:px-4 px-8 max-w-3xl mx-auto">
+  <hr class="my-10 mx-1 border-neutral-5 opacity-30" />
+  <EmailList />
   <div class="flex flex-wrap justify-between gap-4 my-10">
     <span>Website designed by Max DeMaio &copy; {new Date().getFullYear()}</span>
     <button title="Top button" class="cursor-pointer">

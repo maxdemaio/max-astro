@@ -8,9 +8,10 @@ export interface Props {
   description: string;
   image?: string;
   tumblrRedir?: boolean;
+  showEmailList?: boolean;
 }
 
-const { title, description, image, tumblrRedir } = Astro.props;
+const { title, description, image, tumblrRedir, showEmailList } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -21,6 +22,6 @@ const { title, description, image, tumblrRedir } = Astro.props;
       <!-- content is injected here -->
       <slot />
     </main>
-    <Footer />
+    <Footer showEmailList={showEmailList} />
   </body>
 </html>

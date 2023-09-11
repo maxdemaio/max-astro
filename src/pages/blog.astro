@@ -12,15 +12,16 @@ const blogPosts = await getCollection('blog', ({ data }) => {
 blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
-<Default title="Blog – Max DeMaio" image="https://maxdemaio.com/spirited-blog.jpg" description="All my blog posts in one place.">
+<Default title="Blog – Max DeMaio" image="https://maxdemaio.com/spirited-blog.jpg" description="All my blog posts in one place." showEmailList>
   <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p>
       <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, business, and life. Sometimes my thoughts overflow and end up here for safekeeping. So far,
       I've written {blogPosts.length} posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
-        <span class="i-tabler-rss"></span>
+        <span class="i-tabler-rss" />
         RSS feed</a
-      >.
+      > or <a class="mlink" href="#email-list"><span class="i-carbon-email"/>
+        email</a>.
     </p>
   </section>
   <section class="mb-4">

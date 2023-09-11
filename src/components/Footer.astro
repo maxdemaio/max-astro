@@ -1,10 +1,16 @@
 ---
 import EmailList from "./EmailList.astro";
+
+export interface Props {
+  showEmailList?: boolean;
+}
+
+const { showEmailList } = Astro.props;
 ---
 
 <footer class="lt-xs:px-4 px-8 max-w-3xl mx-auto">
   <hr class="my-10 mx-1 border-neutral-5 opacity-30" />
-  <EmailList />
+  <EmailList showEmailList={showEmailList} />
   <div class="flex flex-wrap justify-between gap-4 my-10">
     <span>Website designed by Max DeMaio &copy; {new Date().getFullYear()}</span>
     <button title="Top button" class="cursor-pointer">

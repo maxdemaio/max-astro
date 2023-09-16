@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "pnpm run prettier --config=.prettierrc.cjs --write ."
+    "format": "pnpm prettier --config=.prettierrc.mjs --write ."
   },
   "dependencies": {
     "@astrojs/mdx": "^1.0.0",

@@ -18,9 +18,12 @@ export default defineConfig({
     }),
   ],
   shortcuts: {
-    mlinkTextHover: 'hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
-    mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
-    mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
+    mlinkTextHover:
+      'hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
+    mlinkBorderHover:
+      'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
+    mySponsorLinkHover:
+      'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
     transf: 'transform transition duration-300 ease-in-out',
     mlink:
       'transf text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',

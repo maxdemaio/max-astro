@@ -5,7 +5,8 @@ export async function get(context) {
   const blog = await getCollection('blog');
   return rss({
     title: 'max overflow',
-    description: "Max DeMaio's blog about software, language, business, and life.",
+    description:
+      "Max DeMaio's blog about software, language, business, and life.",
     site: context.site,
     items: blog.map((post) => ({
       title: post.data.title,

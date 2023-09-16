@@ -12,16 +12,25 @@ const blogPosts = await getCollection('blog', ({ data }) => {
 blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
-<Default title="Blog – Max DeMaio" image="https://maxdemaio.com/spirited-blog.jpg" description="All my blog posts in one place." showEmailList>
+<Default
+  title="Blog – Max DeMaio"
+  image="https://maxdemaio.com/spirited-blog.jpg"
+  description="All my blog posts in one place."
+  showEmailList
+>
   <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p>
-      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, business, and life. Sometimes my thoughts overflow and end up here for safekeeping. So far,
-      I've written {blogPosts.length} posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
-        <span class="i-tabler-rss" />
-        RSS feed</a
-      > or <a class="mlink" href="#email-list"><span class="i-carbon-email"/>
-        email</a>.
+      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language,
+      business, and life. Sometimes my thoughts overflow and end up here for safekeeping. So far, I've written {
+        blogPosts.length
+      } posts. Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
+        <span class="i-tabler-rss"></span>
+         RSS feed</a
+      > or <a class="mlink" href="#email-list"
+        ><span class="i-carbon-email"></span>
+         email</a
+      >.
     </p>
   </section>
   <section class="mb-4">
@@ -31,7 +40,9 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
           <>
             <li>
               <a href={`/blog/${post.slug}`} class="group">
-                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">{post.data.title}</div>
+                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">
+                  {post.data.title}
+                </div>
                 <div class="transf opacity-40 group-hover:opacity-80 space-x-1">
                   <time datetime={post.data.pubDate}>
                     {new Date(post.data.pubDate).toLocaleDateString('en-us', {
@@ -40,7 +51,11 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
                       day: 'numeric',
                     })}
                   </time>
-                  {post.data.life && <span class="transf text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">life</span>}
+                  {post.data.life && (
+                    <span class="transf text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">
+                      life
+                    </span>
+                  )}
                   <span>·</span>
                   <span>{post.data.duration}min</span>
                 </div>
@@ -54,5 +69,12 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
     <div></div>
   </section>
 
-  <Image src={spirited} quality="max" height={1038} width={1920} class="rounded my-10" alt="Spirited Away - Blog Picture" />
+  <Image
+    src={spirited}
+    quality="max"
+    height={1038}
+    width={1920}
+    class="rounded my-10"
+    alt="Spirited Away - Blog Picture"
+  />
 </Default>

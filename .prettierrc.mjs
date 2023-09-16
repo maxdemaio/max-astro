@@ -11,6 +11,6 @@ export default {
   ],
   // defaults that apply to all files unless overridden above
   tabWidth: 2,
-  printWidth: 80,
+  printWidth: 120,
   singleQuote: true,
 };

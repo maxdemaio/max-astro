@@ -39,9 +39,22 @@ const { showEmailList } = Astro.props;
           <span class="i-noto-cat ml-1" />
         </p>
       </div>
-      <form class="w-full flex md:flex-row flex-col gap-2 md:gap-0 md:items-center items-start justify-center" action="https://app.convertkit.com/forms/5586752/subscriptions" method="POST">
-        <input class="w-full flex-1 py-3 px-4 rounded max-rounded-l text-black outline-none" name="email_address" type="email" required placeholder="example@email.com" />
-        <button class="transition duration-300 bg-primary-light hover:opacity-85 text-white rounded max-rounded-r py-3 px-4 whitespace-nowrap" type="submit">
+      <form
+        class="w-full flex md:flex-row flex-col gap-2 md:gap-0 md:items-center items-start justify-center"
+        action="https://app.convertkit.com/forms/5586752/subscriptions"
+        method="POST"
+      >
+        <input
+          class="w-full flex-1 py-3 px-4 rounded max-rounded-l text-black outline-none"
+          name="email_address"
+          type="email"
+          required
+          placeholder="example@email.com"
+        />
+        <button
+          class="transition duration-300 bg-primary-light hover:opacity-85 text-white rounded max-rounded-r py-3 px-4 whitespace-nowrap"
+          type="submit"
+        >
           Sign up
         </button>
       </form>

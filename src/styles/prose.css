@@ -158,6 +158,29 @@
   padding: 0.6em;
 }
 
+/** back tics for codies **/
+.prose :where(code):not(:where([class~='not-prose'] *))::after {
+  content: none !important;
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *))::before {
+  content: none !important;
+}
+
+.prose code {
+  border-radius: 0.50rem;
+  border: 1px solid #D4D4D8;
+  padding: 4px 6px 4px 6px;
+  background: #e5e5e5;
+  color: #000;
+}
+
+html.dark .prose code {
+  background: #2E2E32;
+  border-color: #232323;
+  color: #fff;
+}
+
 /** dark theme **/
 html.dark .prose h1,
 html.dark .prose h2,

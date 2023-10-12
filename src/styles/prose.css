@@ -181,6 +181,16 @@ html.dark .prose code {
   color: #fff;
 }
 
+.prose pre code {
+  background-color: none;
+  border: none;
+}
+
+html.dark .prose pre code {
+  background: none;
+  border: none;
+}
+
 /** dark theme **/
 html.dark .prose h1,
 html.dark .prose h2,

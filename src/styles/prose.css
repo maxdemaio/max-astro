@@ -184,11 +184,13 @@ html.dark .prose code {
 .prose pre code {
   background: none;
   border: none;
+  padding: 0;
 }
 
 html.dark .prose pre code {
   background: none;
   border: none;
+  padding: 0;
 }
 
 /** dark theme **/

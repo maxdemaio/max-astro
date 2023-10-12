@@ -182,7 +182,7 @@ html.dark .prose code {
 }
 
 .prose pre code {
-  background-color: none;
+  background: none;
   border: none;
 }
 

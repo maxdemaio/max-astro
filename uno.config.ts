@@ -22,7 +22,7 @@ export default defineConfig({
     mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
     mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
     mlink:
-      'text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
+      'transition-color-border-color ease-in-out duration-300 text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
     mySponsorLink:
       'text-pink-400 dark:text-pink-300 border-b-1 border-pink-400 dark:border-pink-300 mySponsorLinkHover',
     // unfortunately, group doesn't quite work yet in a shortcut
@@ -60,5 +60,8 @@ export default defineConfig({
         if (theme.colors[c]) return { 'border-color': theme.colors[c] };
       },
     ],
+    [
+      'transition-color-border-color', { 'transition-property': 'color,border-color' },
+    ]
   ],
 });

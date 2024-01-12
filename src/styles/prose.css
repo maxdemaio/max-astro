@@ -62,7 +62,7 @@
   border-bottom-width: 1px;
   transition-property: color,border-color;
   transition-timing-function: ease-in-out;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   color: #224b37;
   border-color: #224b37;
 }
@@ -207,7 +207,7 @@ html.dark .prose * a {
   border-bottom-width: 1px;
   transition-property: color,border-color;
   transition-timing-function: ease-in-out;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   color:#a7b7af;
   border-color:#a7b7af;
 }

@@ -39,10 +39,10 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
           <>
             <li>
               <a href={`/blog/${post.slug}`} class="group">
-                <div class="transf text-black dark:text-white opacity-60 group-hover:opacity-100">
+                <div class="transition-opacity ease-in-out duration-300 text-black dark:text-white opacity-60 group-hover:opacity-100">
                   {post.data.title}
                 </div>
-                <div class="transf opacity-40 group-hover:opacity-80 space-x-1">
+                <div class="transition-opacity ease-in-out duration-300 opacity-40 group-hover:opacity-80 space-x-1">
                   <time datetime={post.data.pubDate}>
                     {new Date(post.data.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',
@@ -51,7 +51,7 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
                     })}
                   </time>
                   {post.data.life && (
-                    <span class="transf text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">
+                    <span class="transition-opacity ease-in-out duration-300 text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">
                       life
                     </span>
                   )}

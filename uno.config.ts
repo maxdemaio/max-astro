@@ -21,14 +21,13 @@ export default defineConfig({
     mlinkTextHover: 'hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
     mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
     mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
-    transf: 'transform duration-300 ease-in-out',
     mlink:
-      'transf text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
+      'text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
     mySponsorLink:
-      'transf text-pink-400 dark:text-pink-300 border-b-1 border-pink-400 dark:border-pink-300 mySponsorLinkHover',
+      'text-pink-400 dark:text-pink-300 border-b-1 border-pink-400 dark:border-pink-300 mySponsorLinkHover',
     // unfortunately, group doesn't quite work yet in a shortcut
     // mproj: 'group rounded p-4 bg-transparent hover:bg-#88888808',
-    mprojItem: 'transf opacity-80 group-hover:opacity-100',
+    mprojItem: 'transition-opacity ease-in-out duration-300 opacity-80 group-hover:opacity-100',
   },
   theme: {
     colors: {

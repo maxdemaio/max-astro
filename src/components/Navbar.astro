@@ -10,7 +10,7 @@
   .hamburger-lines {
     position: relative;
     display: block;
-    background-color: rgb(229, 231, 235);
+    transition: all .2s ease-in-out;
   }
   .hamburger-lines::after {
     top: -7px;
@@ -21,7 +21,6 @@
     display: block;
     width: 1.25rem;
     height: 2px;
-    background: rgb(229, 231, 235);
     transition: all .2s ease-in-out;
   }
 
@@ -33,7 +32,6 @@
     transform-origin: 1.3px center;
     height: 2px;
     width: 1.25rem;
-    background-color: rgb(229, 231, 235);
     transition: all .2s ease-in-out;
   }
 
@@ -133,18 +131,19 @@
   </a>
   <button
     id="mobile-menu-button"
-    class="z-50 xs:hidden w-10 h-10 grid items-center justify-center dark:bg-neutral-800 rounded"
+    class="z-50 xs:hidden w-10 h-10 grid items-center justify-center bg-neutral-200 dark:bg-neutral-800 rounded"
     type="button"
     aria-label="Open navigation"
     aria-controls="main-navigation"
     aria-expanded="false"
   >
-    <span class="hamburger-lines w-5 h-[2px] bg-neutral-100 "></span>
+    <!--match icon color with others (from layout)-->
+    <span class="hamburger-lines w-5 h-[2px] bg-gray-700 dark:bg-gray-200 before:bg-gray-700 before:dark:bg-gray-200 after:bg-gray-700 after:dark:bg-gray-200"></span>
   </button>
   <button
     title="Theme"
     id="theme-button"
-    class="text-base grid items-center justify-center w-10 h-10 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
+    class="z-50 text-base grid items-center justify-center w-10 h-10 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
   >
     <div class="i-tabler-sun-filled dark:i-tabler-moon-stars"></div>
   </button>

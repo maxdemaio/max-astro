@@ -220,7 +220,7 @@
         menuButton.classList.add('rotate');
         menuButton.ariaExpanded = 'true';
         setTimeout(() => {
-          document.body.style.overflowY = 'hidden'; // prevent scrolling near end of animation
+          document.body.style.overflow = 'hidden'; // prevent scrolling near end of animation
         }, 220);
       } else {
         menuButton.classList.remove('keep');
@@ -228,7 +228,7 @@
         mobileNavView.classList.add('slide-rl-animation');
         mobileNavItems.classList.remove('mobile-nav-items-show');
         mobileNavItems.classList.add('mobile-nav-items-noshow');
-        document.body.style.overflowY = 'auto'; // allow scrolling
+        document.body.style.overflow = 'auto'; // allow scrolling
         menuButton.classList.remove('rotate');
         menuButton.ariaExpanded = 'false';
       }

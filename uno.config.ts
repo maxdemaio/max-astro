@@ -21,7 +21,7 @@ export default defineConfig({
     mlinkTextHover: 'hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
     mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
     mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
-    transf: 'transform transition duration-300 ease-in-out',
+    transf: 'transform duration-300 ease-in-out',
     mlink:
       'transf text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
     mySponsorLink:
@@ -45,7 +45,7 @@ export default defineConfig({
       // as per https://github.com/unocss/unocss/blob/main/README.md#extend-theme
       md: '770px',
       sm: '640px',
-      xs: '430px',
+      xs: '480px',
     },
   },
   rules: [

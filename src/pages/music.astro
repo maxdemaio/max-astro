@@ -1,0 +1,22 @@
+---
+import Default from '@layouts/Default.astro';
+import { Image } from 'astro:assets';
+import whisper from '../../public/whisper-music.jpeg';
+---
+
+<Default title="Music – Max DeMaio" image="/whisper-music.jpeg" description="Muisc projects by Max DeMaio">
+  <section class="mb-6">
+    <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Music</h1>
+    <p>This page is a work in progress! Stay tuned!</p>
+  </section>
+  <section class="mb-4"></section>
+
+  <Image
+    src={whisper}
+    quality="max"
+    height={1038}
+    width={1920}
+    class="rounded my-10"
+    alt="Whisper of the Heart - Music Picture"
+  />
+</Default>

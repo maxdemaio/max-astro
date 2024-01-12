@@ -24,7 +24,7 @@
     display: block;
     width: 1.25rem;
     height: 2px;
-    transition: transform .1s ease-in-out;
+    transition: transform 0.1s ease-in-out;
   }
 
   .hamburger-lines::before {
@@ -35,7 +35,7 @@
     transform-origin: 1.3px center;
     height: 2px;
     width: 1.25rem;
-    transition: transform .1s ease-in-out;
+    transition: transform 0.1s ease-in-out;
   }
 
   .rotate .hamburger-lines {
@@ -76,7 +76,7 @@
   .mobile-nav-items-noshow {
     opacity: 0;
     transform: translateX(-35%);
-    transition: .8s all cubic-bezier(0.22,1,0.36,1);
+    transition: 0.8s all cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   /* start all the way left and move right */
@@ -141,7 +141,9 @@
     aria-expanded="false"
   >
     <!--match icon color with others (from layout)-->
-    <span class="hamburger-lines w-5 h-[2px] bg-gray-700 dark:bg-gray-200 before:bg-gray-700 before:dark:bg-gray-200 after:bg-gray-700 after:dark:bg-gray-200"></span>
+    <span
+      class="hamburger-lines w-5 h-[2px] bg-gray-700 dark:bg-gray-200 before:bg-gray-700 before:dark:bg-gray-200 after:bg-gray-700 after:dark:bg-gray-200"
+    ></span>
   </button>
   <button
     title="Theme"
@@ -208,26 +210,27 @@
 
   if (menuButton && mobileNavView && mobileNavItems) {
     menuButton.addEventListener('click', function () {
-      if (menuButton.ariaExpanded === "false") {
+      if (menuButton.ariaExpanded === 'false') {
         // get rid of bug if you go into mobile, and then resize to desktop
         menuButton.classList.add('keep');
         mobileNavView.classList.remove('slide-rl-animation');
         mobileNavView.classList.add('slide-lr-animation');
         mobileNavItems.classList.remove('mobile-nav-items-noshow');
         mobileNavItems.classList.add('mobile-nav-items-show');
-        document.body.style.overflow = 'hidden'; // prevent scrolling
         menuButton.classList.add('rotate');
-        menuButton.ariaExpanded = "true";
-      }
-      else {
+        menuButton.ariaExpanded = 'true';
+        setTimeout(() => {
+          document.body.style.overflowY = 'hidden'; // prevent scrolling near end of animation
+        }, 220);
+      } else {
         menuButton.classList.remove('keep');
         mobileNavView.classList.remove('slide-lr-animation');
         mobileNavView.classList.add('slide-rl-animation');
         mobileNavItems.classList.remove('mobile-nav-items-show');
         mobileNavItems.classList.add('mobile-nav-items-noshow');
-        document.body.style.overflow = 'auto'; // allow scrolling
+        document.body.style.overflowY = 'auto'; // allow scrolling
         menuButton.classList.remove('rotate');
-        menuButton.ariaExpanded = "false";
+        menuButton.ariaExpanded = 'false';
       }
     });
   }

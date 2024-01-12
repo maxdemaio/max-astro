@@ -62,6 +62,9 @@ export default defineConfig({
     ],
     [
       'transition-color-border-color', { 'transition-property': 'color,border-color' },
+    ],
+    [
+      'transition-bg', { 'transition-property': 'background-color' },
     ]
   ],
 });

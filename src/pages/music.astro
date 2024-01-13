@@ -19,7 +19,7 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
     <p>This page is a work in progress! Stay tuned!</p>
   </section>
     <h2 class="text-black dark:text-white font-kai font-bold text-2xl mb-4">Production Corner</h1>
-    <p>The <span class="font-bold text-black dark:text-white">production corner</span> is a collection of all the useful music tips and tricks I've learned along the way. So far, I've written 28 posts.</p>
+    <p>The <span class="font-bold text-black dark:text-white">production corner</span> is a collection of all the useful music tips and tricks I've learned along the way. So far, I've written {musicPosts.length} post.</p>
     <section class="mb-4">
       <ul class="space-y-4">
         {
@@ -38,11 +38,6 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
                         day: 'numeric',
                       })}
                     </time>
-                    {post.data.life && (
-                      <span class="transition-opacity ease-in-out duration-400 text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">
-                        life
-                      </span>
-                    )}
                     <span>·</span>
                     <span>{post.data.duration}min</span>
                   </div>

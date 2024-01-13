@@ -60,11 +60,7 @@ export default defineConfig({
         if (theme.colors[c]) return { 'border-color': theme.colors[c] };
       },
     ],
-    [
-      'transition-color-border-color', { 'transition-property': 'color,border-color' },
-    ],
-    [
-      'transition-bg', { 'transition-property': 'background-color' },
-    ]
+    ['transition-color-border-color', { 'transition-property': 'color,border-color' }],
+    ['transition-bg', { 'transition-property': 'background-color' }],
   ],
 });

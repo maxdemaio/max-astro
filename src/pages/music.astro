@@ -2,14 +2,59 @@
 import Default from '@layouts/Default.astro';
 import { Image } from 'astro:assets';
 import whisper from '../../public/whisper-music.jpeg';
+
+import { getCollection } from 'astro:content';
+
+const musicPosts = await getCollection('music', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort my music posts
+musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
 <Default title="Music – Max DeMaio" image="/whisper-music.jpeg" description="Muisc projects by Max DeMaio">
   <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Music</h1>
-    <p>This page is a work in progress! Stay tuned!</p>
+    <p>This page is a work in progress!</p>
   </section>
-  <section class="mb-4"></section>
+  <section class="mb-6">
+    <h2 class="text-black dark:text-white font-kai font-bold text-2xl mb-4">Stay Tuned</h2>
+    <p>
+      <span class="font-bold text-black dark:text-white">stay tuned</span> is a collection of all the useful music
+      tips and tricks I've learned along the way. So far, I've written {musicPosts.length} post.
+    </p>
+  </section>
+  <section class="mb-4">
+    <ul class="space-y-4">
+      {
+        musicPosts.map((post) => (
+          <>
+            <li>
+              <a href={`/music/${post.slug}`} class="group">
+                <div class="transition-opacity ease-in-out duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
+                  {post.data.title}
+                </div>
+                <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 space-x-1">
+                  <time datetime={post.data.pubDate}>
+                    {new Date(post.data.pubDate).toLocaleDateString('en-us', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <span>·</span>
+                  <span>{post.data.duration}min</span>
+                </div>
+              </a>
+            </li>
+          </>
+        ))
+      }
+    </ul>
+
+    <div></div>
+  </section>
 
   <Image
     src={whisper}

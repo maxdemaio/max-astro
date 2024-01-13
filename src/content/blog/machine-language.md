@@ -74,7 +74,7 @@ When the CPU executes these machine instructions in sequence there is a flow con
 
 The Hack Computer is a 16-bit machine.
 
-![Hack Computer Diagram](../../../public/nand-tetris/Hack_Diagram.png)
+![Hack Computer Diagram](../../../public/blog/nand-tetris/Hack_Diagram.png)
 
 **Hardware**
 

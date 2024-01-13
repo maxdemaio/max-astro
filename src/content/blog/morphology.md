@@ -40,7 +40,7 @@ Abbreviations and conventions:
 
 Let's look at the tree diagram for the word `breathlessness`. If you'd like to mess around creating your own, check out [this GitHub repository](https://github.com/maxdemaio/jssyntaxtree).
 
-![Syntax tree example](../../../public/morphology/syntax_tree.png)
+![Syntax tree example](../../../public/blog/morphology/syntax_tree.png)
 
 The derivational steps assumed are:
 

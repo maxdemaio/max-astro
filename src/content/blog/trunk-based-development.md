@@ -12,7 +12,7 @@ When it comes to version control in software development, GitFlow has long been 
 
 Trunk Based Development is a software development methodology that relies on a single branch (often called the "trunk") for all development work. Developers integrate their changes frequently into the main codebase, and the codebase is always deployable. Continuous integration and deployment tools are used to ensure that the codebase is stable and ready for production at all times.
 
-![trunk based development flow](../../../public/trunk-based-development/trunk1c.png)
+![trunk based development flow](../../../public/blog/trunk-based-development/trunk1c.png)
 
 TBD is preferable over GitFlow and other branching models that have multiple long running branches. While it might seem counterintuitive to work on a single branch, TBD has numerous benefits that can streamline your development process and improve code quality.
 

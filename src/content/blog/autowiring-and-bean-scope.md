@@ -208,7 +208,7 @@ When we create beans with configuration metadata what we’re doing is writing a
 
 When a bean is singleton scoped, there is one shared instance of the managed bean. All requests for beans with matching `id`s will have one bean instance returned Spring.
 
-![Singleton Diagram](../../../public/autowiring-and-bean-scope/singleton.png)
+![Singleton Diagram](../../../public/blog/autowiring-and-bean-scope/singleton.png)
 
 ```java
 package com.maxdemaio.demo;
@@ -255,7 +255,7 @@ When we run this code, we are able to see that the hashCode of the two `BlogPost
 
 When a bean is protoype scoped, Spring creates a new bean instance every time a request is made for that bean. All requests for beans with matching `id`s will be created uniquely by the Spring container.
 
-![Prototype Diagram](../../../public/autowiring-and-bean-scope/prototype.png)
+![Prototype Diagram](../../../public/blog/autowiring-and-bean-scope/prototype.png)
 
 ```java
 package com.maxdemaio.demo;

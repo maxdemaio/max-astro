@@ -6,6 +6,8 @@ title: testing music post
 duration: 1
 ---
 
-# hey this is a test music post
+stay tuned! 
 
-## here is another test dog
+<span class="i-game-icons-guitar-head"></span> <span class="i-bxs-guitar-amp"></span>
+
+

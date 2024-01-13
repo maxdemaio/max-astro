@@ -20,7 +20,7 @@ const blog = defineCollection({
     duration: z.number(),
     draft: z.boolean().optional(),
     tags: z.array(z.nativeEnum(Tag)).optional(),
-    image: z.string().optional(),
+    image: z.string().optional().default("/spirited-blog.jpg"), // default blog image for og
     life: z.boolean().optional(),
   }),
 });
@@ -37,7 +37,7 @@ const music = defineCollection({
     duration: z.number(),
     draft: z.boolean().optional(),
     tags: z.array(z.nativeEnum(Tag)).optional(),
-    image: z.string().optional(),
+    image: z.string().optional().default("/whisper-music.jpeg"), // default music image for og
   }),
 });
 

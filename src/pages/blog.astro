@@ -63,7 +63,7 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
                   </time>
                   <span>·</span>
                   <span>{post.data.duration}min</span>
-                  <span>·</span>
+                  {post.data.tags && <span>·</span>}
                   {post.data.tags && (
                     <>
                       {post.data.tags.map((tag) => (

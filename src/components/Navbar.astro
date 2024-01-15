@@ -82,7 +82,9 @@
   .mobile-nav-items-noshow {
     opacity: 0;
     transform: translateX(-35%);
-    transition: 0.8s all cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      1.5s transform cubic-bezier(0.22, 1, 0.36, 1),
+      1s opacity ease-in-out;
   }
 
   /* start all the way left and move right */

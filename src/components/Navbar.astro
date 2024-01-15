@@ -7,6 +7,12 @@
     display: grid !important;
   }
 
+  .mobile-nav-items-selector-init {
+    opacity: 0;
+    transform: translateX(-35%);
+    transition: 0.8s all cubic-bezier(0.22,1,0.36,1);
+  }
+
   .calc-top {
     padding-top: calc(50px + 5.25rem);
   }
@@ -152,7 +158,7 @@
   id="mobile-nav-view"
   class="calc-top h-[100%] w-[100%] text-3xl fixed z-40 inset-0 flex gap-12 flex-col items-center bg-white dark:text-gray-200 dark:bg-neutral-900 px-8"
 >
-  <div id="mobile-nav-items-selector" class="flex flex-col gap-12">
+  <div id="mobile-nav-items-selector" class="mobile-nav-items-selector-init flex flex-col gap-12">
     <!--Note: after clicking, we should transition the mobile-nav-view away -->
     <a href="/" title="Home" class="text-primary-light dark:text-primary-dark mlinkTextHover">Home</a>
     <a href="/blog" title="Blog" class="text-primary-light dark:text-primary-dark mlinkTextHover">Blog</a>

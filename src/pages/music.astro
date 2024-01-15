@@ -15,8 +15,6 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
 
 <style>
   /* dynamic stylings unique for tags */
-
-  
   .logic {
     color: rgb(2, 132, 199);
     border-color: rgb(2, 132, 199);
@@ -34,7 +32,6 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
     color: rgb(240 171 252);
     border-color: rgb(240 171 252);
   }
-
 </style>
 
 <Default title="Music – Max DeMaio" image="/whisper-music.jpeg" description="Muisc projects by Max DeMaio">
@@ -45,8 +42,8 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
   <section class="mb-6">
     <h2 class="text-black dark:text-white font-kai font-bold text-2xl mb-4">Stay Tuned</h2>
     <p>
-      <span class="font-bold text-black dark:text-white">stay tuned</span> is a collection of all the useful music
-      tips and tricks I've learned along the way. So far, I've written {musicPosts.length} post.
+      <span class="font-bold text-black dark:text-white">stay tuned</span> is a collection of all the useful music tips and
+      tricks I've learned along the way. So far, I've written {musicPosts.length} post.
     </p>
   </section>
   <section class="mb-4">
@@ -55,11 +52,11 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
         musicPosts.map((post) => (
           <>
             <li>
-              <a href={`/music/${post.slug}`} class="group">
+              <a href={`/music/${post.slug}`} class="group ">
                 <div class="transition-opacity ease-in-out duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
                   {post.data.title}
                 </div>
-                <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 space-x-1">
+                <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
                   <time datetime={post.data.pubDate}>
                     {new Date(post.data.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',
@@ -69,12 +66,11 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
                   </time>
                   <span>·</span>
                   <span>{post.data.duration}min</span>
+                  {post.data.tags && <span>·</span>}
                   {post.data.tags && (
                     <>
                       {post.data.tags.map((tag) => (
-                        <span class={`${tag} transition-opacity ease-in-out duration-400 group-hover:opacity-100 border rounded px-1`}>
-                          {tag + " "} 
-                        </span>
+                        <span class={`${tag} border rounded px-1`}>{tag}</span>
                       ))}
                     </>
                   )}

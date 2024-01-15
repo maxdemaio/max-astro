@@ -12,6 +12,17 @@ const blogPosts = await getCollection('blog', ({ data }) => {
 blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
+<style>
+  .life {
+    color: rgb(219 39 119);
+    border-color: rgb(219 39 119);
+  }
+  html.dark .life {
+    /* pink-300 */
+    color: rgb(249 168 212);
+    border-color: rgb(249 168 212);
+  }
+</style>
 <Default
   title="Blog – Max DeMaio"
   image="https://maxdemaio.com/spirited-blog.jpg"
@@ -42,7 +53,7 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
                 <div class="transition-opacity ease-in-out duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
                   {post.data.title}
                 </div>
-                <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 space-x-1">
+                <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
                   <time datetime={post.data.pubDate}>
                     {new Date(post.data.pubDate).toLocaleDateString('en-us', {
                       year: 'numeric',
@@ -50,13 +61,16 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
                       day: 'numeric',
                     })}
                   </time>
-                  {post.data.life && (
-                    <span class="transition-opacity ease-in-out duration-400 text-pink-600 dark:text-pink-300 group-hover:opacity-100 border rounded px-1 border-pink-600 dark:border-pink-300">
-                      life
-                    </span>
-                  )}
                   <span>·</span>
                   <span>{post.data.duration}min</span>
+                  <span>·</span>
+                  {post.data.tags && (
+                    <>
+                      {post.data.tags.map((tag) => (
+                        <span class={`${tag} border rounded px-1`}>{tag}</span>
+                      ))}
+                    </>
+                  )}
                 </div>
               </a>
             </li>

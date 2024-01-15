@@ -111,5 +111,3 @@ Incorporate these fundamental mixing principles to sculpt a professional and bal
 ## Resources
 
 - [https://youtu.be/azJPTYtwK_o?si=BAxxmUV6oAtL91wk](https://youtu.be/azJPTYtwK_o?si=BAxxmUV6oAtL91wk)
-
-

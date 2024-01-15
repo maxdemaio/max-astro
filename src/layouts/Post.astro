@@ -13,7 +13,6 @@ const { title, description, duration, pubDate, fileName, image, tags } = Astro.p
 
 <style>
   /* dynamic stylings unique for tags */
-  
   .logic {
     color: rgb(2, 132, 199);
     border-color: rgb(2, 132, 199);
@@ -32,6 +31,15 @@ const { title, description, duration, pubDate, fileName, image, tags } = Astro.p
     border-color: rgb(240 171 252);
   }
 
+  .life {
+    color: rgb(219 39 119);
+    border-color: rgb(219 39 119);
+  }
+  html.dark .life {
+    /* pink-300 */
+    color: rgb(249 168 212);
+    border-color: rgb(249 168 212);
+  }
 </style>
 
 <html lang="en" class="scroll-smooth">
@@ -42,30 +50,33 @@ const { title, description, duration, pubDate, fileName, image, tags } = Astro.p
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
       <section class="mb-6">
         <h1 id={fileName}>{title}</h1>
-        <div class="flex items-center gap-1 flex-wrap">
-            <time datetime={pubDate} class="font-kai dark:opacity-70 opacity-80">
-              {
-                new Date(pubDate).toLocaleDateString('en-us', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })
-              }</time
-            >
+        <div class="flex flex-wrap gap-1">
+          <time datetime={pubDate} class="font-kai dark:opacity-70 opacity-80">
+            {
+              new Date(pubDate).toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })
+            }</time
+          >
           <span class="font-kai dark:opacity-70 opacity-80">·</span>
           <span class="font-kai dark:opacity-70 opacity-80">{duration}min</span>
           {tags && <span class="font-kai dark:opacity-70 opacity-80">·</span>}
-          {tags && (
-            <div class="space-x-1">
-              {tags.map((tag) => (
-                <span class={`${tag} transition-opacity ease-in-out duration-400 group-hover:opacity-100 border rounded px-1`}>
-                  {tag + " "} 
-                </span>
-              ))}
-            </div>
-          )}
+          {
+            tags && (
+              <>
+                {tags.map((tag) => (
+                  <span
+                    class={`${tag} transition-opacity ease-in-out duration-400 group-hover:opacity-100 border rounded px-1`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </>
+            )
+          }
         </div>
-
       </section>
       <slot />
       <!-- blog content is injected here -->

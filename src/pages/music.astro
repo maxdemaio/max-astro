@@ -13,6 +13,30 @@ const musicPosts = await getCollection('music', ({ data }) => {
 musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
+<style>
+  /* dynamic stylings unique for tags */
+
+  
+  .logic {
+    color: rgb(2, 132, 199);
+    border-color: rgb(2, 132, 199);
+  }
+  html.dark .logic {
+    /* sky-300 */
+    color: rgb(125 211 252);
+    border-color: rgb(125 211 252);
+  }
+  .producing {
+    color: rgb(192 38 211);
+    border-color: rgb(192 38 211);
+  }
+  html.dark .producing {
+    color: rgb(240 171 252);
+    border-color: rgb(240 171 252);
+  }
+
+</style>
+
 <Default title="Music – Max DeMaio" image="/whisper-music.jpeg" description="Muisc projects by Max DeMaio">
   <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Music</h1>
@@ -45,6 +69,15 @@ musicPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.p
                   </time>
                   <span>·</span>
                   <span>{post.data.duration}min</span>
+                  {post.data.tags && (
+                    <>
+                      {post.data.tags.map((tag) => (
+                        <span class={`${tag} transition-opacity ease-in-out duration-400 group-hover:opacity-100 border rounded px-1`}>
+                          {tag + " "} 
+                        </span>
+                      ))}
+                    </>
+                  )}
                 </div>
               </a>
             </li>

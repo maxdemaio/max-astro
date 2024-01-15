@@ -2,10 +2,13 @@
 import { z, defineCollection } from 'astro:content';
 
 // Define the allowed tag values using an enum
+// These should be unique enough so you can use them as CSS classes
 export enum Tag {
   SOFTWARE = 'software',
   LANGUAGE = 'language',
   BUSINESS = 'business',
+  LOGIC = 'logic',
+  PRODUCING = 'producing',
 }
 
 // Define schemas for each collection we'd like to validate.

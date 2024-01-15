@@ -33,8 +33,8 @@ The stereo output serves as the channel for all audio in the mix. Monitoring the
 ## Helpful tips for organization
 
 - Utilize markers to delineate song sections such as verses, pre-choruses, choruses, and bridges. Begin mixing by focusing on specific sections. You could start with the most prominent, like the chorus. Or, picking the loudest section first is also a good strategy.
-- Similarly, we can group tracks. For instance, combine drums, guitar, vocals, bass, etc. To create a track stack, use the “Create Track Stack” option in the right-click dropdown menu or **`shift`** + **`option`** + **`d`**. Folder stacks are ideal for organization, while a summing stack enables global effects, optimizing CPU usage since we won’t have an effect individually on each track.
-- Simplify navigation and visual clarity by color coding tracks. Use **`option`** + **`c`** to apply colors either by selecting tracks or dragging over them. Additionally, assign meaningful names to your tracks for a cohesive and organized workflow.
+- Similarly, we can group tracks. For instance, combine drums, guitar, vocals, bass, etc. To create a track stack, use the “Create Track Stack” option in the right-click dropdown menu or `shift` + `option` + `d`. Folder stacks are ideal for organization, while a summing stack enables global effects, optimizing CPU usage since we won’t have an effect individually on each track.
+- Simplify navigation and visual clarity by color coding tracks. Use `option` + `c` to apply colors either by selecting tracks or dragging over them. Additionally, assign meaningful names to your tracks for a cohesive and organized workflow.
 
 ## Mixing drums
 
@@ -90,7 +90,7 @@ If using preset instruments, you don’t need to adjust the effects much, given 
 
 Reverb adds spatial context, influencing perception of depth in the mix. Keep main song elements centered, enhancing focus. When panning, consider creating a stage-like atmosphere; for instance, pan a Wurlitzer Modern keyboard slightly left to envision a band on stage. Experiment with panning for different keys/synths to achieve a balanced spatial arrangement.
 
-## **Mixing Vocals**
+## Mixing Vocals
 
 - Apply effects and then level.
 

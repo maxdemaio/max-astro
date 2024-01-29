@@ -18,7 +18,7 @@ export default defineConfig({
     }),
   ],
   shortcuts: {
-    mlinkTextHover: 'hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
+    mlinkTextHover: 'transition-color ease-in-out duration-200 hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
     mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
     mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
     mlink:

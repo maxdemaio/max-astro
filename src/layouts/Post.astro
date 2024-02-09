@@ -78,8 +78,10 @@ const { title, description, duration, pubDate, fileName, image, tags } = Astro.p
           }
         </div>
       </section>
-      <slot />
-      <!-- blog content is injected here -->
+      <article class="slide-enter-content">
+        <!-- blog content is injected here -->
+        <slot />
+      </article>
     </main>
     <!-- prose end -->
   </body>

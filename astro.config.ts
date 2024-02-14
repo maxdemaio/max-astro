@@ -30,28 +30,18 @@ export default defineConfig({
           behavior: 'wrap',
           content: {
             type: 'element',
-            tagName: 'span',
+            tagName: 'svg',
             properties: {
-              display: 'flex'
+              width: '1rem',
+              height: '1rem',
             },
             children: [
               {
                 type: 'element',
-                tagName: 'svg',
+                tagName: 'use',
                 properties: {
-                  width: 50,
-                  height: 50,
-                  fill: 'currentColor',
+                  'xlink:href': '#deez',
                 },
-                children: [
-                  {
-                    type: 'element',
-                    tagName: 'use',
-                    properties: {
-                      'xlink:href': '#deez',
-                    },
-                  },
-                ],
               },
             ],
           },

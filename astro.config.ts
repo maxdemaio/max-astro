@@ -31,6 +31,9 @@ export default defineConfig({
           content: {
             type: 'element',
             tagName: 'span',
+            properties: {
+              display: 'flex'
+            },
             children: [
               {
                 type: 'element',

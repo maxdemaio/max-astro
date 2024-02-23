@@ -2,10 +2,7 @@ import { defineConfig } from 'astro/config';
 import UnoCSS from 'unocss/astro';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import vercel from '@astrojs/vercel/serverless';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import type { RehypePlugins } from 'astro';
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,32 +19,6 @@ export default defineConfig({
     shikiConfig: {
       theme: 'github-dark-dimmed',
     },
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'wrap',
-          content: {
-            type: 'element',
-            tagName: 'svg',
-            properties: {
-              width: '1rem',
-              height: '1rem',
-            },
-            children: [
-              {
-                type: 'element',
-                tagName: 'use',
-                properties: {
-                  'xlink:href': '#deez',
-                },
-              },
-            ],
-          },
-        },
-      ],
-    ] as RehypePlugins,
   },
   adapter: vercel({
     webAnalytics: {

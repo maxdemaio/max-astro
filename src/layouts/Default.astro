@@ -17,11 +17,12 @@ const { title, description, image, tumblrRedir, showEmailList } = Astro.props;
   html {
     scroll-behavior: smooth;
   }
+
 </style>
 
 <html lang="en">
   <CommonHead title={title} description={description} image={image} tumblrRedir={tumblrRedir} />
-  <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-neutral-950">
+  <body class="text-lg text-gray-700 bg-white dark:text-gray-200 dark:bg-dark-bg">
     <Navbar />
     <main class="px-8 lt-xs:px-4 px-8 max-w-3xl mx-auto">
       <!-- content is injected here -->

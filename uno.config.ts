@@ -31,7 +31,7 @@ export default defineConfig({
   },
   theme: {
     colors: {
-      'dark-bg': 'rgba(22, 22, 22, 1)',
+      'dark-bg': 'rgba(17, 17, 16, 1)',
       // https://maketintsandshades.com/
       // class="text-primary-light"
       // class="text-primary-dark"

@@ -1,19 +1,18 @@
 ---
-draft: true
 fileName: compiler-ii
 title: Nand to Tetris - Compiler II - Code Generation
-pubDate: 'Aug 03 2023'
+pubDate: 'Jun 22 2024'
 description: 2nd version of the compiler
-duration: 8
+duration: 11
 ---
 
 Techniques used:
 
 - Parsing
 - Recursive compilation
-- code generation
-- symbol tables
-- memory management
+- Code generation
+- Symbol tables
+- Memory management
 
 ## Code Generation
 
@@ -21,7 +20,7 @@ Here is the roadmap:
 
 ![compiler roadmap](../../../public/blog/compiler-ii/roadmap.png)
 
-Our objective is to build a full scale compiler. We will do this by extending the basic syntax analyzer and adding code generation abilities.
+Our objective is to build a full scale compiler. We will do this by extending the syntax analyzer and adding code generation abilities.
 
 We will compile one class at a time and deal with:
 
@@ -33,7 +32,7 @@ We will compile one class at a time and deal with:
 
 Our challenges will include:
 
-- Handling variables
+- handling variables
 - expressions
 - flow of control
 - objects
@@ -59,10 +58,10 @@ push rate
 pop sum
 ```
 
-But, the VM language does not have symbolic variables. It only has things like local, argument, this, that, and so on. We need to map the symbolic variables onto the virtual memory segments. We need to know (among other things):
+But, the VM language does not have symbolic variables. It only has things like `local`, `argument`, `this`, `that`, and so on. We need to map the symbolic variables onto these virtual memory segments. We need to know (among other things):
 
 - Whether each variable is a `field`, `static`, `local`, or `argument`
-- Whether each variable is the first, second third, ... variable of its kind
+- Whether each variable is the first, second third, or `n`th variable of its kind
 
 (actual VM code, making arbitrary assumptions about the variable kinds)
 ```
@@ -81,7 +80,7 @@ Variable properties:
 - kind (field, static, local, argument)
 - scope (class level, subroutine level)
 
-This bundle of variable properties must be maintained for every variable. How would we do this? Well, I'm here to tell you all we need is a symbol table.
+This bundle of variable properties must be maintained for every variable. How would we do this? Well, I'm here to tell you that all we need is a symbol table.
 
 ### Symbol Tables
 
@@ -162,6 +161,7 @@ Note, variables are dictated by the symbol table and how they're mapped to the v
 x + g(2,y,-z) * 5
 ```
 
+(pseudo code for the compiler)
 ```
 codeWrite(exp):
   if exp is a number n:
@@ -185,6 +185,7 @@ codeWrite(exp):
     output "call f"
 ```
 
+(output VM code)
 ```
 push x
 push 2
@@ -199,9 +200,9 @@ push 5
 
 ### From parsing to code generation
 
-In the previous module we wrote a tokenizer and parser.
+In the previous blog post we wrote a tokenizer and parser.
 
-Source code:
+(Source Hack code)
 ```
 let length = Keyboard.readInt("HOW MANY NUMBERS? ");
 ```
@@ -232,7 +233,7 @@ Parsed code according to grammar:
   <symbol> ; </symbol>
 </letStatement>
 ```
-Then, now we need to turn this into a stack based VM code. Now, we have no use for that XML parsed output. We need to replace that with a program that takes these pieces of grammar and translates them into its stack based equivalent.
+Now, we need to turn this into stack based VM code. Going forward, we have no use for that XML parsed output. We need to replace that with a program that takes these pieces of grammar and translates them into its stack based VM code equivalent.
 
 ## Handling Flow of Control
 
@@ -326,7 +327,7 @@ label L2
 
 A program can contain many `if` and `while` statements. Our solution to this is that the generated labels by the compiler will be unique. 
 
-Also, if and while statements can be nested. The level of nesting is theoretically infinite. This is also handeled by our compiler's recursive strategy!
+Also, `if` and `while` statements can be nested. The level of nesting is theoretically infinite. This is also handeled by our compiler's recursive strategy!
 
 ## Handling Objects: Low-level Aspects
 
@@ -348,7 +349,7 @@ The VM implementation also allocates RAM for the global stack. This keeps the wo
 
 ### Applying handling object and array data
 
-So, how do we use this architecture to represent objects and arrays data? It's similar but slightly different.
+So, how do we use this architecture to represent objects' and arrays' data? It's similar but slightly different.
 
 Firstly, we use a different area on the RAM altogether call the heap. 
 
@@ -361,8 +362,6 @@ On the heap we record all the data of objects and arrays of the current program 
 - Before using these segments, we must first anchor them using `pointer`
 
 ## Handling Objects: Construction
-
-
 
 ```
 ...
@@ -500,8 +499,8 @@ pop that 0
 
 - local variables are mapped on the virtual segment `local`
 - argument variabels are mapped on the virtual segment `argument`
-- static variables of a `.jack` class file are mapped on the virtual memory segment `static` of the compile `.vm` class file
-- field variables of th current object are accessed as follows:
+- static variables of a `.jack` class file are mapped on the virtual memory segment `static` of the compiled `.vm` class file
+- field variables of the current object are accessed as follows:
   - assumption: `pointer 0` has been set to the `this` object
   - the i-th field of this object is mapped onto `this i`
 

@@ -8,7 +8,7 @@ type Props = CollectionEntry<'blog'>['data'];
 
 // Now, `frontmatter`, `url`, and other Markdown layout properties
 // are accessible with type safety
-const { title, description, duration, pubDate, fileName, image, tags } = Astro.props;
+const { title, description, duration, pubDate, fileName, image, tags, resources } = Astro.props;
 ---
 
 <style>
@@ -83,6 +83,25 @@ const { title, description, duration, pubDate, fileName, image, tags } = Astro.p
         </div>
       </section>
       <article class="slide-enter-content">
+        {
+          resources && (
+            <>
+              <h2>Resources</h2>
+              {resources.map((resource) => (
+                <li>
+                  {resource.url ? (
+                    <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                      {resource.title}
+                    </a>
+                  ) : (
+                    resource.title
+                  )}
+                  {resource.description && ` - ${resource.description}`}
+                </li>
+              ))}
+            </>
+          )
+        }
         <!-- blog content is injected here -->
         <slot />
       </article>

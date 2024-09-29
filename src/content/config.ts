@@ -23,6 +23,7 @@ const blog = defineCollection({
     draft: z.boolean().optional(),
     tags: z.array(z.nativeEnum(Tag)).optional(),
     image: z.string().optional().default('/spirited-blog.jpg'), // default blog image for og
+    resources: z.array(z.object({ title: z.string(), url: z.string(), description: z.string().optional() })).optional(),
   }),
 });
 

@@ -167,11 +167,17 @@ Note, it's important to take everything with a grain of salt. It's noted in the 
 
 ## Homework
 
-1. The variables of the child process and the parent process have their own independent values since they have their own private memory address spaces.
+> 1. Write a program that calls fork(). Before calling fork(), have the main process access a variable (e.g., x) and set its value to something (e.g., 100). What value is the variable in the child process? What happens to the variable when both the child and parent change the value of x?
 
-2. They are both able to write to the file that was opened via the `open()` system call. If writing concurrently, the file will contain both the parent's and child's messages, but the order and how the writes are interleaved can vary.
+- The variables of the child process and the parent process have their own independent values since they have their own private memory address spaces.
 
-3. Yes, another deterministic way to ensure that the parent process runs after the child process is by using inter-process communication (IPC) methods, such as pipes, signals, or shared memory. One simple approach would be for the child to signal the parent when it has completed its task, allowing the parent to wait for that signal before proceeding.
+> 2. Write a program that opens a file (with the open() system call) and then calls fork() to create a new process. Can both the child and parent access the file descriptor returned by open()? What happens when they are writing to the file concurrently, i.e., at the same time?
+
+- They are both able to write to the file that was opened via the `open()` system call. If writing concurrently, the file will contain both the parent's and child's messages, but the order and how the writes are interleaved can vary.
+
+> 3. Write another program using fork(). The child process should print “hello”; the parent process should print “goodbye”. You should try to ensure that the child process always prints first; can you do this without calling wait() in the parent?
+
+- Yes, another deterministic way to ensure that the parent process runs after the child process is by using inter-process communication (IPC) methods, such as pipes, signals, or shared memory. One simple approach would be for the child to signal the parent when it has completed its task, allowing the parent to wait for that signal before proceeding.
 
 ```c
 #include <stdio.h>
@@ -212,17 +218,24 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-4. Variants of `exec()` differ in the way they accept arguments and how they search for the program to be executed.
+> 4. Write a program that calls fork() and then calls some form of exec() to run the program /bin/ls. See if you can try all of the variants of exec(), including (on Linux) execl(), execle(), execlp(), execv(), execvp(), and execvpe(). Why do you think there are so many variants of the same basic call?
 
-5. The `wait()` system call should only be used in the parent process to wait for the child to finish. If you call `wait()` in the child process, there is no child for it to wait for, and the call will fail, returning `-1`.
+- Variants of `exec()` differ in the way they accept arguments and how they search for the program to be executed.
 
-6. `waitpid()` is useful when you want to: Wait for a specific child process or 
+> 5. Now write a program that uses wait() to wait for the child process to finish in the parent. What does wait() return? What happens if you use wait() in the child?
+
+- The `wait()` system call should only be used in the parent process to wait for the child to finish. If you call `wait()` in the child process, there is no child for it to wait for, and the call will fail, returning `-1`.
+
+> 6. Write a slight modification of the previous program, this time using waitpid() instead of wait(). When would waitpid() be useful?
+
+- `waitpid()` is useful when you want to: Wait for a specific child process or 
 implement more control over the waiting behavior, such as not blocking the parent indefinitely.
 
-7. When the child process closes `STDOUT_FILENO` and then tries to use `printf()`, the output will be lost because there is no open file descriptor associated with standard output. Normally, `printf()` sends output to `STDOUT`, but since it's closed, the output is discarded.
+> 7. Write a program that creates a child process, and then in the child closes standard output (STDOUT FILENO). What happens if the child calls printf() to print some output after closing the descriptor?
 
-8.  Program that creates two children, and connects the standard output of one to the standard input of the other, using the
-`pipe()` system call:
+- When the child process closes `STDOUT_FILENO` and then tries to use `printf()`, the output will be lost because there is no open file descriptor associated with standard output. Normally, `printf()` sends output to `STDOUT`, but since it's closed, the output is discarded.
+
+> 8. Write a program that creates two children, and connects the standard output of one to the standard input of the other, using the pipe() system call.
 
 ```c
 #include <stdio.h>

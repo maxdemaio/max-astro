@@ -54,7 +54,7 @@ hello, I am child (pid:56459)
 prompt>
 ```
 
-The interesting part of the code begins when we call `fork()`. The OS system provides this to create a new process. The process created is almost an exact copy of the currently running program calling `fork()`. The newly created process does not start running at `main()`, rather, it comes into life as if it just called fork itself. The value `fork()` returns to the caller is the PID of the newly-created child. Meanwhile, the child receives a return code of zero. The order of the output is non-deterministic.
+The interesting part of the code begins when we call `fork()`. The OS provides this to create a new process. The process created is almost an exact copy of the currently running program calling `fork()`. The newly created process does not start running at `main()`, rather, it comes into life as if it just called fork itself. The value `fork()` returns to the caller is the PID of the newly-created child. Meanwhile, the child receives a return code of zero. The order of the output is non-deterministic.
 
 ## `wait()` System Call
 

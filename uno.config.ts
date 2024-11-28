@@ -18,13 +18,12 @@ export default defineConfig({
     }),
   ],
   shortcuts: {
-    mlinkTextHover: 'transition-color ease-in-out duration-200 hover:text-primary-light-hover dark:hover:text-primary-dark-hover',
-    mlinkBorderHover: 'hover:border-primary-light-hover dark:hover:border-primary-dark-hover',
-    mySponsorLinkHover: 'hover:text-pink-600 dark:hover:text-pink-100 hover:border-pink-600 dark:hover:border-pink-100',
-    mlink:
-      'transition-color-border-color ease-in-out duration-200 text-primary-light dark:text-primary-dark border-b-1 border-primary-light dark:border-primary-dark mlinkTextHover mlinkBorderHover',
-    mySponsorLink:
-      'text-pink-400 dark:text-pink-300 border-b-1 border-pink-400 dark:border-pink-300 mySponsorLinkHover',
+    mlinkTextHover:
+      'transition-color transition-bg ease-in-out duration-200 hover:text-sky-950 dark:hover:text-sky-100 hover:bg-sky-50 dark:hover:bg-sky-950',
+    mySponsorLinkHover:
+      'transition-color transition-bg ease-in-out duration-200 hover:text-pink-600 dark:hover:text-pink-50 hover:bg-pink-50 dark:hover:bg-pink-950',
+    mlink: 'rounded-sm p-0.5 text-sky-900 dark:text-sky-200 bg-sky-100 dark:bg-sky-950 mlinkTextHover',
+    mySponsorLink: 'rounded-sm p-0.5 text-pink-400 dark:text-pink-200 bg-pink-100 dark:bg-pink-950 mySponsorLinkHover',
     // unfortunately, group doesn't quite work yet in a shortcut
     // mproj: 'group rounded p-4 bg-transparent hover:bg-#88888808',
     mprojItem: 'transition-opacity ease-in-out duration-200 opacity-80 group-hover:opacity-100',
@@ -32,13 +31,6 @@ export default defineConfig({
   theme: {
     colors: {
       'dark-bg': 'rgba(17, 17, 16, 1)',
-      // https://maketintsandshades.com/
-      // class="text-primary-light"
-      // class="text-primary-dark"
-      'primary-light': '#224b37',
-      'primary-light-hover': '#030705',
-      'primary-dark': '#a7b7af',
-      'primary-dark-hover': '#f6f8f7',
     },
     breakpoints: {
       // this overrides and doesn't merge

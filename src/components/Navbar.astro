@@ -10,7 +10,7 @@
   .mobile-nav-items-selector-init {
     opacity: 0;
     transform: translateX(-35%);
-    transition: 0.8s all cubic-bezier(0.22,1,0.36,1);
+    transition: 0.8s all cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .calc-top {
@@ -112,10 +112,20 @@
 <nav
   class="gap-4 flex justify-start font-kai items-center xs:justify-between lt-xs:px-4 px-8 my-10 md:mb-16 max-w-3xl mx-auto"
 >
-  <a href="/" title="Home" class="hidden xs:block text-primary-light dark:text-primary-dark mlinkTextHover">Home</a>
-  <a href="/blog" title="Blog" class="hidden xs:block text-primary-light dark:text-primary-dark mlinkTextHover">Blog</a>
-  <a href="/projects" title="Projects" class="hidden xs:block text-primary-light dark:text-primary-dark mlinkTextHover"
-    >Projects</a
+  <a
+    href="/"
+    title="Home"
+    class="hidden xs:block dark:hover-text-white hover-text-black transition-color duration-200 ease-in-out">Home</a
+  >
+  <a
+    href="/blog"
+    title="Blog"
+    class="hidden xs:block dark:hover-text-white hover-text-black transition-color duration-200 ease-in-out">Blog</a
+  >
+  <a
+    href="/projects"
+    title="Projects"
+    class="hidden xs:block dark:hover-text-white hover-text-black transition-color duration-200 ease-in-out">Projects</a
   >
   <a
     href="https://github.com/maxdemaio"
@@ -159,9 +169,19 @@
 >
   <div id="mobile-nav-items-selector" class="mobile-nav-items-selector-init flex flex-col gap-12">
     <!--Note: after clicking, we should transition the mobile-nav-view away -->
-    <a href="/" title="Home" class="text-primary-light dark:text-primary-dark mlinkTextHover">Home</a>
-    <a href="/blog" title="Blog" class="text-primary-light dark:text-primary-dark mlinkTextHover">Blog</a>
-    <a href="/projects" title="Projects" class="text-primary-light dark:text-primary-dark mlinkTextHover">Projects</a>
+    <a href="/" title="Home" class="dark:hover-text-white hover-text-black transition-color duration-200 ease-in-out"
+      >Home</a
+    >
+    <a
+      href="/blog"
+      title="Blog"
+      class="dark:hover-text-white hover-text-black transition-color duration-200 ease-in-out">Blog</a
+    >
+    <a
+      href="/projects"
+      title="Projects"
+      class="dark:hover-text-white hover-text-black transition-color duration-200 ease-in-out">Projects</a
+    >
   </div>
 </div>
 

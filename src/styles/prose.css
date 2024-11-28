@@ -59,16 +59,17 @@
 
 /* link styles */
 .prose * a {
-  border-bottom-width: 1px;
-  transition-property: color,border-color;
+  padding: 0.125rem; /* 2px */
+  border-radius: 0.125rem; /* 2px */
+  transition-property: color, background-color;
   transition-timing-function: ease-in-out;
   transition-duration: 200ms;
-  color: #224b37;
-  border-color: #224b37;
+  color: rgb(12 74 110);
+  background-color: rgba(224, 242, 254);
 }
 .prose * a:hover {
-  color:#030705;
-  border-color:#030705;
+  color: rgb(8, 47, 73);
+  background-color: rgba(240, 249, 255);
 }
 
 /* code styles */
@@ -204,16 +205,17 @@ html.dark .prose h6 {
 
 /* dark link styles */
 html.dark .prose * a {
-  border-bottom-width: 1px;
-  transition-property: color,border-color;
+  padding: 0.125rem; /* 2px */
+  border-radius: 0.125rem; /* 2px */
+  transition-property: color, background-color;
   transition-timing-function: ease-in-out;
   transition-duration: 200ms;
-  color:#a7b7af;
-  border-color:#a7b7af;
+  color: rgb(186, 230, 253);
+  background-color: rgb(8, 47, 73);
 }
 html.dark .prose * a:hover{
-  color:#f6f8f7;
-  border-color:#f6f8f7;
+  color: rgb(224, 242, 254);
+  background-color: rgb(8, 47, 73);
 }
 
 /* dark table styles */

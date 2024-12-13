@@ -55,9 +55,9 @@ const { title, description, duration, pubDate, fileName, image, tags, resources 
       <section class="mb-6">
         <h1 id={fileName}>{title}</h1>
         <div class="flex flex-wrap gap-1">
-          <time datetime={pubDate} class="font-kai dark:opacity-70 opacity-80">
+          <time datetime={pubDate.toDateString()} class="font-kai dark:opacity-70 opacity-80">
             {
-              new Date(pubDate).toLocaleDateString('en-us', {
+              pubDate.toLocaleDateString('en-us', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',

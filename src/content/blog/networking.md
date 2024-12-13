@@ -1,7 +1,7 @@
 ---
 fileName: networking
 title: Networking - The Basics
-pubDate: 'June 16 2022'
+pubDate: 2022-06-16
 description: The basics of networking. What is a computer network? How does the internet work?
 duration: 5
 ---

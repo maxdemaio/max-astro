@@ -1,7 +1,7 @@
 ---
 fileName: mysql-crud-basics
 title: MySQL CRUD Basics - Creating a Database
-pubDate: 'July 14 2021'
+pubDate: 2021-07-14
 description: MySQL basics and how to use it while building applications.
 duration: 5
 ---

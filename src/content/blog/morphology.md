@@ -1,7 +1,7 @@
 ---
 fileName: morphology
 title: Morphology - How Words Are Studied
-pubDate: 'July 04 2021'
+pubDate: 2021-07-04
 description: The study of words, how they are constructed, and their relationship to other words in the same language.
 duration: 4
 ---

@@ -57,6 +57,10 @@
   padding-left: 1em;
 }
 
+.prose .m-0 {
+  margin: 0;
+}
+
 /* link styles */
 .prose * a {
   padding: 0.125rem; /* 2px */

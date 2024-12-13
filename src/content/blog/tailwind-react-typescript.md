@@ -1,7 +1,7 @@
 ---
 fileName: tailwind-react-typescript
 title: Tailwind, React, and TypeScript - How to Get Started
-pubDate: 'Sep 04 2021'
+pubDate: 2021-09-04
 description: How to get set up with Tailwind, React, and Typescript.
 duration: 2
 ---

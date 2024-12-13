@@ -1,7 +1,7 @@
 ---
 fileName: dtos
 title: Spring Data Transfer Objects
-pubDate: 'Oct 06 2021'
+pubDate: 2021-10-06
 description: What data transfer objects are and their importance in REST calls.
 duration: 3
 ---

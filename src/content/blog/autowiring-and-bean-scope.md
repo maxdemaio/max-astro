@@ -1,7 +1,7 @@
 ---
 fileName: autowiring-and-bean-scope
 title: Spring Basics - XML Autowiring and Bean Scope
-pubDate: 'Feb 12 2022'
+pubDate: 2022-02-12
 description: How XML autowiring works in the Spring framework.
 duration: 7
 ---

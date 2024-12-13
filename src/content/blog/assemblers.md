@@ -1,7 +1,7 @@
 ---
 fileName: assemblers
 title: Nand to Tetris - Building an Assembler
-pubDate: 'Feb 11 2022'
+pubDate: 2022-02-11
 description: What assemblers are and how to build one.
 duration: 8
 ---

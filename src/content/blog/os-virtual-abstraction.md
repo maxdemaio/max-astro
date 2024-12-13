@@ -1,7 +1,7 @@
 ---
 fileName: os-virtual-abstraction
 title: Operating Systems - Process Abstraction - Virtualization
-pubDate: 'Sep 30 2024'
+pubDate: 2024-09-30
 description: Operating systems process abstraction and virtualization
 duration: 5
 resources:

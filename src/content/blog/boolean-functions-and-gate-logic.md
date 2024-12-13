@@ -1,7 +1,7 @@
 ---
 fileName: boolean-functions-and-gate-logic
 title: Nand to Tetris - Boolean Functions & Gate Logic
-pubDate: 'Dec 23 2021'
+pubDate: 2021-12-23
 description: All about boolean functions and gate logic.
 duration: 6
 ---

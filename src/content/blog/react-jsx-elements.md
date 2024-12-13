@@ -1,7 +1,7 @@
 ---
 fileName: react-jsx-elements
 title: Intro to React - JSX and Elements
-pubDate: 'Feb 23 2022'
+pubDate: 2022-02-23
 description: Introduction to React and why we use it.
 duration: 5
 ---

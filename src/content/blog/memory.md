@@ -1,7 +1,7 @@
 ---
 fileName: memory
 title: Nand to Tetris - Memory
-pubDate: 'Jan 05 2022'
+pubDate: 2022-01-05
 description: All about sequential logic and memory.
 duration: 4
 ---

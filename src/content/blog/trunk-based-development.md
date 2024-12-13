@@ -1,7 +1,7 @@
 ---
 fileName: trunk-based-development
 description: All about trunk based development.
-pubDate: 'Mar 17 2023'
+pubDate: 2023-03-17
 title: Trunk Based Development
 duration: 4
 ---

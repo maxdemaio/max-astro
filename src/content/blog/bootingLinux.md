@@ -1,7 +1,7 @@
 ---
 fileName: bootingLinux
 description: How to install Ubuntu on a Dell XPS-13 with Windows 10
-pubDate: 'Mar 04 2023'
+pubDate: 2023-03-04
 title: Installing Ubuntu on a Dell XPS-13 with Windows 10
 duration: 4
 ---

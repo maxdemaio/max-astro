@@ -1,7 +1,7 @@
 ---
 fileName: dependency-injection
 title: Spring Basics - Dependency Injection
-pubDate: 'Feb 01 2022'
+pubDate: 2022-02-01
 description: How to use different types of dependency injection in the Spring framework.
 duration: 5
 ---

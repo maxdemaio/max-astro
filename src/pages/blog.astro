@@ -9,7 +9,7 @@ const blogPosts = await getCollection('blog', ({ data }) => {
 });
 
 // Sort my blog posts
-blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <style>
@@ -54,8 +54,8 @@ blogPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pu
                   {post.data.title}
                 </div>
                 <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
-                  <time datetime={post.data.pubDate}>
-                    {new Date(post.data.pubDate).toLocaleDateString('en-us', {
+                  <time datetime={post.data.pubDate.toDateString()}>
+                    {post.data.pubDate.toLocaleDateString('en-us', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',

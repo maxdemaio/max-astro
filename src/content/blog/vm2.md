@@ -1,7 +1,7 @@
 ---
 fileName: vm2
 title: Nand to Tetris - Virtual Machine II
-pubDate: 'May 11 2022'
+pubDate: 2022-05-11
 description: Building a virtual machine and its specification over the Hack computer.
 duration: 8
 ---

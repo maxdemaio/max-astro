@@ -1,7 +1,7 @@
 ---
 fileName: operating-sys
 title: Operating Systems - Introduction
-pubDate: 'Sep 29 2024'
+pubDate: 2024-09-29
 description: Introduction to operating systems
 duration: 7
 resources:

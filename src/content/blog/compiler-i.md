@@ -1,7 +1,7 @@
 ---
 fileName: compiler-i
 description: Building a syntax analyzer for a compiler
-pubDate: 'Jul 16 2023'
+pubDate: 2023-07-16
 title: Nand to Tetris - Compiler I / Syntax Analysis
 duration: 6
 ---

@@ -1,7 +1,7 @@
 ---
 fileName: hostAnonNamedDockerVolumes
 title: Host, Anonymous, and Named Docker Volumes
-pubDate: 'Mar 04 2023'
+pubDate: 2023-03-04
 description: Different Docker volume types explained.
 duration: 2
 ---

@@ -1,7 +1,7 @@
 ---
 fileName: annotation-and-java-config
 description: All about annotation and Java Based Configuration in Spring.
-pubDate: 'Feb 02 2022'
+pubDate: 2022-02-02
 title: Spring Basics - Annotation and Java Based Configuration
 duration: 6
 ---

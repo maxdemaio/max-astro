@@ -1,7 +1,7 @@
 ---
 fileName: next-and-docker
 title: Next.js and Docker
-pubDate: 'Dec 11 2021'
+pubDate: 2021-12-11
 description: How to use Next.js and Docker together.
 duration: 5
 ---

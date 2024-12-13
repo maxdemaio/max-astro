@@ -1,7 +1,7 @@
 ---
 fileName: inversion-of-control
 title: Spring Basics - Inversion of Control
-pubDate: 'Jan 27 2022'
+pubDate: 2022-01-27
 description: Inversion of control and its importance in the Spring framework.
 duration: 5
 ---

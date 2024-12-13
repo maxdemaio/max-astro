@@ -1,7 +1,7 @@
 ---
 fileName: vm-stack
 title: Nand to Tetris - Virtual Machine I
-pubDate: 'Apr 11 2022'
+pubDate: 2022-04-11
 description: Building a virtual machine and its specification over the Hack computer.
 duration: 10
 ---

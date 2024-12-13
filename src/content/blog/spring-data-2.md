@@ -1,7 +1,7 @@
 ---
 fileName: spring-data-2
 title: Spring Data Access - Spring Data JPA
-pubDate: 'May 07 2022'
+pubDate: 2022-05-07
 description: Overview of Spring Data JPA
 duration: 5
 ---

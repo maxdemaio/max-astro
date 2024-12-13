@@ -1,7 +1,7 @@
 ---
 fileName: compiler-ii
 title: Nand to Tetris - Compiler II - Code Generation
-pubDate: 'Jun 22 2024'
+pubDate: 2024-06-22
 description: 2nd version of the compiler
 duration: 11
 ---

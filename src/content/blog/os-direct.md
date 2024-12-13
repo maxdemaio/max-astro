@@ -1,7 +1,7 @@
 ---
 fileName: os-direct
 title: Operating Systems - Limited Direct Execution - Virtualization
-pubDate: 'Oct 25 2024'
+pubDate: 2024-10-25
 description: example
 duration: 5
 resources:

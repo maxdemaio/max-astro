@@ -1,7 +1,7 @@
 ---
 fileName: machine-language
 title: Nand to Tetris - Machine Language
-pubDate: 'Jan 17 2022'
+pubDate: 2022-01-17
 description: All about machine language.
 duration: 4
 ---

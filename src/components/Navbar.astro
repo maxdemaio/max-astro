@@ -186,6 +186,7 @@
 </div>
 
 <script is:inline>
+  // Immediately Invoked Function Expression
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme');
@@ -196,13 +197,17 @@
     return 'light';
   })();
 
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
+  // Set the theme on the root element
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    window.localStorage.setItem('theme', theme);
   }
 
-  window.localStorage.setItem('theme', theme);
+  applyTheme(theme);
 
   const handleToggleClick = () => {
     const element = document.documentElement;
@@ -217,6 +222,11 @@
   if (themeButton) {
     themeButton.addEventListener('click', handleToggleClick);
   }
+
+  // Update the theme if the system preference changes and 'system' is selected
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+    applyTheme(event.matches ? 'dark' : 'light');
+  });
 </script>
 
 <script>

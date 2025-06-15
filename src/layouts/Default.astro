@@ -13,12 +13,6 @@ export interface Props {
 
 const { title, description, image, tumblrRedir, showEmailList } = Astro.props;
 ---
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-
-</style>
 
 <html lang="en">
   <CommonHead title={title} description={description} image={image} tumblrRedir={tumblrRedir} />

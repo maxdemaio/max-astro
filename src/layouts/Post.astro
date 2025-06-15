@@ -11,41 +11,6 @@ type Props = CollectionEntry<'blog'>['data'];
 const { title, description, duration, pubDate, fileName, image, tags, resources } = Astro.props;
 ---
 
-<style>
-  /* dynamic stylings unique for tags */
-  .logic {
-    color: rgb(2, 132, 199);
-    border-color: rgb(2, 132, 199);
-  }
-  html.dark .logic {
-    /* sky-300 */
-    color: rgb(125 211 252);
-    border-color: rgb(125 211 252);
-  }
-  .producing {
-    color: rgb(192 38 211);
-    border-color: rgb(192 38 211);
-  }
-  html.dark .producing {
-    color: rgb(240 171 252);
-    border-color: rgb(240 171 252);
-  }
-
-  .life {
-    color: rgb(219 39 119);
-    border-color: rgb(219 39 119);
-  }
-  html.dark .life {
-    /* pink-300 */
-    color: rgb(249 168 212);
-    border-color: rgb(249 168 212);
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
-
 <html lang="en">
   <CommonHead title={title} description={description} image={image} />
   <body class="text-lg text-gray-800 bg-white dark:text-gray-200 dark:bg-dark-bg">
@@ -83,27 +48,29 @@ const { title, description, duration, pubDate, fileName, image, tags, resources 
         </div>
       </section>
       <article class="slide-enter-content">
+        <!-- blog content is injected here -->
+        <slot />
         {
           resources && (
             <>
               <h2>Resources</h2>
-              {resources.map((resource) => (
-                <li>
-                  {resource.url ? (
-                    <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                      {resource.title}
-                    </a>
-                  ) : (
-                    resource.title
-                  )}
-                  {resource.description && ` - ${resource.description}`}
-                </li>
-              ))}
+              <ul>
+                {resources.map((resource) => (
+                  <li>
+                    {resource.url ? (
+                      <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                        {resource.title}
+                      </a>
+                    ) : (
+                      resource.title
+                    )}
+                    {resource.description && ` - ${resource.description}`}
+                  </li>
+                ))}
+              </ul>
             </>
           )
         }
-        <!-- blog content is injected here -->
-        <slot />
       </article>
     </main>
     <!-- prose end -->

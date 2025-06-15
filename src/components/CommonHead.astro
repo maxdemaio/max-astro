@@ -53,4 +53,39 @@ const { title, description, image = SITE_IMAGE, tumblrRedir } = Astro.props;
 
   <!-- Tumblr Redir -->
   {tumblrRedir ? <meta http-equiv="refresh" content="0; URL=https://maxoverflow.tumblr.com" /> : null}
+
+  <style is:global>
+  /* dynamic stylings unique for tags */
+  .logic {
+    color: rgb(2, 132, 199);
+    border-color: rgb(2, 132, 199);
+  }
+  html.dark .logic {
+    /* sky-300 */
+    color: rgb(125 211 252);
+    border-color: rgb(125 211 252);
+  }
+  .producing {
+    color: rgb(192 38 211);
+    border-color: rgb(192 38 211);
+  }
+  html.dark .producing {
+    color: rgb(240 171 252);
+    border-color: rgb(240 171 252);
+  }
+
+  .life {
+    color: rgb(219 39 119);
+    border-color: rgb(219 39 119);
+  }
+  html.dark .life {
+    /* pink-300 */
+    color: rgb(249 168 212);
+    border-color: rgb(249 168 212);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
 </head>

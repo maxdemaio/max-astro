@@ -50,10 +50,10 @@ blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
           <>
             <li>
               <a href={`/blog/${post.slug}`} class="group">
-                <div class="transition-opacity ease-in-out duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
+                <div class="transition-opacity duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
                   {post.data.title}
                 </div>
-                <div class="transition-opacity ease-in-out duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
+                <div class="transition-opacity duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
                   <time datetime={post.data.pubDate.toDateString()}>
                     {post.data.pubDate.toLocaleDateString('en-us', {
                       year: 'numeric',

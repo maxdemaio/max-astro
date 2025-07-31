@@ -66,8 +66,8 @@
   padding: 0.125rem; /* 2px */
   border-radius: 0.125rem; /* 2px */
   transition-property: color, background-color;
-  transition-timing-function: ease-in-out;
-  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
   color: rgb(12 74 110);
   background-color: rgba(224, 242, 254);
 }
@@ -212,8 +212,8 @@ html.dark .prose * a {
   padding: 0.125rem; /* 2px */
   border-radius: 0.125rem; /* 2px */
   transition-property: color, background-color;
-  transition-timing-function: ease-in-out;
-  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
   color: rgb(186, 230, 253);
   background-color: rgb(8, 47, 73);
 }

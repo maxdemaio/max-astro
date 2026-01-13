@@ -2,12 +2,12 @@ import { defineConfig } from 'astro/config';
 import UnoCSS from 'unocss/astro';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import vercel from "@astrojs/vercel/serverless";
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://maxdemaio.com',
-  output: 'hybrid',
+  output: 'static',
   integrations: [
     UnoCSS({
       injectReset: true,

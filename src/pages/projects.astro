@@ -1,5 +1,6 @@
 ---
 import ProjectGridItem from '@components/ProjectGridItem.astro';
+import TrashouselWrapper from '@components/Trashousel/TrashouselWrapper';
 import Default from '@layouts/Default.astro';
 import ProjectGrid from '@layouts/ProjectGrid.astro';
 import { Image } from 'astro:assets';
@@ -19,15 +20,24 @@ import castle from '../../public/castle-projects.jpg';
       <a href="https://github.com/maxdemaio" class="mlink">
         <span class="i-carbon-logo-github"></span>
         GitHub</a
-      >. If you'd like to support my open source work, feel free to visit my
-      <a href="https://github.com/sponsors/maxdemaio" class="mySponsorLink"> GitHub Sponsors page</a>. Or, please feel
-      free to checkout my freelance business, <a href="https://cozy.foo" class="mySponsorLink"> Cozy Coders</a>.
+      >.
     </p>
+  </section>
+  <section class="my-12 md:my-16">
+    <div class="trashousel-slot">
+      <TrashouselWrapper client:load />
+    </div>
   </section>
   <section class="mb-4">
     <ProjectGrid>
       <ProjectGridItem
-        link="https://splist.fm"
+        contributor
+        link="https://typehero.dev"
+        linkName="TypeHero"
+        description="- connect, collaborate, and grow with a community of TypeScript developers. Elevate your skills through interactive coding challenges, discussions, and knowledge sharing."
+      />
+      <ProjectGridItem
+        link="https://splist-lac.vercel.app"
         linkName="Splist"
         description="is a web application to share your top songs and artists with friends. Built with Next.js, Vercel Edge Functions, and the Spotify API."
       />
@@ -43,7 +53,7 @@ import castle from '../../public/castle-projects.jpg';
         description="is a bilingual restaurant website, providing content in both English and French. Empowering users with seamless navigation, quick access to contact info, and captivating culinary insights. Thoughtfully designed with Astro for a smooth and engaging user experience."
       />
       <ProjectGridItem
-        link="https://chessheat.com"
+        link="https://github.com/maxdemaio/chess-heat"
         linkName="Chess Heat"
         description="fetches monthly chess games from Chess.com and creates a heatmap of a player's game activity over the year. It's a fun and easy way to track consistency over time! Created with HTML, CSS, and JavaScript."
       />
@@ -52,21 +62,10 @@ import castle from '../../public/castle-projects.jpg';
         linkName="Hack Computer"
         description='is a computer system built from the ground up as described in the book, "The Elements of Computing Systems." Made with hardware description language, assembly, Python, and Java.'
       />
-      <ProjectGridItem
-        link="https://github.com/maxdemaio/leetcode"
-        linkName="Data Structures and Algorithms"
-        description="is a repository of programming problem solutions. It spans various categories such as: arrays & hashing, two pointers, stacks, sliding window, linked list, binary search, trees, tries, heap/priority queues, backtracking, and more. All test cases are verified via GitHub Actions."
-      />
-      <ProjectGridItem
-        link="https://maxdemaio.github.io/thelangbot"
+<ProjectGridItem
+        link="https://github.com/maxdemaio/thelangbot"
         linkName="The Language Bot"
         description="is a Twitter bot to help individuals learn foreign languages. It naturally built a community by retweeting #langtwt and #100DaysOfLanguage hashtagged tweets. Archived since the monetization of the Twitter API. Built with Python, CRON, and Docker."
-      />
-      <ProjectGridItem
-        contributor
-        link="https://typehero.dev"
-        linkName="TypeHero"
-        description="- connect, collaborate, and grow with a community of TypeScript developers. Elevate your skills through interactive coding challenges, discussions, and knowledge sharing."
       />
       <ProjectGridItem
         contributor
@@ -86,3 +85,19 @@ import castle from '../../public/castle-projects.jpg';
     alt="Castle in the Sky - Projects Picture"
   />
 </Default>
+
+<style>
+  /* Reserve vertical space matching Trashousel's calculateDimensions breakpoints to prevent CLS. */
+  .trashousel-slot {
+    min-height: 180px;
+  }
+  @media (min-width: 480px) {
+    .trashousel-slot { min-height: 220px; }
+  }
+  @media (min-width: 640px) {
+    .trashousel-slot { min-height: 280px; }
+  }
+  @media (min-width: 800px) {
+    .trashousel-slot { min-height: 340px; }
+  }
+</style>

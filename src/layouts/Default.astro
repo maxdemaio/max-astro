@@ -25,3 +25,14 @@ const { title, description, image, tumblrRedir, showEmailList } = Astro.props;
     <Footer showEmailList={showEmailList} />
   </body>
 </html>
+
+<style is:global>
+  /* Reserve gutter for scrollbar so nav doesn't shift on pages with/without scroll. */
+  html {
+    scrollbar-gutter: stable;
+  }
+  /* Prevent horizontal page scroll from carousel overflow, without clipping visible previews. */
+  body {
+    overflow-x: clip;
+  }
+</style>

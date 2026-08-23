@@ -1,0 +1,7 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+minimumReleaseAgeExclude:
+  - '@types/react-dom@19.2.5'
+overrides:
+  '@vitejs/plugin-react': ^4.3.4

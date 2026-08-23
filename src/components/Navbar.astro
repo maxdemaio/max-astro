@@ -110,37 +110,8 @@
 </style>
 
 <nav
-  class="gap-4 flex justify-start font-kai items-center xs:justify-between lt-xs:px-4 px-8 my-10 md:mb-16 max-w-3xl mx-auto"
+  class="gap-4 flex justify-between font-kai items-center lt-xs:px-4 px-8 my-10 md:mb-16 max-w-3xl mx-auto"
 >
-  <a
-    href="/"
-    title="Home"
-    class="hidden xs:block dark:hover-text-white hover-text-black transition-color duration-150">Home</a
-  >
-  <a
-    href="/blog"
-    title="Blog"
-    class="hidden xs:block dark:hover-text-white hover-text-black transition-color duration-150">Blog</a
-  >
-  <a
-    href="/projects"
-    title="Projects"
-    class="hidden xs:block dark:hover-text-white hover-text-black transition-color duration-150">Projects</a
-  >
-  <a
-    href="https://github.com/maxdemaio"
-    title="GitHub"
-    class="transition-bg duration-150 text-lg grid items-center justify-center lt-sm:hidden w-10 h-10 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
-  >
-    <div class="i-carbon-logo-github"></div>
-  </a>
-  <a
-    href="https://www.youtube.com/@maxwelldemaio"
-    title="YouTube"
-    class="transition-bg duration-150 text-lg grid items-center justify-center lt-sm:hidden w-10 h-10 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
-  >
-    <div class="i-carbon-logo-youtube"></div>
-  </a>
   <button
     id="mobile-menu-button"
     class="z-50 xs:hidden w-10 h-10 grid items-center justify-center bg-neutral-200 dark:bg-neutral-800 rounded"
@@ -154,6 +125,24 @@
       class="hamburger-lines w-5 h-[2px] bg-gray-700 dark:bg-gray-200 before:bg-gray-700 before:dark:bg-gray-200 after:bg-gray-700 after:dark:bg-gray-200"
     ></span>
   </button>
+  <div aria-hidden="true" class="hidden xs:block w-10 h-10"></div>
+  <div class="hidden xs:flex items-center justify-between flex-1 mx-16">
+    <a
+      href="/"
+      title="Home"
+      class="dark:hover-text-white hover-text-black transition-color duration-150">Home</a
+    >
+    <a
+      href="/blog"
+      title="Blog"
+      class="dark:hover-text-white hover-text-black transition-color duration-150">Blog</a
+    >
+    <a
+      href="/projects"
+      title="Projects"
+      class="dark:hover-text-white hover-text-black transition-color duration-150">Projects</a
+    >
+  </div>
   <button
     title="Theme"
     id="theme-button"

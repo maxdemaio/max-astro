@@ -9,7 +9,9 @@ await page.goto(pathToFileURL(path.resolve('og.html')).href);
 await page.evaluate(() => document.fonts.ready);
 await page.waitForTimeout(500);
 for (const [file, seg] of Object.entries(variants)) {
-  await page.evaluate((seg) => { document.getElementById('mark').innerHTML = 'maxdemaio.com' + (seg ? '<b>' + seg + '</b>' : ''); }, seg);
+  await page.evaluate((seg) => {
+    document.getElementById('mark').innerHTML = 'maxdemaio.com' + (seg ? '<b>' + seg + '</b>' : '');
+  }, seg);
   await page.locator('#og').screenshot({ path: path.join(out, file) });
 }
 await browser.close();

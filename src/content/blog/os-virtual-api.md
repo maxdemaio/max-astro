@@ -161,23 +161,21 @@ grep -o foo file | wc -l
 
 There are also other interfaces for interacting with processes on UNIX systems. We can send signals to processes to pause, continue, kill, or other useful imperatives. The signal subsystem allows us to send external events to processes as well as entire process groups.
 
-## Summary
+## The Process API in Practice
 
-Note, it's important to take everything with a grain of salt. It's noted in the book that "a recent paper by systems researchers from Microsoft, Boston University, and ETH in Switzerland details some problems with `fork()`, and advocates for other, simpler process creation APIs such as `spawn()`." Also, more research may come out in the future improving upon the UNIX process API.
+The semantics above lead to a handful of behaviors that are worth seeing firsthand. Each of these follows directly from the fact that `fork()` gives the child its own address space and a copy of the parent's file descriptor table.
 
-## Homework
+### Variables after `fork()`
 
-> 1. Write a program that calls fork(). Before calling fork(), have the main process access a variable (e.g., x) and set its value to something (e.g., 100). What value is the variable in the child process? What happens to the variable when both the child and parent change the value of x?
+If the parent sets a variable before calling `fork()`, the child sees the same value at the moment of the fork. From then on the two copies are independent, because each process has its own private address space. A write in the child never shows up in the parent, and vice versa.
 
-- The variables of the child process and the parent process have their own independent values since they have their own private memory address spaces.
+### Shared file descriptors
 
-> 2. Write a program that opens a file (with the open() system call) and then calls fork() to create a new process. Can both the child and parent access the file descriptor returned by open()? What happens when they are writing to the file concurrently, i.e., at the same time?
+File descriptors are a different story. A file opened with `open()` before the fork is accessible from both processes, and they share the same underlying open file description, including the file offset. If both write concurrently, the file ends up containing both sets of writes, but the interleaving is up to the scheduler and is not deterministic.
 
-- They are both able to write to the file that was opened via the `open()` system call. If writing concurrently, the file will contain both the parent's and child's messages, but the order and how the writes are interleaved can vary.
+### Ordering without `wait()`
 
-> 3. Write another program using fork(). The child process should print “hello”; the parent process should print “goodbye”. You should try to ensure that the child process always prints first; can you do this without calling wait() in the parent?
-
-- Yes, another deterministic way to ensure that the parent process runs after the child process is by using inter-process communication (IPC) methods, such as pipes, signals, or shared memory. One simple approach would be for the child to signal the parent when it has completed its task, allowing the parent to wait for that signal before proceeding.
+`wait()` is the obvious way to make a parent run after its child, but it is not the only way. Any inter-process communication mechanism works: pipes, shared memory, or signals. The example below has the parent `pause()` until it receives `SIGCHLD`, which the kernel delivers when the child exits. The child prints first, every time.
 
 ```c
 #include <stdio.h>
@@ -218,24 +216,21 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-> 4. Write a program that calls fork() and then calls some form of exec() to run the program /bin/ls. See if you can try all of the variants of exec(), including (on Linux) execl(), execle(), execlp(), execv(), execvp(), and execvpe(). Why do you think there are so many variants of the same basic call?
+### Why so many `exec()` variants?
 
-- Variants of `exec()` differ in the way they accept arguments and how they search for the program to be executed.
+Linux provides `execl()`, `execle()`, `execlp()`, `execv()`, `execvp()`, and `execvpe()`. They all do the same thing, but differ along two axes: whether arguments are passed as a list or an array (the `l` and `v` suffixes), and whether the program is located via the `PATH` (the `p` suffix). The `e` suffix lets the caller supply an explicit environment. The variants exist so that the calling code can pick the most convenient signature rather than converting between formats.
 
-> 5. Now write a program that uses wait() to wait for the child process to finish in the parent. What does wait() return? What happens if you use wait() in the child?
+### `wait()` and `waitpid()`
 
-- The `wait()` system call should only be used in the parent process to wait for the child to finish. If you call `wait()` in the child process, there is no child for it to wait for, and the call will fail, returning `-1`.
+`wait()` blocks until any child finishes and returns that child's PID. Calling it from a process with no children, such as the child itself, fails immediately and returns `-1`. `waitpid()` adds control: you can wait for one specific child by PID, and with `WNOHANG` you can poll instead of blocking, which matters when the parent has other work to do.
 
-> 6. Write a slight modification of the previous program, this time using waitpid() instead of wait(). When would waitpid() be useful?
+### Closing standard output
 
-- `waitpid()` is useful when you want to: Wait for a specific child process or 
-implement more control over the waiting behavior, such as not blocking the parent indefinitely.
+If a child closes `STDOUT_FILENO` and then calls `printf()`, the output is simply lost. `printf()` writes to file descriptor 1, and with that descriptor closed there is nowhere for the bytes to go. This is the same mechanism a shell uses for redirection, just without reopening the descriptor to point somewhere useful.
 
-> 7. Write a program that creates a child process, and then in the child closes standard output (STDOUT FILENO). What happens if the child calls printf() to print some output after closing the descriptor?
+### Connecting two children with a pipe
 
-- When the child process closes `STDOUT_FILENO` and then tries to use `printf()`, the output will be lost because there is no open file descriptor associated with standard output. Normally, `printf()` sends output to `STDOUT`, but since it's closed, the output is discarded.
-
-> 8. Write a program that creates two children, and connects the standard output of one to the standard input of the other, using the pipe() system call.
+`pipe()` creates a pair of descriptors: one for reading and one for writing. Because children inherit descriptors across `fork()`, a parent can create a pipe, fork two children, and have one write into it while the other reads from it. Each child closes the end it does not use, and the parent closes both so that the reader sees end-of-file once the writer is done.
 
 ```c
 #include <stdio.h>
@@ -314,3 +309,7 @@ int main() {
     return 0;
 }
 ```
+
+## Summary
+
+Note, it's important to take everything with a grain of salt. It's noted in the book that "a recent paper by systems researchers from Microsoft, Boston University, and ETH in Switzerland details some problems with `fork()`, and advocates for other, simpler process creation APIs such as `spawn()`." Also, more research may come out in the future improving upon the UNIX process API.

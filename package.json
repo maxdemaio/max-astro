@@ -12,23 +12,30 @@
     "format": "pnpm prettier --config=.prettierrc.mjs --plugin=prettier-plugin-astro --write ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/react": "^5.0.7",
-    "@astrojs/rss": "^4.0.14",
-    "@astrojs/sitemap": "^3.6.1",
-    "@astrojs/vercel": "^9.0.3",
-    "@types/react": "^18.3.31",
-    "@types/react-dom": "^18.3.7",
-    "astro": "^5.16.9",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@astrojs/markdown-remark": "^7.3.10",
+    "@astrojs/mdx": "^8.1.6",
+    "@astrojs/react": "^7.1.9",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.6",
+    "@astrojs/vercel": "^11.0.22",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "astro": "^7.4.13",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.427",
-    "@unocss/reset": "0.55.4",
-    "prettier": "^3.7.4",
-    "prettier-plugin-astro": "^0.12.3",
-    "sharp": "^0.32.6",
-    "unocss": "0.55.4"
+    "@fontsource/geist-mono": "^5.3.0",
+    "@fontsource/kaisei-tokumin": "^5.3.1",
+    "@iconify/json": "^2.2.561",
+    "@resvg/resvg-js": "^2.6.2",
+    "@unocss/astro": "66.13.0",
+    "@unocss/reset": "66.13.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^1.1.2",
+    "rehype-autolink-headings": "^7.1.0",
+    "satori": "^0.63.2",
+    "sharp": "^0.35.5",
+    "unocss": "66.13.0"
   }
 }

@@ -1,21 +1,29 @@
 ---
 import Default from '@layouts/Default.astro';
+import me from '../assets/me.jpg';
 ---
 
 <Default title="Home - Max DeMaio" description="Max DeMaio's personal website">
-  <div class="flex w-full items-center justify-start flex-wrap mb-10 md:mb-16 gap-6 md:gap-10">
-    <img src="/me3.jpg" class="rounded-full" width={100} height={100} alt="profile picture" />
-    <div class="flex flex-col justify-end font-kai">
-      <h1 class="text-2xl md:text-4xl font-bold text-black dark:text-white">Maxwell DeMaio</h1>
-      <h2 class="text-xl md:text-3xl text-gray-600 dark:text-gray-400">Software Developer in Boston, MA</h2>
-    </div>
-  </div>
-
   <section>
+    <div class="mb-4">
+      <span
+        id="greeting"
+        aria-live="polite"
+        class="relative inline-flex items-center whitespace-nowrap overflow-hidden px-2 py-0.5 leading-none rounded font-kai border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-900 text-base text-black dark:text-white"
+      >
+        <span id="greeting-text">Hello</span>
+      </span>
+      ,
+    </div>
     <p class="mb-4">
-      Hi, I'm Max! I'm a software developer with a strong will to learn, research new technologies, and design software
-      architecture. I like creating practical business solutions and making development processes as efficient as
-      possible.
+      I'm{' '}
+      <span class="inline-flex items-center gap-1.5 align-middle relative -top-[0.1em] pl-1.5 pr-2 py-0.5 leading-none rounded font-kai border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-900 text-base text-black dark:text-white">
+        <img src={me.src} class="rounded-sm bg-stone-200 dark:bg-stone-700" width={22} height={22} alt="" />
+        <span>Max</span>
+      </span>
+      . I'm a software developer in Boston, MA with a strong will to learn, research new technologies, and design
+      software architecture. I like creating practical business solutions and making development processes as efficient
+      as possible.
     </p>
     <p class="mb-4">
       I'm working on growing my skills and gaining exposure to a variety of technology, whether that be through work or
@@ -23,16 +31,113 @@ import Default from '@layouts/Default.astro';
       Also, I believe in hard work, curiosity, and diversity.
     </p>
     <p class="mb-4">
-      You can find me on
-      <a href="https://github.com/maxdemaio" class="mlink">
-        <span class="i-carbon-logo-github"></span>
-        GitHub</a
-      > and
-      <a href="https://www.linkedin.com/in/maxdemaio" class="mlink ">
-        <span class="i-carbon-logo-linkedin"></span>
-        LinkedIn</a
-      >. Please feel free to reach out and contact me at
-      <a href="mailto:maxwell.demaio@gmail.com" class="mlink"> maxwell.demaio@gmail.com</a>.
+      You can find me on{' '}
+      <a href="https://github.com/maxdemaio" class="plink">
+        <span class="i-carbon-logo-github op75"></span> GitHub
+      </a>{' '}
+      and{' '}
+      <a href="https://www.linkedin.com/in/maxdemaio" class="plink">
+        <span class="i-carbon-logo-linkedin op75"></span> LinkedIn
+      </a>
+      . Please feel free to reach out and contact me at{' '}
+      <a href="mailto:maxwell.demaio@gmail.com" class="plink">
+        maxwell.demaio@gmail.com
+      </a>
+      .
     </p>
   </section>
 </Default>
+
+<style>
+  #greeting {
+    --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --fade: 260ms;
+    --morph: 320ms;
+    /* The box never fades; it only morphs its width. */
+    transition: width var(--morph) var(--ease-in-out-cubic);
+  }
+  /* Incoming and outgoing words crossfade on top of each other. */
+  #greeting-text,
+  .greeting-old {
+    display: inline-block;
+    /* Keep the text on its own layer at all times so antialiasing doesn't change when the filter ends. */
+    will-change: opacity, filter;
+    filter: blur(0);
+    transition:
+      opacity var(--fade) var(--ease-out-cubic),
+      filter var(--fade) var(--ease-out-cubic);
+  }
+  #greeting-text.entering {
+    opacity: 0;
+    filter: blur(4px);
+    transition: none;
+  }
+  .greeting-old {
+    position: absolute;
+    pointer-events: none;
+  }
+  .greeting-old.leaving {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #greeting,
+    #greeting-text,
+    .greeting-old {
+      transition: none;
+      filter: none;
+    }
+  }
+</style>
+
+<script>
+  const greetings = ['Hello', 'Bonjour', 'Buongiorno', '안녕하세요', '你好'];
+  const el = document.getElementById('greeting');
+  const text = document.getElementById('greeting-text');
+  if (el && text) {
+    let i = 0;
+    const FADE = 260;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const next = () => {
+      i = (i + 1) % greetings.length;
+      if (reduceMotion) {
+        text.textContent = greetings[i];
+        return;
+      }
+
+      // Leave a copy of the current word in place so it can fade out under the new one.
+      const old = text.cloneNode(true) as HTMLElement;
+      old.removeAttribute('id');
+      old.className = 'greeting-old';
+      old.style.left = `${text.offsetLeft}px`;
+      old.style.top = `${text.offsetTop}px`;
+      el.appendChild(old);
+
+      // Pin the current width, swap the text in hidden, measure the new natural width.
+      const from = el.getBoundingClientRect().width;
+      text.classList.add('entering');
+      text.textContent = greetings[i];
+      el.style.width = 'auto';
+      const to = el.getBoundingClientRect().width;
+      el.style.width = `${from}px`;
+      void el.offsetWidth; // commit the starting state before animating
+
+      // Next frame: old fades out, new fades in, box morphs. All at once.
+      requestAnimationFrame(() => {
+        old.classList.add('leaving');
+        text.classList.remove('entering');
+        el.style.width = `${to}px`;
+      });
+      setTimeout(() => old.remove(), FADE + 50);
+    };
+
+    let timer = window.setInterval(next, 2400);
+    // Pause while the tab is hidden so we don't burn cycles or swap behind the user's back.
+    document.addEventListener('visibilitychange', () => {
+      window.clearInterval(timer);
+      if (!document.hidden) timer = window.setInterval(next, 2400);
+    });
+  }
+</script>

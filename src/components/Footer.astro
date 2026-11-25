@@ -1,9 +1,23 @@
 <footer class="lt-xs:px-4 px-8 max-w-3xl mx-auto">
-  <hr class="my-10 mx-1 border-neutral-5 opacity-30" />
+  <hr class="my-10 mx-1 border-stone-5 opacity-30" />
   <div class="flex flex-wrap justify-between gap-4 my-10">
     <span>Website designed by Max DeMaio &copy; {new Date().getFullYear()}</span>
-    <button title="Top button" class="cursor-pointer">
-      <a href="#" class="mlink">↑ Top</a>
-    </button>
+    <a id="top-link" href="#" class="plink" hidden>
+      ↑ Top
+    </a>
   </div>
 </footer>
+
+<script>
+  // Only offer "Top" when the page is actually tall enough to scroll.
+  const topLink = document.getElementById('top-link');
+  if (topLink) {
+    const update = () => {
+      topLink.hidden = document.documentElement.scrollHeight <= window.innerHeight;
+    };
+    update();
+    window.addEventListener('resize', update, { passive: true });
+    // Content can grow after load (fonts, images, hydrated components).
+    new ResizeObserver(update).observe(document.body);
+  }
+</script>

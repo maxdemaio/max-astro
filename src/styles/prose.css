@@ -61,36 +61,59 @@
   margin: 0;
 }
 
-/* link styles */
-.prose * a {
-  padding: 0.125rem; /* 2px */
-  border-radius: 0.125rem; /* 2px */
-  transition-property: color, background-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  color: rgb(12 74 110);
-  background-color: rgba(224, 242, 254);
+/* link styles (antfu-style hairline border; body copy is muted so links read at full contrast) */
+.prose * a:not(.header-anchor) {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.3);
+  transition: border-color 150ms ease;
 }
-.prose * a:hover {
-  color: rgb(8, 47, 73);
-  background-color: rgba(240, 249, 255);
+.prose * a:not(.header-anchor):hover {
+  border-bottom-color: #57534e; /* stone-600 */
+}
+
+/* emphasis reads a step darker than the muted body copy */
+.prose strong,
+.prose b {
+  color: #1c1917; /* stone-900 */
+  font-weight: 600;
+}
+html.dark .prose strong,
+html.dark .prose b {
+  color: #f5f5f4; /* stone-100 */
 }
 
 /* code styles */
 .prose pre {
   margin: 0.5em 0em 0.5em 0em;
-  color: #e5e7eb;
   overflow-x: auto;
   line-height: 1.4;
   font-size: 1.05em;
   border-radius: 0.375rem;
   padding: 0.75rem 1rem 0.75rem 1rem;
+  border: 1px solid #d6d3d1; /* stone-300 */
+}
+/* Shiki emits both themes inline; the block background is overridden to match the page. */
+.prose pre.astro-code {
+  background-color: #fafaf9 !important; /* stone-50 */
+}
+html.dark .prose pre.astro-code {
+  border-color: #44403c; /* stone-700 */
+  background-color: #292524 !important; /* stone-800 */
+}
+html.dark .prose pre.astro-code,
+html.dark .prose pre.astro-code span {
+  color: var(--shiki-dark) !important;
 }
 .prose pre code::before {
   content: none;
 }
 .prose pre code::after {
   content: none;
+}
+.prose code,
+.prose pre {
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 .prose code {
   font-size: 0.875em;
@@ -173,16 +196,17 @@
 }
 
 .prose code {
-  border-radius: 0.50rem;
-  border: 1px solid #D4D4D8;
-  padding: 4px 6px 4px 6px;
-  background: #e5e5e5;
+  border-radius: 0.25rem;
+  border: 1px solid #d6d3d1; /* stone-300 */
+  padding: 2px 4px;
+  background: #fafaf9; /* stone-50, same as light code blocks */
+  color: #1c1917; /* stone-900 */
 }
 
 html.dark .prose code {
-  background: #2E2E32;
-  border-color: #232323;
-  color: #fff;
+  background: #292524; /* stone-800 */
+  border-color: #44403c; /* stone-700 */
+  color: #fafaf9; /* stone-50 */
 }
 
 .prose pre code {
@@ -208,18 +232,11 @@ html.dark .prose h6 {
 }
 
 /* dark link styles */
-html.dark .prose * a {
-  padding: 0.125rem; /* 2px */
-  border-radius: 0.125rem; /* 2px */
-  transition-property: color, background-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  color: rgb(186, 230, 253);
-  background-color: rgb(8, 47, 73);
+html.dark .prose * a:not(.header-anchor) {
+  color: #fff;
 }
-html.dark .prose * a:hover{
-  color: rgb(224, 242, 254);
-  background-color: rgb(8, 47, 73);
+html.dark .prose * a:not(.header-anchor):hover {
+  border-bottom-color: #d6d3d1; /* stone-300 */
 }
 
 /* dark table styles */
@@ -283,3 +300,41 @@ html.dark .prose tbody tr {
   }
 }
 /** end slide enter animations **/
+
+/* heading anchors: a muted # that appears on hover, sitting in the left gutter */
+.prose h2,
+.prose h3,
+.prose h4 {
+  position: relative;
+}
+.prose .header-anchor {
+  position: absolute;
+  left: -1.1em;
+  top: 0;
+  width: 1em;
+  text-align: center;
+  font-weight: 400;
+  color: #78716c; /* stone-500 */
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+.prose h2:hover .header-anchor,
+.prose h3:hover .header-anchor,
+.prose h4:hover .header-anchor,
+.prose .header-anchor:focus-visible {
+  opacity: 1;
+}
+html.dark .prose .header-anchor {
+  color: #a8a29e; /* stone-400 */
+}
+@media (max-width: 769px) {
+  .prose .header-anchor {
+    display: none;
+  }
+}
+@media (hover: none) {
+  .prose .header-anchor {
+    display: none;
+  }
+}

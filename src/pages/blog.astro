@@ -1,8 +1,6 @@
 ---
 import Default from '@layouts/Default.astro';
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import spirited from '../../public/spirited-blog.jpg';
 
 const blogPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
@@ -23,67 +21,53 @@ blogPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     border-color: rgb(249 168 212);
   }
 </style>
-<Default
-  title="Blog – Max DeMaio"
-  image="https://maxdemaio.com/spirited-blog.jpg"
-  description="All my blog posts in one place."
->
+<Default title="Blog – Max DeMaio" image="/og-blog.png" description="All my blog posts in one place.">
   <section class="mb-6">
     <h1 class="text-black dark:text-white font-kai font-bold text-4xl mb-8">Blog</h1>
     <p>
-      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language, business,
-      and life. Sometimes my thoughts overflow and end up here for safekeeping. So far, I've written {blogPosts.length} posts.
-      Feel free to stay updated via <a href="https://www.maxdemaio.com/rss.xml" class="mlink">
-        <span class="i-tabler-rss"></span>
-        RSS feed</a
-      >.
+      <span class="font-bold text-black dark:text-white">max overflow</span> is a blog about software, language,
+      business, and life. Sometimes my thoughts overflow and end up here for safekeeping. So far, I've written{' '}
+      {blogPosts.length} posts. Feel free to stay updated via{' '}
+      <a href="/rss.xml" class="plink">
+        <span class="i-tabler-rss op75"></span> RSS feed
+      </a>
+      .
     </p>
   </section>
   <section class="mb-4">
     <ul class="space-y-4">
-      {
-        blogPosts.map((post) => (
-          <>
-            <li>
-              <a href={`/blog/${post.slug}`} class="group">
-                <div class="transition-opacity duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
-                  {post.data.title}
-                </div>
-                <div class="transition-opacity duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
-                  <time datetime={post.data.pubDate.toDateString()}>
-                    {post.data.pubDate.toLocaleDateString('en-us', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </time>
-                  <span>·</span>
-                  <span>{post.data.duration}min</span>
-                  {post.data.tags && <span>·</span>}
-                  {post.data.tags && (
-                    <>
-                      {post.data.tags.map((tag) => (
-                        <span class={`${tag} border rounded px-1`}>{tag}</span>
-                      ))}
-                    </>
-                  )}
-                </div>
-              </a>
-            </li>
-          </>
-        ))
-      }
+      {blogPosts.map((post) => (
+        <>
+          <li>
+            <a href={`/blog/${post.id}`} class="group">
+              <div class="transition-opacity duration-400 text-black dark:text-white opacity-60 group-hover:opacity-100">
+                {post.data.title}
+              </div>
+              <div class="transition-opacity duration-400 opacity-40 group-hover:opacity-80 flex flex-wrap gap-1">
+                <time datetime={post.data.pubDate.toDateString()}>
+                  {post.data.pubDate.toLocaleDateString('en-us', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
+                <span>·</span>
+                <span>{post.data.duration}min</span>
+                {post.data.tags && <span>·</span>}
+                {post.data.tags && (
+                  <>
+                    {post.data.tags.map((tag) => (
+                      <span class={`${tag} border rounded px-1`}>{tag}</span>
+                    ))}
+                  </>
+                )}
+              </div>
+            </a>
+          </li>
+        </>
+      ))}
     </ul>
 
     <div></div>
   </section>
-
-  <Image
-    src={spirited}
-    quality="max"
-    height={1038}
-    width={1920}
-    class="rounded my-10"
-    alt="Spirited Away - Blog Picture"
-  />
 </Default>

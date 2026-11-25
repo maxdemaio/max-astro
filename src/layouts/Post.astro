@@ -2,75 +2,75 @@
 import Navbar from '@components/Navbar.astro';
 import type { CollectionEntry } from 'astro:content';
 import CommonHead from '@components/CommonHead.astro';
+import TableOfContents from '@components/TableOfContents.astro';
+import type { MarkdownHeading } from 'astro';
 import '@styles/prose.css';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { headings?: MarkdownHeading[] };
 
 // Now, `frontmatter`, `url`, and other Markdown layout properties
 // are accessible with type safety
-const { title, description, duration, pubDate, fileName, image, tags, resources } = Astro.props;
+const { title, description, duration, pubDate, fileName, image, tags, resources, headings = [] } = Astro.props;
+const tocHeadings = resources ? [...headings, { depth: 2, slug: 'resources', text: 'Resources' }] : headings;
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-pt-8">
   <CommonHead title={title} description={description} image={image} />
-  <body class="text-lg text-gray-800 bg-white dark:text-gray-200 dark:bg-dark-bg">
+  <body class="antialiased font-sans text-lg text-stone-600 bg-stone-100 dark:text-stone-300 dark:bg-stone-900">
     <Navbar />
+    <TableOfContents headings={tocHeadings} />
     <!-- prose start -->
     <main class="prose break-words lt-xs:px-4 px-8 max-w-3xl mx-auto text-lg">
       <section class="mb-6">
-        <h1 id={fileName}>{title}</h1>
+        <h1 id={fileName} class="!mb-6">
+          {title}
+        </h1>
         <div class="flex flex-wrap gap-1">
-          <time datetime={pubDate.toDateString()} class="font-kai dark:opacity-70 opacity-80">
-            {
-              pubDate.toLocaleDateString('en-us', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })
-            }</time
-          >
-          <span class="font-kai dark:opacity-70 opacity-80">·</span>
-          <span class="font-kai dark:opacity-70 opacity-80">{duration}min</span>
-          {tags && <span class="font-kai dark:opacity-70 opacity-80">·</span>}
-          {
-            tags && (
-              <>
-                {tags.map((tag) => (
-                  <span
-                    class={`${tag} transition-opacity ease-in-out duration-400 group-hover:opacity-100 border rounded px-1`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </>
-            )
-          }
+          <time datetime={pubDate.toDateString()} class="text-base text-stone-500 dark:text-stone-400">
+            {pubDate.toLocaleDateString('en-us', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </time>
+          <span class="text-base text-stone-500 dark:text-stone-400">·</span>
+          <span class="text-base text-stone-500 dark:text-stone-400">{duration}min</span>
+          {tags && <span class="text-base text-stone-500 dark:text-stone-400">·</span>}
+          {tags && (
+            <>
+              {tags.map((tag) => (
+                <span
+                  class={`${tag} text-base text-stone-500 dark:text-stone-400 border border-stone-300 dark:border-stone-700 rounded px-1`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </>
+          )}
         </div>
       </section>
       <article class="slide-enter-content">
         <!-- blog content is injected here -->
         <slot />
-        {
-          resources && (
-            <>
-              <h2>Resources</h2>
-              <ul>
-                {resources.map((resource) => (
-                  <li>
-                    {resource.url ? (
-                      <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                        {resource.title}
-                      </a>
-                    ) : (
-                      resource.title
-                    )}
-                    {resource.description && ` - ${resource.description}`}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )
-        }
+        {resources && (
+          <>
+            <h2 id="resources">Resources</h2>
+            <ul>
+              {resources.map((resource) => (
+                <li>
+                  {resource.url ? (
+                    <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                      {resource.title}
+                    </a>
+                  ) : (
+                    resource.title
+                  )}
+                  {resource.description && ` - ${resource.description}`}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </article>
     </main>
     <!-- prose end -->

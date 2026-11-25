@@ -85,30 +85,13 @@ The OS itself is a program. So, it has key data structures that track various re
 - process list
 - register context (for context switching)
 
-## Summary
+## Simulating CPU and I/O Overlap
 
-A process is a running program. Now that we understand the abstraction, we can get into the details about low-level mechanisms to implement processes and the high-level policies needed to schedule them intelligently. With mechanisms and policies, we will understand how an OS virtualizes the CPU!
+The OSTEP process simulator makes the value of switching on I/O concrete. It runs a list of processes, each a mix of CPU instructions and I/O requests, and reports how busy the CPU and the I/O device were. A few scenarios tell the whole story.
 
-## Homework Answers
+**Two CPU-bound processes.** With no I/O at all, CPU utilization is 100%. There is nothing to overlap.
 
-1. The usage is 100% since both processes use the CPU 100% of the time with no I/O
-2. The first process takes 4 ticks, then 1 tick to issue the I/O, then 5 ticks to complete the I/O, and then 1 tick to specify the I/O is done. So:
-
-```
-Stats: Total Time 11
-Stats: CPU Busy 6 (54.55%)
-Stats: IO Busy  5 (45.45%)
-```
-
-3. Since we issue the I/O call first, that process becomes blocked letting the other process run. So, the I/O process takes 1 tick on the CPU to start running, the and the CPU process takes over and uses the CPU for 4 ticks, finally the CPU is idle for 1 tick, then 1 tick to specify the I/O is done. So:
-
-```
-Stats: Total Time 7
-Stats: CPU Busy 6 (85.71%)
-Stats: IO Busy  5 (71.43%)
-```
-
-4. We once again arrive at a total time of 11 when switching is disabled since the idle CPU cannot be used:
+**CPU-bound first, then I/O.** The first process takes 4 ticks of CPU. The second issues an I/O, which takes 1 tick to start, 5 ticks to complete, and 1 tick to acknowledge. Nothing runs during the wait, so the I/O time is pure idle:
 
 ```
 Stats: Total Time 11
@@ -116,7 +99,7 @@ Stats: CPU Busy 6 (54.55%)
 Stats: IO Busy  5 (45.45%)
 ```
 
-5. With switching on (default but here we specified it with a flag) we get a more optimal result like before:
+**I/O first, then CPU-bound.** Issue the I/O first and that process blocks, which lets the CPU-bound process run while the device works. Total time drops from 11 ticks to 7, and both resources are busier:
 
 ```
 Stats: Total Time 7
@@ -124,7 +107,9 @@ Stats: CPU Busy 6 (85.71%)
 Stats: IO Busy  5 (71.43%)
 ```
 
-6. We initiate the first I/O instruction but then don't switch back to it until the CPU is ready again. This ends up saving all the rest of the I/O for the end since the subsequent processes are using 100% of the CPU. Then at the end it can finally issue the final I/O calls. This isn't efficient since you could've had more I/O going on in the background while the CPU was being used.
+**Switching on I/O disabled.** With `SWITCH_ON_END` instead of `SWITCH_ON_IO`, the OS refuses to switch away from a blocked process. The idle CPU goes unused and we are back to 11 ticks. Turning switching back on restores the 7-tick result. This is the whole motivation for the blocked state.
+
+**When to resume after I/O completes.** There is a second policy choice: whether a process whose I/O just finished runs immediately (`IO_RUN_IMMEDIATE`) or waits its turn (`IO_RUN_LATER`). With a process that issues several I/Os alongside CPU-heavy siblings, running later means the I/O-issuing process does not get back on the CPU until the others finish, so all of its remaining I/O is pushed to the end with nothing to overlap:
 
 ```
 Stats: Total Time 31
@@ -132,7 +117,7 @@ Stats: CPU Busy 21 (67.74%)
 Stats: IO Busy  15 (48.39%)
 ```
 
-7. When we can immediately switch to run the I/O process that finished, we get more background I/O going and can more efficient use both CPU and I/O:
+Running it immediately lets it issue the next I/O right away, which keeps the device busy in the background while the CPU-bound processes continue:
 
 ```
 Stats: Total Time 21
@@ -140,4 +125,8 @@ Stats: CPU Busy 21 (100.00%)
 Stats: IO Busy  15 (71.43%)
 ```
 
-8. For this one it really depends on the seed of the process list. But, I noted having `IO_RUN_IMMEDIATE` since that process that issued I/O will likely have more we can run in the background and `SWITCH_ON_IO` is beneficial because you can switch to other tasks while other processes are blocked by I/O.
+The pattern holds across random process mixes. `SWITCH_ON_IO` lets the CPU do useful work while a process is blocked, and `IO_RUN_IMMEDIATE` favors the process most likely to issue more I/O, which keeps both resources overlapped. Together they are a simple, effective scheduling policy.
+
+## Summary
+
+A process is a running program. Now that we understand the abstraction, we can get into the details about low-level mechanisms to implement processes and the high-level policies needed to schedule them intelligently. With mechanisms and policies, we will understand how an OS virtualizes the CPU!

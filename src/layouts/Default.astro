@@ -13,25 +13,24 @@ export interface Props {
 const { title, description, image, tumblrRedir } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-pt-8">
   <CommonHead title={title} description={description} image={image} tumblrRedir={tumblrRedir} />
-  <body class="text-lg text-gray-800 bg-white dark:text-gray-200 dark:bg-dark-bg">
+  <body class="antialiased font-sans text-lg text-stone-600 bg-stone-100 dark:text-stone-300 dark:bg-stone-900">
     <Navbar />
     <main class="px-8 lt-xs:px-4 max-w-3xl mx-auto">
       <!-- content is injected here -->
       <slot />
     </main>
     <Footer />
+    <style is:global>
+      /* Reserve gutter for scrollbar so nav doesn't shift on pages with/without scroll. */
+      html {
+        scrollbar-gutter: stable;
+      }
+      /* Prevent horizontal page scroll from carousel overflow, without clipping visible previews. */
+      body {
+        overflow-x: clip;
+      }
+    </style>
   </body>
 </html>
-
-<style is:global>
-  /* Reserve gutter for scrollbar so nav doesn't shift on pages with/without scroll. */
-  html {
-    scrollbar-gutter: stable;
-  }
-  /* Prevent horizontal page scroll from carousel overflow, without clipping visible previews. */
-  body {
-    overflow-x: clip;
-  }
-</style>

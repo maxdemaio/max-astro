@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Kaisei+Tokumin:wght@400;700&display=swap"><style>
+/* Layout: three static OG images (home, blog, projects), dot-field variant, scaled to fit. */
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#78716c;--line:#d6d3d1;
+  --sans:'Geist',system-ui,sans-serif;--mono:'Geist Mono',ui-monospace,monospace;--kai:'Kaisei Tokumin',Georgia,serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0c0a09;--fg:#f5f5f4;--muted:#a8a29e;--line:#292524;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0a09;--fg:#f5f5f4;--muted:#a8a29e;--line:#292524;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);margin:0;padding-block:40px;padding-inline:16px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-family:var(--kai);font-weight:700;font-size:28px;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 36px;max-width:62ch;line-height:1.5}
+.opt{margin-bottom:56px}
+.opt h2{font-size:15px;font-weight:600;margin:0 0 4px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.opt h2 span{font-family:var(--mono);font-weight:400;color:var(--muted);font-size:12px}
+.opt > p{color:var(--muted);font-size:14px;margin:0 0 14px;line-height:1.5}
+.frame{width:100%;aspect-ratio:1200/630;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:6px;position:relative}
+.og{width:1200px;height:630px;position:absolute;left:0;top:0;transform-origin:0 0;box-sizing:border-box;font-family:var(--sans);
+  --ob:#fafaf9;--of:#1c1917;--om:#57534e;--ol:#d6d3d1;
+  background:var(--ob);color:var(--of);padding:80px;display:flex;flex-direction:column;justify-content:flex-start;gap:48px;font-kerning:normal;font-feature-settings:"kern";-webkit-font-smoothing:antialiased}
+.mark{font-family:var(--sans);color:var(--om);font-size:28px;line-height:1;letter-spacing:0.01em}
+.mark b{font-weight:400;color:var(--of)}
+.og .name{font-family:var(--kai);font-weight:700;letter-spacing:-0.025em;line-height:1;margin:0;font-size:124px}
+.og .role{color:var(--om);font-size:34px;line-height:1;margin:0}
+.mid{display:flex;flex-direction:column;gap:32px}
+/* contribution graph: 53 weeks x 7 days, column-major like GitHub */
+.dots{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;width:100%;height:132px;margin-top:auto}
+.dots i{display:block;border-radius:3px;background:var(--ol)}
+</style><style>html,body{margin:0;background:#fafaf9}.og{position:static;transform:none!important}</style></head><body>
+<div class="og" id="og"><div class="mark" id="mark">maxdemaio.com</div><div class="mid"><p class="name">Max DeMaio</p><p class="role">Software Developer</p></div><div class="dots"></div></div>
+<script>
+(function(){var s=11;function r(){s=(s*16807)%2147483647;return s/2147483647}
+// 365 cells, column-major (week columns, Sun..Sat rows). Weekdays busier, with a few streaks.
+var cells=[],day=0,streak=0;
+for(var w=0;w<53;w++)for(var d=0;d<7;d++){if(day>=365)break;var weekend=(d===0||d===6);
+if(streak>0){streak--;}else if(r()<0.06){streak=2+Math.floor(r()*4)}
+var p=weekend?0.45:0.8;if(streak>0)p=0.97;var lvl=0;if(r()<p){var x=r();lvl=x<0.4?1:x<0.7?2:x<0.9?3:4}cells.push(lvl);day++}
+var col=['#e7e5e4','#d6d3d1','#a8a29e','#78716c','#44403c'];
+document.querySelectorAll('.dots').forEach(function(g){cells.forEach(function(l){var e=document.createElement('i');e.style.background=col[l];g.appendChild(e)})})})();
+function fit(){document.querySelectorAll('.frame').forEach(function(f){var og=f.querySelector('.og');og.style.transform='scale('+(f.clientWidth/1200)+')';});}
+fit();addEventListener('resize',fit);
+</script></body></html>

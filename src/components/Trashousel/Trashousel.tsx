@@ -100,7 +100,7 @@ function Trashousel({ images, height, width }: CoverflowProps) {
       <div style={{ width: `${width}px`, height: `${height}px` }} className="relative">
         <button
           aria-label="Previous"
-          className="transition-opacity duration-300 hover:opacity-90 opacity-60 z-10 absolute top-[50%] left-[15%] xs:left-[10%] bg-neutral-100 grid items-center justify-center w-10 h-10 rounded-full"
+          className="transition-opacity duration-300 hover:opacity-90 opacity-60 z-10 absolute top-[50%] left-[15%] xs:left-[10%] bg-stone-100 grid items-center justify-center w-10 h-10 rounded-full"
           onClick={leftArrowClick}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
@@ -110,7 +110,7 @@ function Trashousel({ images, height, width }: CoverflowProps) {
 
         <button
           aria-label="Next"
-          className="transition-opacity duration-300 hover:opacity-90 opacity-60 z-10 absolute top-[50%] right-[15%] xs:right-[10%] bg-neutral-100 grid items-center justify-center w-10 h-10 rounded-full"
+          className="transition-opacity duration-300 hover:opacity-90 opacity-60 z-10 absolute top-[50%] right-[15%] xs:right-[10%] bg-stone-100 grid items-center justify-center w-10 h-10 rounded-full"
           onClick={rightArrowClick}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
@@ -124,7 +124,8 @@ function Trashousel({ images, height, width }: CoverflowProps) {
             transform: `translateX(-${leftEdgeList[currentIndex] + imageWidthList[currentIndex] / 2}px)`,
             width: `1024px`,
             height: `100%`,
-            transition: 'transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1), width 500ms cubic-bezier(0.215, 0.61, 0.355, 1)',
+            transition:
+              'transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1), width 500ms cubic-bezier(0.215, 0.61, 0.355, 1)',
           }}
         >
           {images.map((image, index) => {

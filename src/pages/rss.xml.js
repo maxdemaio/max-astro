@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
-export async function get(context) {
+export async function GET(context) {
   const blog = await getCollection('blog');
   return rss({
     title: 'max overflow',
@@ -13,7 +13,7 @@ export async function get(context) {
       description: post.data.description,
       // Compute RSS link from post `slug`
       // This assumes all posts are rendered as `/blog/[slug]` routes
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.id}/`,
     })),
   });
 }

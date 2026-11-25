@@ -1,3 +1,12 @@
+<style is:global>
+  /* Applied for one frame while the theme flips so colors snap instead of animating. */
+  html.no-transitions *,
+  html.no-transitions *::before,
+  html.no-transitions *::after {
+    transition: none !important;
+  }
+</style>
+
 <style>
   #mobile-nav-view {
     transform: translateX(-100%); /* start all the way left */
@@ -109,68 +118,54 @@
   }
 </style>
 
-<nav
-  class="gap-4 flex justify-between font-kai items-center lt-xs:px-4 px-8 my-10 md:mb-16 max-w-3xl mx-auto"
->
+<nav class="gap-4 flex justify-between items-center lt-xs:px-4 px-8 my-10 md:mb-16 max-w-3xl mx-auto">
   <button
     id="mobile-menu-button"
-    class="z-50 xs:hidden w-10 h-10 grid items-center justify-center bg-neutral-200 dark:bg-neutral-800 rounded"
+    class="z-50 xs:hidden w-10 h-10 grid items-center justify-center bg-stone-200 dark:bg-stone-800 rounded"
     type="button"
     aria-label="Open navigation"
     aria-controls="main-navigation"
     aria-expanded="false"
   >
     <!--match icon color with others (from layout)-->
-    <span
-      class="hamburger-lines w-5 h-[2px] bg-gray-700 dark:bg-gray-200 before:bg-gray-700 before:dark:bg-gray-200 after:bg-gray-700 after:dark:bg-gray-200"
-    ></span>
+    <span class="hamburger-lines w-5 h-[2px] bg-stone-700 dark:bg-stone-200 before:bg-stone-700 before:dark:bg-stone-200 after:bg-stone-700 after:dark:bg-stone-200"></span>
   </button>
-  <div aria-hidden="true" class="hidden xs:block w-10 h-10"></div>
-  <div class="hidden xs:flex items-center justify-between flex-1 mx-16">
-    <a
-      href="/"
-      title="Home"
-      class="dark:hover-text-white hover-text-black transition-color duration-150">Home</a
-    >
-    <a
-      href="/blog"
-      title="Blog"
-      class="dark:hover-text-white hover-text-black transition-color duration-150">Blog</a
-    >
-    <a
-      href="/projects"
-      title="Projects"
-      class="dark:hover-text-white hover-text-black transition-color duration-150">Projects</a
-    >
+  <div class="hidden xs:flex items-center gap-12">
+    <a href="/" title="Home" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+      Home
+    </a>
+    <a href="/blog" title="Blog" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+      Blog
+    </a>
+    <a href="/projects" title="Projects" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+      Projects
+    </a>
   </div>
   <button
     title="Theme"
+    aria-label="Toggle dark mode"
     id="theme-button"
-    class="transition-bg duration-150 z-50 text-base grid items-center justify-center w-10 h-10 bg-neutral-200 hover:bg-neutral-300 rounded dark:bg-neutral-800 dark:hover:bg-neutral-700"
+    class="transition-opacity duration-150 ease z-50 text-base grid items-center justify-center w-10 h-10 -mr-3 rounded opacity-60 @hover:opacity-100 relative before:content-empty before:absolute before:-inset-0.5"
   >
-    <div class="i-tabler-sun-filled dark:i-tabler-moon-stars"></div>
+    <div class="i-tabler-sun-filled dark:i-tabler-moon"></div>
   </button>
 </nav>
 
 <div
   id="mobile-nav-view"
-  class="font-kai calc-top h-[100%] w-[100%] text-3xl fixed z-40 inset-0 flex gap-12 flex-col items-center bg-white dark:text-gray-200 dark:bg-dark-bg px-8"
+  class="calc-top h-[100%] w-[100%] text-3xl fixed z-40 inset-0 flex gap-12 flex-col items-center bg-stone-100 dark:text-stone-100 dark:bg-stone-900 px-8"
 >
   <div id="mobile-nav-items-selector" class="mobile-nav-items-selector-init flex flex-col gap-12">
     <!--Note: after clicking, we should transition the mobile-nav-view away -->
-    <a href="/" title="Home" class="dark:hover-text-white hover-text-black transition-color duration-150"
-      >Home</a
-    >
-    <a
-      href="/blog"
-      title="Blog"
-      class="dark:hover-text-white hover-text-black transition-color duration-150">Blog</a
-    >
-    <a
-      href="/projects"
-      title="Projects"
-      class="dark:hover-text-white hover-text-black transition-color duration-150">Projects</a
-    >
+    <a href="/" title="Home" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+      Home
+    </a>
+    <a href="/blog" title="Blog" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+      Blog
+    </a>
+    <a href="/projects" title="Projects" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+      Projects
+    </a>
   </div>
 </div>
 
@@ -187,12 +182,24 @@
   })();
 
   // Set the theme on the root element
+  // Flip the theme without animating every color transition on the page.
+  function withoutTransitions(fn) {
+    const root = document.documentElement;
+    root.classList.add('no-transitions');
+    fn();
+    // Force a style flush so the class takes effect before it's removed.
+    void root.offsetWidth;
+    requestAnimationFrame(() => root.classList.remove('no-transitions'));
+  }
+
   function applyTheme(theme) {
-    if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
+    withoutTransitions(() => {
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    });
     window.localStorage.setItem('theme', theme);
   }
 
@@ -200,7 +207,7 @@
 
   const handleToggleClick = () => {
     const element = document.documentElement;
-    element.classList.toggle('dark');
+    withoutTransitions(() => element.classList.toggle('dark'));
 
     const isDark = element.classList.contains('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');

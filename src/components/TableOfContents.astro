@@ -1,0 +1,100 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{items.length > 0 && (
+  <aside
+    id="toc"
+    aria-label="Table of contents"
+    class="hidden xl:block fixed top-36 w-56 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2 text-sm leading-tight"
+    style="left: calc(50% - 24rem - 15rem)"
+  >
+    <p class="mb-3 text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400">On this page</p>
+    <ul class="flex flex-col gap-0.5">
+      {items.map((h) => (
+        <li>
+          <a
+            href={`#${h.slug}`}
+            data-toc-link={h.slug}
+            class:list={[
+              'block rounded px-2 py-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-50 transition-colors duration-150',
+              { 'pl-5': h.depth === 3 },
+            ]}
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </aside>
+)}
+
+<style>
+  a.active {
+    background-color: #e7e5e4; /* stone-200 */
+    color: #1c1917; /* stone-900 */
+  }
+  :global(html.dark) a.active {
+    background-color: #292524; /* stone-800 */
+    color: #fafaf9; /* stone-50 */
+  }
+  /* Thin, theme-matched scrollbar; only shows when the list overflows. */
+  #toc {
+    scrollbar-width: thin;
+    scrollbar-color: #d6d3d1 transparent; /* stone-300 */
+  }
+  :global(html.dark) #toc {
+    scrollbar-color: #44403c transparent; /* stone-700 */
+  }
+</style>
+
+<script>
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+  if (links.length > 0) {
+    const headings = links
+      .map((link) => document.getElementById(link.dataset.tocLink!))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const toc = document.getElementById('toc');
+    let activeId = '';
+
+    const setActive = (id: string) => {
+      if (id === activeId) return;
+      activeId = id;
+      let activeLink: HTMLAnchorElement | undefined;
+      links.forEach((link) => {
+        const on = link.dataset.tocLink === id;
+        link.classList.toggle('active', on);
+        if (on) activeLink = link;
+      });
+      // Keep the active entry visible inside the list without moving the page.
+      if (toc && activeLink) {
+        const top = activeLink.offsetTop;
+        const bottom = top + activeLink.offsetHeight;
+        if (top < toc.scrollTop) toc.scrollTop = top;
+        else if (bottom > toc.scrollTop + toc.clientHeight) toc.scrollTop = bottom - toc.clientHeight;
+      }
+    };
+
+    // Mark the heading closest to (but not below) a line near the top of the viewport.
+    const update = () => {
+      const line = window.innerHeight * 0.25;
+      let current = headings[0];
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= line) current = h;
+        else break;
+      }
+      if (current) setActive(current.id);
+    };
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+</script>

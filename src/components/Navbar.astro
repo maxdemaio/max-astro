@@ -8,112 +8,146 @@
 </style>
 
 <style>
+  /* Motion tokens from design-engineering/animation-recipes.md. */
+  #mobile-nav-view,
+  #mobile-menu-button,
+  #theme-button {
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* house curve: enters, exits, responses */
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* sheet curve */
+  }
+
+  /* The panel is a full-width sheet sliding in from the hamburger's side. Transitions (not keyframes)
+     so a second tap mid-slide retargets instead of restarting. Durations follow the drawer recipe
+     (400ms) with a shorter exit; the travel is the full viewport width. `visibility` keeps the
+     off-screen links out of the tab order and flips after the exit finishes. */
   #mobile-nav-view {
-    transform: translateX(-100%); /* start all the way left */
+    --open: 400ms;
+    --close: 300ms;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform var(--close) var(--ease-drawer),
+      visibility 0s linear var(--close);
+  }
+  #mobile-nav-view[data-open] {
+    transform: translateX(0);
+    visibility: visible;
+    transition:
+      transform var(--open) var(--ease-drawer),
+      visibility 0s;
+  }
+
+  /* Items enter as a short stagger (occasional group, stagger recipe) and leave together, faster.
+     The wrapper animates so the link keeps its own hover opacity. */
+  .mobile-nav-item {
+    opacity: 0;
+    transform: translateX(-12px);
+    transition:
+      opacity 150ms var(--ease-out),
+      transform 150ms var(--ease-out);
+  }
+  #mobile-nav-view[data-open] .mobile-nav-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      opacity 300ms var(--ease-out),
+      transform 300ms var(--ease-out);
+  }
+  #mobile-nav-view[data-open] .mobile-nav-item:nth-child(1) {
+    transition-delay: 60ms;
+  }
+  #mobile-nav-view[data-open] .mobile-nav-item:nth-child(2) {
+    transition-delay: 100ms;
+  }
+  #mobile-nav-view[data-open] .mobile-nav-item:nth-child(3) {
+    transition-delay: 140ms;
   }
 
   .keep {
     display: grid !important;
   }
 
-  .mobile-nav-items-selector-init {
-    opacity: 0;
-    transform: translateX(-35%);
-    transition: 0.8s all cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   .calc-top {
     padding-top: calc(50px + 5.25rem);
   }
 
+  /* Press feedback (button-press recipe) on both nav buttons. Opacity hover comes from the utility classes. */
+  #mobile-menu-button,
+  #theme-button {
+    transition:
+      opacity 150ms ease,
+      transform 160ms var(--ease-out);
+  }
+  #mobile-menu-button:active,
+  #theme-button:active {
+    transform: scale(0.97);
+  }
+
+  /* Hamburger -> X as a transform-only morph. Both bars sit at top: 0 and are offset with translateY,
+     so the only thing that changes between states is the transform list, with a fixed origin.
+     The two transform lists have the same shape so the browser interpolates each function directly. */
   .hamburger-lines {
     position: relative;
     display: block;
+    transition: background-color 150ms ease;
   }
+  .hamburger-lines::before,
   .hamburger-lines::after {
-    top: -7px;
-    position: absolute;
-    left: 0;
     content: '';
-    transform-origin: 1.3px center;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: block;
     width: 1.25rem;
     height: 2px;
-    transition: transform 0.1s ease-in-out;
+    transform-origin: center;
+    transition: transform 150ms var(--ease-out);
   }
-
   .hamburger-lines::before {
-    top: 7px;
-    position: absolute;
-    left: 0;
-    content: '';
-    transform-origin: 1.3px center;
-    height: 2px;
-    width: 1.25rem;
-    transition: transform 0.1s ease-in-out;
+    transform: translateY(7px) rotate(0deg);
   }
-
+  .hamburger-lines::after {
+    transform: translateY(-7px) rotate(0deg);
+  }
   .rotate .hamburger-lines {
     background-color: transparent;
   }
-
   .rotate .hamburger-lines::before {
-    transform: rotate(-45deg);
-    transform-origin: 50% 50%;
-    top: 0px;
+    transform: translateY(0) rotate(-45deg);
   }
-
   .rotate .hamburger-lines::after {
-    transform: rotate(45deg);
-    transform-origin: center;
-    top: 0px;
+    transform: translateY(0) rotate(45deg);
   }
 
-  .slide-lr-animation {
-    animation: slide-lr 300ms cubic-bezier(0.87, 0, 0.13, 1);
-    animation-play-state: running;
-    animation-fill-mode: forwards;
-  }
-
-  .slide-rl-animation {
-    animation: slide-rl 300ms cubic-bezier(0.87, 0, 0.13, 1);
-    animation-play-state: running;
-    animation-fill-mode: forwards;
-  }
-  .mobile-nav-items-show {
-    opacity: 1;
-    transform: translateX(0);
-    transition:
-      1.5s transform cubic-bezier(0.22, 1, 0.36, 1),
-      1s opacity ease-in-out;
-  }
-
-  .mobile-nav-items-noshow {
-    opacity: 0;
-    transform: translateX(-35%);
-    transition:
-      1.5s transform cubic-bezier(0.22, 1, 0.36, 1),
-      1s opacity ease-in-out;
-  }
-
-  /* start all the way left and move right */
-  @keyframes slide-lr {
-    0% {
-      transform: translateX(-100%);
+  /* Reduced motion is gentler, not zero: the panel fades instead of sliding, items fade without the
+     stagger, the bars snap into the X while the middle bar still fades. */
+  @media (prefers-reduced-motion: reduce) {
+    #mobile-nav-view {
+      transform: none;
+      opacity: 0;
+      transition:
+        opacity 200ms var(--ease-out),
+        visibility 0s linear 200ms;
     }
-
-    100% {
-      transform: translateX(0%);
+    #mobile-nav-view[data-open] {
+      opacity: 1;
+      transition:
+        opacity 200ms var(--ease-out),
+        visibility 0s;
     }
-  }
-
-  @keyframes slide-rl {
-    0% {
-      transform: translateX(0%);
+    .mobile-nav-item,
+    #mobile-nav-view[data-open] .mobile-nav-item {
+      transform: none;
+      transition: opacity 200ms var(--ease-out);
+      transition-delay: 0ms;
     }
-
-    100% {
-      transform: translateX(-100%);
+    #mobile-menu-button:active,
+    #theme-button:active {
+      transform: none;
+    }
+    .hamburger-lines::before,
+    .hamburger-lines::after {
+      transition: none;
     }
   }
 </style>
@@ -121,7 +155,7 @@
 <nav class="gap-4 flex justify-between items-center lt-xs:px-4 px-8 my-10 md:mb-16 max-w-3xl mx-auto">
   <button
     id="mobile-menu-button"
-    class="z-50 xs:hidden w-10 h-10 -ml-3 grid items-center justify-center rounded opacity-60 @hover:opacity-100 transition-opacity duration-150 ease"
+    class="z-50 xs:hidden w-10 h-10 -ml-3 grid items-center justify-center rounded opacity-60 @hover:opacity-100"
     type="button"
     aria-label="Open navigation"
     aria-controls="main-navigation"
@@ -145,7 +179,7 @@
     title="Theme"
     aria-label="Toggle dark mode"
     id="theme-button"
-    class="transition-opacity duration-150 ease z-50 text-base grid items-center justify-center w-10 h-10 -mr-3 rounded opacity-60 @hover:opacity-100 relative before:content-empty before:absolute before:-inset-0.5"
+    class="z-50 text-base grid items-center justify-center w-10 h-10 -mr-3 rounded opacity-60 @hover:opacity-100 relative before:content-empty before:absolute before:-inset-0.5"
   >
     <div class="i-tabler-sun-filled dark:i-tabler-moon"></div>
   </button>
@@ -155,17 +189,22 @@
   id="mobile-nav-view"
   class="calc-top h-[100%] w-[100%] text-3xl fixed z-40 inset-0 flex gap-12 flex-col items-center bg-stone-100 dark:text-stone-100 dark:bg-stone-900 px-8"
 >
-  <div id="mobile-nav-items-selector" class="mobile-nav-items-selector-init flex flex-col gap-12">
-    <!--Note: after clicking, we should transition the mobile-nav-view away -->
-    <a href="/" title="Home" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
-      Home
-    </a>
-    <a href="/blog" title="Blog" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
-      Blog
-    </a>
-    <a href="/projects" title="Projects" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
-      Projects
-    </a>
+  <div id="mobile-nav-items-selector" class="flex flex-col gap-12">
+    <div class="mobile-nav-item">
+      <a href="/" title="Home" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+        Home
+      </a>
+    </div>
+    <div class="mobile-nav-item">
+      <a href="/blog" title="Blog" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+        Blog
+      </a>
+    </div>
+    <div class="mobile-nav-item">
+      <a href="/projects" title="Projects" class="opacity-60 @hover:opacity-100 transition-opacity duration-150 ease">
+        Projects
+      </a>
+    </div>
   </div>
 </div>
 
@@ -228,32 +267,34 @@
 <script>
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileNavView = document.getElementById('mobile-nav-view');
-  const mobileNavItems = document.getElementById('mobile-nav-items-selector');
 
-  if (menuButton && mobileNavView && mobileNavItems) {
-    menuButton.addEventListener('click', function () {
-      if (menuButton.ariaExpanded === 'false') {
-        // get rid of bug if you go into mobile, and then resize to desktop
-        menuButton.classList.add('keep');
-        mobileNavView.classList.remove('slide-rl-animation');
-        mobileNavView.classList.add('slide-lr-animation');
-        mobileNavItems.classList.remove('mobile-nav-items-noshow');
-        mobileNavItems.classList.add('mobile-nav-items-show');
-        menuButton.classList.add('rotate');
-        menuButton.ariaExpanded = 'true';
-        setTimeout(() => {
-          document.body.style.overflow = 'hidden'; // prevent scrolling near end of animation
-        }, 220);
-      } else {
-        menuButton.classList.remove('keep');
-        mobileNavView.classList.remove('slide-lr-animation');
-        mobileNavView.classList.add('slide-rl-animation');
-        mobileNavItems.classList.remove('mobile-nav-items-show');
-        mobileNavItems.classList.add('mobile-nav-items-noshow');
-        document.body.style.overflow = 'auto'; // allow scrolling
-        menuButton.classList.remove('rotate');
-        menuButton.ariaExpanded = 'false';
-      }
+  if (menuButton && mobileNavView) {
+    const setOpen = (open: boolean) => {
+      // `keep` holds the button visible if the viewport grows past the breakpoint while the menu is open.
+      menuButton.classList.toggle('keep', open);
+      menuButton.classList.toggle('rotate', open);
+      menuButton.setAttribute('aria-expanded', String(open));
+      mobileNavView.toggleAttribute('data-open', open);
+      if (!open) document.body.style.overflow = '';
+    };
+
+    menuButton.addEventListener('click', () => {
+      setOpen(menuButton.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !mobileNavView.hasAttribute('data-open')) return;
+      setOpen(false);
+      menuButton.focus();
+    });
+
+    // Lock page scroll only once the panel has fully covered the page, so dropping the scrollbar
+    // can't shift the layout mid-slide. If the menu is closed before the slide finishes, this never
+    // fires and the body stays scrollable, which is the right state.
+    mobileNavView.addEventListener('transitionend', (event) => {
+      if (event.target !== mobileNavView) return;
+      if (event.propertyName !== 'transform' && event.propertyName !== 'opacity') return;
+      if (mobileNavView.hasAttribute('data-open')) document.body.style.overflow = 'hidden';
     });
   }
 </script>

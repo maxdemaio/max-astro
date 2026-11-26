@@ -37,8 +37,9 @@
       visibility 0s;
   }
 
-  /* Items enter as a short stagger (occasional group, stagger recipe) and leave together, faster.
-     The wrapper animates so the link keeps its own hover opacity. */
+  /* Items enter together after a short head start (so they don't move while the sheet is still
+     uncovering them) and leave together, faster. The wrapper animates so the link keeps its own
+     hover opacity. */
   .mobile-nav-item {
     opacity: 0;
     transform: translateX(-12px);
@@ -53,14 +54,8 @@
       opacity 300ms var(--ease-out),
       transform 300ms var(--ease-out);
   }
-  #mobile-nav-view[data-open] .mobile-nav-item:nth-child(1) {
+  #mobile-nav-view[data-open] .mobile-nav-item {
     transition-delay: 60ms;
-  }
-  #mobile-nav-view[data-open] .mobile-nav-item:nth-child(2) {
-    transition-delay: 100ms;
-  }
-  #mobile-nav-view[data-open] .mobile-nav-item:nth-child(3) {
-    transition-delay: 140ms;
   }
 
   .keep {

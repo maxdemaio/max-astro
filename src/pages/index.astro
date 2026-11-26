@@ -8,12 +8,17 @@ import me from '../assets/me.jpg';
     <div class="mb-4">
       <span
         id="greeting"
-        aria-live="polite"
         class="relative inline-flex items-center whitespace-nowrap overflow-hidden px-2 py-0.5 leading-none rounded font-kai border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-900 text-base text-black dark:text-white"
       >
         <span id="greeting-text">Hello</span>
       </span>
       ,
+      <!-- Kaisei Tokumin ships from Google Fonts in unicode-range slices that load lazily. Rendering every
+           greeting (hidden, but laid out) on page load fetches the CJK slices before the first swap, so the
+           box is never measured against a fallback font. Keep in sync with `greetings` in the script. -->
+      <span aria-hidden="true" class="font-kai absolute invisible pointer-events-none">
+        Hello Bonjour Buongiorno 안녕하세요 你好
+      </span>
     </div>
     <p class="mb-4">
       I'm{' '}
@@ -50,43 +55,73 @@ import me from '../assets/me.jpg';
 
 <style>
   #greeting {
-    --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-    --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-    --fade: 260ms;
-    --morph: 320ms;
-    /* The box never fades; it only morphs its width. */
-    transition: width var(--morph) var(--ease-in-out-cubic);
+    /* House curve (design-engineering/animations.md): enters, exits and responses. Same curve as Navbar.astro. */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --enter: 300ms;
+    --exit: 150ms;
+    /* Box and word animate as a unit (paired-elements rule), so the width morph shares the word's curve
+       and duration. Width is a layout property; it's accepted here because the pill must fit a new word
+       and a scaleX would distort glyphs and the border radius. It's one small inline element every 2.4s. */
+    transition: width var(--enter) var(--ease-out);
   }
-  /* Incoming and outgoing words crossfade on top of each other. */
+  /* Incoming and outgoing words crossfade in place. Blur + scale read as depth of field: small and
+     blurred is "far", full-size and sharp is "arrived". Blur also masks the double-exposed seam. */
   #greeting-text,
   .greeting-old {
     display: inline-block;
+    /* The box is pinned on its left edge and grows rightward, so the word scales from the same anchor. */
+    transform-origin: left center;
     /* Keep the text on its own layer at all times so antialiasing doesn't change when the filter ends. */
-    will-change: opacity, filter;
+    will-change: opacity, filter, transform;
     filter: blur(0);
+    transform: scale(1);
     transition:
-      opacity var(--fade) var(--ease-out-cubic),
-      filter var(--fade) var(--ease-out-cubic);
+      opacity var(--enter) var(--ease-out),
+      filter var(--enter) var(--ease-out),
+      transform var(--enter) var(--ease-out);
+  }
+  /* The box leads, the word follows. The incoming word is full width from frame one while the box
+     is still growing, so without a head start the box clips the last glyph while the word is already
+     60-80% opaque and nearly sharp. Delaying the word 60ms keeps the clipped amount under the blur
+     radius whenever the word is readable, and 60 + 240 still lands with the box at 300ms. */
+  #greeting-text {
+    --enter: 240ms;
+    transition-delay: 60ms;
   }
   #greeting-text.entering {
     opacity: 0;
     filter: blur(4px);
+    transform: scale(0.95);
     transition: none;
   }
   .greeting-old {
     position: absolute;
     pointer-events: none;
   }
+  /* Exit is shorter than enter and uses the same house curve. Never ease-in on an exit. */
   .greeting-old.leaving {
     opacity: 0;
     filter: blur(4px);
+    transform: scale(0.95);
+    transition-duration: var(--exit);
+    transition-delay: 0ms;
   }
+  /* Reduced motion is gentler, not zero: keep the opacity crossfade, drop blur, scale and the width morph. */
   @media (prefers-reduced-motion: reduce) {
-    #greeting,
+    #greeting {
+      transition: none;
+    }
     #greeting-text,
     .greeting-old {
-      transition: none;
+      will-change: opacity;
+      transition: opacity var(--enter) var(--ease-out);
+    }
+    #greeting-text,
+    .greeting-old,
+    #greeting-text.entering,
+    .greeting-old.leaving {
       filter: none;
+      transform: none;
     }
   }
 </style>
@@ -97,19 +132,17 @@ import me from '../assets/me.jpg';
   const text = document.getElementById('greeting-text');
   if (el && text) {
     let i = 0;
-    const FADE = 260;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // The outgoing copy's transition runs for --exit; read it from CSS so the two can't drift apart.
+    const EXIT = parseFloat(getComputedStyle(el).getPropertyValue('--exit')) || 150;
 
     const next = () => {
       i = (i + 1) % greetings.length;
-      if (reduceMotion) {
-        text.textContent = greetings[i];
-        return;
-      }
 
       // Leave a copy of the current word in place so it can fade out under the new one.
+      // Reduced motion is handled in CSS (opacity-only crossfade), so the same path runs for everyone.
       const old = text.cloneNode(true) as HTMLElement;
       old.removeAttribute('id');
+      old.setAttribute('aria-hidden', 'true');
       old.className = 'greeting-old';
       old.style.left = `${text.offsetLeft}px`;
       old.style.top = `${text.offsetTop}px`;
@@ -130,7 +163,7 @@ import me from '../assets/me.jpg';
         text.classList.remove('entering');
         el.style.width = `${to}px`;
       });
-      setTimeout(() => old.remove(), FADE + 50);
+      setTimeout(() => old.remove(), EXIT + 50);
     };
 
     let timer = window.setInterval(next, 2400);
